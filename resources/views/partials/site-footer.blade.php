@@ -5,16 +5,16 @@
 <div
     class="w-screen relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] min-h-[410px] {{ $marginTop }} bg-[#F9FAFB] border-t border-[#E5E7EB] flex justify-center">
 
-    <div class="w-full max-w-[1280px] px-4 sm:px-6 lg:px-[48px] py-10 sm:py-14 lg:py-[81px] flex flex-col">
+    <div class="w-full max-w-[1280px] px-4 sm:px-6 lg:px-[48px] py-10 sm:py-14 lg:py-[64px] flex flex-col">
         <div
             class="w-full lg:w-[1184px] min-h-[176px] flex flex-col sm:flex-row sm:flex-wrap xl:flex-nowrap justify-between gap-8 lg:gap-10">
 
-            <div class="w-full max-w-[260px] min-h-[176px] flex flex-col gap-[24px]">
-                <div class="w-[144.5px] h-[40.33px] flex items-center">
+            <div class="w-full max-w-[300px] min-h-[176px] flex flex-col gap-[24px]">
+                <a href="{{ route('home') }}" class="w-[144.5px] h-[40.33px] flex items-center" aria-label="Go to home">
                     <img src="{{ asset('icons/logosmall.svg') }}" alt="Logo" class="max-w-full h-auto">
-                </div>
+                </a>
 
-                <p class="w-full max-w-[260px] text-[14px] leading-[22.75px] text-[#4A5565]">
+                <p class="w-full max-w-[300px] text-[14px] leading-[22.75px] text-[#4A5565]">
                     Transforming spaces with smart, cloud-powered digital signage
                     solutions for every industry.
                 </p>
@@ -35,17 +35,17 @@
             </div>
 
             <div class="w-full max-w-[260px] min-h-[176px] flex flex-col gap-[16px]">
-                <p class="text-[14px] leading-[20px] text-[#4A5565]">
-                    hello@pixelwave.demo
-                </p>
+                <a href="mailto:info@thelocads.com" class="text-[14px] leading-[20px] text-[#4A5565] transition hover:text-[#E7000B]">
+                    info@thelocads.com
+                </a>
 
-                <p class="text-[14px] leading-[20px] text-[#4A5565]">
-                    +1 (555) 123-4567
-                </p>
+                <a href="tel:+919911916600" class="text-[14px] leading-[20px] text-[#4A5565] transition hover:text-[#E7000B]">
+                    +91 9911916600
+                </a>
 
                 <p class="text-[14px] leading-[20px] text-[#4A5565] w-full max-w-[260px]">
-                    100 Tech Hub Boulevard, Suite 500<br>
-                    San Francisco, CA 94105
+                    C-78,<br>
+                    Sector-63, Noida(UP)
                 </p>
             </div>
         </div>
@@ -64,8 +64,8 @@
     </div>
 </div>
 
-<button
+<a href="{{ route('contact.alt') }}"
     class="fixed right-4 bottom-4 z-50 w-[56px] h-[56px] rounded-full bg-[#E7000B] flex items-center justify-center shadow-[0_0_20px_rgba(37,99,235,0.6)]"
     aria-label="Chat support">
     <img src="{{ asset('icons/logoicon.svg') }}" alt="Chat support" class="w-[24px] h-[24px]">
-</button>
+</a>

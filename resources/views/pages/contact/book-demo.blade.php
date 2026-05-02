@@ -1,34 +1,23 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
   <meta charset="UTF-8" />
   @include('partials.seo-meta', [
-      'title' => 'Contact The Locads | Request a Demo',
-      'description' => 'Contact The Locads to request a demo, ask questions, or get help choosing the right digital signage solution.',
-      'keywords' => 'contact The Locads, request demo, signage consultation, digital signage contact'
+      'title' => 'Book a Demo | The Locads',
+      'description' => 'Book a digital signage demo with The Locads and connect with our team for sales, rental, or support enquiries.',
+      'keywords' => 'book signage demo, The Locads contact, rental enquiry, sales enquiry'
   ])
   <script src="https://cdn.tailwindcss.com"></script>
-  <style>
-    .page-sections > section + section {
-      margin-top: 3rem;
-    }
-
-    @media (min-width: 1024px) {
-      .page-sections > section + section {
-        margin-top: 4rem;
-      }
-    }
-  </style>
 </head>
 
 <body class="bg-white">
 
   <!-- 🔷 TOP LEVEL DIV -->
-  <div class="page-sections w-full max-w-[1387px] mx-auto border-b border-black/10">
+  <div class="w-full max-w-[1387px] mx-auto border-b border-black/10">
 
     <!-- 🔷 HEADER -->
-        @include('partials.signage-header', ['currentPage' => 8])
+        @include('partials.signage-header', ['currentPage' => 19])
 
 
     <!-- 🔷 SECOND DIV (MAIN SECTION) -->
@@ -106,8 +95,8 @@
                     </p>
 
                     <p class="text-[14px] sm:text-[16px] leading-[24px] text-[#4A5565] w-full max-w-[266px]">
-                      100 Tech Hub Boulevard, Suite 500<br>
-                      San Francisco, CA 94105
+                      C-78,<br>
+                      Sector-63, Noida(UP)
                     </p>
 
                   </div>
@@ -128,7 +117,7 @@
                     </p>
 
                     <p class="text-[14px] sm:text-[16px] leading-[24px] text-[#4A5565] w-full max-w-[266px]">
-                      +1 (800) 555-NOVA<br>
+                      +91 9911916600<br>
                       Mon-Fri, 9am - 6pm PST
                     </p>
 
@@ -150,8 +139,8 @@
                     </p>
 
                     <p class="text-[14px] sm:text-[16px] leading-[24px] text-[#4A5565] w-full max-w-[266px]">
-                      hello@pixelwave.demo<br>
-                      support@pixelwave.demo
+                      info@thelocads.com<br>
+                      info@thelocads.com
                     </p>
 
                   </div>
@@ -195,16 +184,10 @@
                 </h3>
               </div>
 
-              @if (session('contact_success'))
-              <div class="w-full rounded-[14px] border border-[#BEDBFF] bg-[#EFF6FF] px-[16px] py-[12px] text-[14px] leading-[20px] text-[#193CB8]">
-                Your enquiry has been submitted successfully.
-              </div>
-              @endif
-
               <!-- 🔷 FORM -->
               <form method="POST" action="{{ route('enquiries.store') }}" class="w-full flex flex-col gap-[24px]">
                 @csrf
-                <input type="hidden" name="source_page" value="contact-a" />
+                <input type="hidden" name="source_page" value="book-demo" />
 
                 <!-- 🔷 FIRST + LAST NAME -->
                 <div class="w-full min-h-[74px] flex flex-col sm:flex-row gap-4 lg:gap-[24px]">
@@ -254,7 +237,8 @@
 
                 <!-- 🔷 BUTTON -->
                 <div class="w-full h-[56px]">
-                  <button type="submit"
+                  <button
+                    type="submit"
                     class="w-full h-full rounded-[14px] bg-[#155DFC] shadow-[0px_0px_15px_0px_rgba(37,99,235,0.4)] flex items-center justify-center">
 
                     <span class="text-[16px] font-bold leading-[24px] text-white">
@@ -275,95 +259,42 @@
 
 
     <!-- 🔷 THIRD DIV (FOOTER) -->
-    <section class="w-screen relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] min-h-[410px] bg-[#F9FAFB] border-t border-[#E5E7EB] flex justify-center">
+    @include('partials.site-footer')
 
-      <!-- 🔷 FOOTER INNER -->
-      <div class="w-full max-w-[1280px] px-4 sm:px-6 lg:px-[48px] py-10 sm:py-14 lg:py-[81px] flex flex-col">
+  <script>
+    (() => {
+      const popup = document.getElementById('signage19-popup');
+      const closeButtons = document.querySelectorAll('[data-popup-close]');
 
-        <!-- 🔷 TOP GRID -->
-        <div class="w-full lg:w-[1184px] min-h-[176px] flex flex-col sm:flex-row sm:flex-wrap xl:flex-nowrap justify-between gap-8 lg:gap-10">
+      if (!popup) return;
 
-          <!-- 🔷 COLUMN 1 -->
-          <div class="w-full max-w-[260px] min-h-[176px] flex flex-col gap-[24px]">
+      const openPopup = () => {
+        popup.hidden = false;
+        popup.classList.remove('hidden');
+        popup.classList.add('flex');
+        document.body.classList.add('overflow-hidden');
+      };
 
-            <!-- LOGO -->
-            <div class="w-[144.5px] h-[40.33px] flex items-center">
-              <img src="{{ asset('icons/logosmall.svg') }}" alt="Logo" class="max-w-full h-auto">
-            </div>
+      const closePopup = () => {
+        popup.hidden = true;
+        popup.classList.remove('flex');
+        popup.classList.add('hidden');
+        document.body.classList.remove('overflow-hidden');
+      };
 
-            <!-- TEXT -->
-            <p class="w-full max-w-[260px] text-[14px] leading-[22.75px] text-[#4A5565]">
-              Transforming spaces with smart, cloud-powered digital signage
-              solutions for every industry.
-            </p>
+      closeButtons.forEach((element) => element.addEventListener('click', closePopup));
 
-          </div>
+      document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape' && !popup.hidden) {
+          closePopup();
+        }
+      });
 
-          <!-- 🔷 COLUMN 2 -->
-          <div class="w-full max-w-[260px] min-h-[176px] flex flex-col gap-[16px]">
-
-            <a href="{{ route('products.index-d') }}" class="text-[14px] leading-[20px] text-[#4A5565] transition hover:text-[#E7000B]">Retail Displays</a>
-            <a href="{{ route('industries') }}" class="text-[14px] leading-[20px] text-[#4A5565] transition hover:text-[#E7000B]">Hospitality Signage</a>
-            <a href="{{ route('industries') }}" class="text-[14px] leading-[20px] text-[#4A5565] transition hover:text-[#E7000B]">Corporate Communications</a>
-            <a href="{{ route('industries') }}" class="text-[14px] leading-[20px] text-[#4A5565] transition hover:text-[#E7000B]">Healthcare Boards</a>
-
-          </div>
-
-          <!-- 🔷 COLUMN 3 -->
-          <div class="w-full max-w-[260px] min-h-[176px] flex flex-col gap-[16px]">
-
-            <a href="{{ route('about') }}" class="text-[14px] leading-[20px] text-[#4A5565] transition hover:text-[#E7000B]">About Us</a>
-            <a href="{{ route('services') }}" class="text-[14px] leading-[20px] text-[#4A5565] transition hover:text-[#E7000B]">Our Services</a>
-            <a href="{{ route('signage') }}" class="text-[14px] leading-[20px] text-[#4A5565] transition hover:text-[#E7000B]">Franchise Program</a>
-            <a href="{{ route('contact.alt') }}" class="text-[14px] leading-[20px] text-[#4A5565] transition hover:text-[#E7000B]">Contact</a>
-
-          </div>
-
-          <!-- 🔷 COLUMN 4 -->
-          <div class="w-full max-w-[260px] min-h-[176px] flex flex-col gap-[16px]">
-
-            <p class="text-[14px] leading-[20px] text-[#4A5565]">
-              hello@pixelwave.demo
-            </p>
-
-            <p class="text-[14px] leading-[20px] text-[#4A5565]">
-              +1 (555) 123-4567
-            </p>
-
-            <p class="text-[14px] leading-[20px] text-[#4A5565] w-full max-w-[260px]">
-              100 Tech Hub Boulevard, Suite 500<br>
-              San Francisco, CA 94105
-            </p>
-
-          </div>
-
-        </div>
-
-        <!-- 🔷 BOTTOM BAR -->
-          <div
-          class="w-full lg:w-[1184px] min-h-[49px] border-t border-[#E5E7EB] flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 pt-[24px] sm:pt-[32px] mt-[24px]">
-
-          <!-- COPYRIGHT -->
-          <p class="text-[12px] leading-[16px] text-[#6A7282]">
-            © 2026 TheLocads Solutions. All rights reserved.
-          </p>
-
-          <!-- LINKS -->
-          <div class="flex flex-wrap gap-[24px] text-[12px] text-[#6A7282]">
-            <a href="{{ route('faq') }}" class="transition hover:text-[#E7000B]">Privacy Policy</a>
-            <a href="{{ route('services') }}" class="transition hover:text-[#E7000B]">Terms of Service</a>
-          </div>
-
-        </div>
-
-      </div>
-    </section>
-
-  </div>
-
-  <a href="{{ route('contact.alt') }}" class="fixed right-4 bottom-4 z-50 w-[56px] h-[56px] rounded-full bg-[#E7000B] flex items-center justify-center shadow-[0_0_20px_rgba(37,99,235,0.6)]" aria-label="Chat support">
-    <img src="{{ asset('icons/logoicon.svg') }}" alt="Chat support" class="w-[24px] h-[24px]">
-  </a>
+      @if (session('contact_success'))
+      openPopup();
+      @endif
+    })();
+  </script>
 
 </body>
 

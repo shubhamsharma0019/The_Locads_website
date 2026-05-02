@@ -65,7 +65,7 @@
       </a>
       <a href="{{ route('enquiries.index') }}" class="flex items-center gap-3 rounded-lg px-3.5 py-2.5 text-[13.5px] font-medium text-[#4A5565] transition hover:bg-slate-50 hover:text-[#101828]">
         <svg class="h-[17px] w-[17px] shrink-0" viewBox="0 0 24 24" fill="none"><path d="M15 5v2m0 4v2m0 4v2M5 5a2 2 0 00-2 2v3a2 2 0 110 4v3a2 2 0 002 2h14a2 2 0 002-2v-3a2 2 0 110-4V7a2 2 0 00-2-2H5z" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-        Ticket
+        Ticket Enquiry
       </a>
       <a href="{{ route('products.index-g') }}" class="flex items-center gap-3 rounded-lg px-3.5 py-2.5 text-[13.5px] font-medium text-[#4A5565] transition hover:bg-slate-50 hover:text-[#101828]">
         <svg class="h-[17px] w-[17px] shrink-0" viewBox="0 0 24 24" fill="none"><path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
@@ -196,7 +196,7 @@
               'specifications' => $product['specifications'] ?? [],
             ];
           @endphp
-          <div class="product-card overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-soft" data-name="{{ strtolower($product['name']) }}" data-category="{{ $product['category'] }}" data-status="{{ $product['status'] }}" data-type="{{ $product['type'] }}">
+          <div class="product-card cursor-pointer overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-soft" data-url="{{ route('products.detail', ['productSlug' => $product['slug'], 'return_to' => request()->fullUrl()]) }}" data-name="{{ strtolower($product['name']) }}" data-search="{{ strtolower(trim($product['name'] . ' ' . $product['sku'] . ' ' . $product['category'])) }}" data-category="{{ strtolower(trim($product['category'])) }}" data-status="{{ strtolower($product['status']) }}" data-type="{{ strtolower($product['type']) }}">
             <div class="relative h-44 bg-gradient-to-br from-slate-50 to-red-50">
               @if (!empty($product['image_path']))
                 <img src="{{ asset($product['image_path']) }}" alt="{{ $product['name'] }}" class="h-full w-full object-cover">
@@ -222,9 +222,9 @@
                 <div class="mt-1 text-[11px] text-slate-400">{{ $specText }}</div>
               @endif
               <div class="mt-4 flex items-center gap-2">
-                <button type="button" data-product='@json($viewPayload)' onclick="openViewModal(this.dataset.product)" class="flex h-8 w-8 items-center justify-center rounded-lg border border-slate-200 bg-slate-50 text-slate-500 transition hover:border-sky-200 hover:bg-sky-50 hover:text-sky-600" title="View">
+                <a href="{{ route('products.detail', ['productSlug' => $product['slug'], 'return_to' => request()->fullUrl()]) }}" class="flex h-8 w-8 items-center justify-center rounded-lg border border-slate-200 bg-slate-50 text-slate-500 transition hover:border-sky-200 hover:bg-sky-50 hover:text-sky-600" title="View product page">
                   <svg width="14" height="14" fill="none" viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="2"/></svg>
-                </button>
+                </a>
                 <a href="{{ route('products.create', ['edit' => $product['id']]) }}" class="flex h-8 w-8 items-center justify-center rounded-lg border border-slate-200 bg-slate-50 text-slate-500 transition hover:border-amber-200 hover:bg-amber-50 hover:text-amber-600" title="Edit">
                   <svg width="14" height="14" fill="none" viewBox="0 0 24 24"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
                 </a>
@@ -347,12 +347,12 @@
         </div>
 
         <div id="salePriceGroup">
-          <label class="mb-1.5 block text-[12px] font-medium text-[#364153]">Product Price</label>
+          <label class="mb-1.5 block text-[12px] font-medium text-[#364153]">Product Price (Rs)</label>
           <input type="number" step="0.01" min="0" name="price" value="{{ old('price', $formProduct['price'] ?? '') }}" class="w-full rounded-xl border border-slate-200 bg-slate-50 px-3.5 py-2.5 text-sm text-[#101828] outline-none transition focus:border-brand focus:bg-white">
         </div>
 
         <div id="rentPriceGroup">
-          <label class="mb-1.5 block text-[12px] font-medium text-[#364153]">Rent Price</label>
+          <label class="mb-1.5 block text-[12px] font-medium text-[#364153]">Rent Price (Rs)</label>
           <input type="number" step="0.01" min="0" name="rent_price" value="{{ old('rent_price', $formProduct['rent_price'] ?? '') }}" class="w-full rounded-xl border border-slate-200 bg-slate-50 px-3.5 py-2.5 text-sm text-[#101828] outline-none transition focus:border-brand focus:bg-white">
         </div>
 
@@ -574,20 +574,20 @@
   }
 
   function filterProducts() {
-    const query = document.getElementById('productSearch').value.toLowerCase();
-    const type = document.getElementById('typeFilter').value;
-    const category = document.getElementById('categoryFilter').value;
-    const status = document.getElementById('statusFilter').value;
+    const query = document.getElementById('productSearch').value.trim().toLowerCase();
+    const type = document.getElementById('typeFilter').value.trim().toLowerCase();
+    const category = document.getElementById('categoryFilter').value.trim().toLowerCase();
+    const status = document.getElementById('statusFilter').value.trim().toLowerCase();
     const cards = document.querySelectorAll('#productsGrid .product-card');
     let visible = 0;
 
     cards.forEach(card => {
-      const name = card.dataset.name;
+      const search = card.dataset.search || card.dataset.name || '';
       const cardType = card.dataset.type;
       const cardCategory = card.dataset.category;
       const cardStatus = card.dataset.status;
 
-      const matches = name.includes(query)
+      const matches = search.includes(query)
         && (type === '' || cardType === type)
         && (category === '' || cardCategory === category)
         && (status === '' || cardStatus === status);
@@ -598,6 +598,16 @@
 
     document.getElementById('emptyState').classList.toggle('hidden', visible > 0 || cards.length === 0);
   }
+
+  document.querySelectorAll('#productsGrid .product-card[data-url]').forEach(card => {
+    card.addEventListener('click', function (event) {
+      if (event.target.closest('a, button, input, select, textarea, form')) {
+        return;
+      }
+
+      window.location.href = this.dataset.url;
+    });
+  });
 
   [typeSelectorModal, productFormModal, viewProductModal, deleteModal].forEach(modal => {
     modal.addEventListener('click', function (event) {

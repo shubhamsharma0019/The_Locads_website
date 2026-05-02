@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -52,290 +52,183 @@
             </div>
 
         </div>
+        @php
+            $faqCategories = [
+                [
+                    'title' => 'General',
+                    'items' => [
+                        [
+                            'question' => 'What is digital signage?',
+                            'answer' => 'Digital signage uses commercial screens, media players, and software to show videos, offers, menus, notices, and live updates. The Locads helps you set up the complete system from display selection to content management. Explore our services to see how the full solution works.',
+                        ],
+                        [
+                            'question' => 'What industries do you serve?',
+                            'answer' => 'We serve retail stores, hospitality spaces, corporate offices, healthcare locations, education campuses, and public-facing business spaces. Each setup is planned around visibility, content frequency, and customer flow. You can review our key use-cases on the industries page.',
+                        ],
+                        [
+                            'question' => 'Do you offer support?',
+                            'answer' => 'Yes, we provide guidance for setup, product selection, software usage, and post-installation queries. Our team can help with display planning, content workflows, and troubleshooting. For direct help, use the contact page.',
+                        ],
+                    ],
+                ],
+                [
+                    'title' => 'Products & Hardware',
+                    'items' => [
+                        [
+                            'question' => 'What types of displays do you offer?',
+                            'answer' => 'We offer indoor commercial displays, outdoor/window displays, video wall options, and media players for signage networks. Products are selected for business use, visibility, and long operating hours. Browse the product catalogue for the available categories.',
+                        ],
+                        [
+                            'question' => 'Can I use my existing screens?',
+                            'answer' => 'In many cases, yes. If your screen supports the right input, resolution, mounting, and operating schedule, it can often be paired with a suitable media player or software setup. Share your screen model through book demo and our team can confirm compatibility.',
+                        ],
+                        [
+                            'question' => 'What is the difference between indoor and outdoor displays?',
+                            'answer' => 'Indoor displays are built for controlled lighting, offices, stores, and reception areas. Outdoor and window displays need higher brightness, stronger panels, and better visibility in direct light. Compare indoor displays with outdoor displays before choosing.',
+                        ],
+                    ],
+                ],
+                [
+                    'title' => 'Software & Content Management',
+                    'items' => [
+                        [
+                            'question' => 'How do I update content on my screens?',
+                            'answer' => 'Content can be updated through the signage software by uploading media, assigning it to screens, and publishing changes. The workflow is designed for quick updates across one screen or many screens. See the software platform for the management features.',
+                        ],
+                        [
+                            'question' => 'Can I schedule different content for different times?',
+                            'answer' => 'Yes, you can plan content by time, day, campaign, or screen group depending on your setup. This is useful for offers, menus, office announcements, and event-based messaging. Our team can help map this schedule during demo booking.',
+                        ],
+                        [
+                            'question' => 'Does the system work offline?',
+                            'answer' => 'A configured player can continue showing already downloaded content if the internet drops. New uploads, schedule changes, and remote monitoring need connectivity to sync again. For reliable playback, pair your setup with the right media player.',
+                        ],
+                        [
+                            'question' => 'What is Unicast, Multicast, and Broadcast?',
+                            'answer' => 'Unicast sends content to one selected screen, multicast sends it to a chosen group, and broadcast sends it across all connected screens. These modes help manage targeted campaigns and network-wide announcements. We can recommend the right workflow through our service planning.',
+                        ],
+                    ],
+                ],
+                [
+                    'title' => 'Pricing & Plans',
+                    'items' => [
+                        [
+                            'question' => 'How much does digital signage cost?',
+                            'answer' => 'Cost depends on screen size, indoor or outdoor usage, media player needs, software license, installation, and support scope. A single-screen setup and a multi-location network will have different budgets. For a clear quote, send requirements from the contact page.',
+                        ],
+                        [
+                            'question' => 'What is Hardware as a Service (HaaS)?',
+                            'answer' => 'HaaS lets a business use signage hardware through a service-style plan instead of buying everything upfront. It can include hardware, setup, maintenance, and upgrades depending on the agreement. Ask our team through book demo for availability and fit.',
+                        ],
+                        [
+                            'question' => 'Are there any hidden fees?',
+                            'answer' => 'We aim to keep pricing clear by separating hardware, software license, installation, rental, and support costs. Any recurring license or service charge is discussed before confirmation. You can compare product and license categories from the software licenses page.',
+                        ],
+                        [
+                            'question' => 'Do you offer screen rental services?',
+                            'answer' => 'Yes, rental options can be planned for events, campaigns, temporary retail activations, and short-term business needs. The final rental plan depends on screen type, duration, location, and installation requirement. Submit a rental enquiry through book demo.',
+                        ],
+                    ],
+                ],
+                [
+                    'title' => 'Installation & Setup',
+                    'items' => [
+                        [
+                            'question' => 'Do you provide installation services?',
+                            'answer' => 'Yes, we help with installation planning, screen placement, mounting guidance, media player setup, and basic software configuration. The scope depends on the site and hardware selected. Start with our services page or contact us for site-specific support.',
+                        ],
+                        [
+                            'question' => 'How long does installation take?',
+                            'answer' => 'A simple single-screen setup can usually be completed faster than a multi-screen or video wall installation. Time depends on mounting, wiring, internet access, testing, and content setup. Share your location and screen count on the contact page for an estimate.',
+                        ],
+                        [
+                            'question' => 'Can I install the hardware myself?',
+                            'answer' => 'You can handle basic setups if you already have mounting support, power, internet, and compatible hardware. For larger displays, outdoor screens, or video walls, professional installation is recommended for safety and performance. Our team can guide you through demo consultation.',
+                        ],
+                    ],
+                ],
+                [
+                    'title' => 'Licensing & Activation',
+                    'items' => [
+                        [
+                            'question' => 'How do I activate my software license?',
+                            'answer' => 'Software activation depends on the license type selected for your signage setup. After purchase or confirmation, the license is mapped to the relevant screen, player, or account workflow. You can review available options on the software licenses page.',
+                        ],
+                        [
+                            'question' => 'How many devices can I use with one license?',
+                            'answer' => 'Device limits depend on the license model and package selected. Some licenses are meant for one screen or player, while network plans can support multiple endpoints. Contact us with your screen count so we can suggest the right license option.',
+                        ],
+                        [
+                            'question' => 'What happens if my license expires?',
+                            'answer' => 'When a license expires, new publishing, remote access, or advanced software features may stop depending on the package. Existing playback behavior can vary by setup, so renewal should be planned before expiry. For renewal help, reach us through support.',
+                        ],
+                    ],
+                ],
+                [
+                    'title' => 'Franchise & Partnership',
+                    'items' => [
+                        [
+                            'question' => 'What franchise opportunities do you offer?',
+                            'answer' => 'The Locads offers partnership opportunities around digital signage products, local business outreach, installation support, and solution delivery. The model is designed for partners who want to serve local markets with signage solutions. Visit the franchise program page for details.',
+                        ],
+                        [
+                            'question' => 'What territories are available?',
+                            'answer' => 'Territory availability depends on current business coverage, local demand, and partner readiness. We review each request based on the city, region, and expected service capacity. Send your location through the partnership enquiry form.',
+                        ],
+                        [
+                            'question' => 'What kind of support do franchisees receive?',
+                            'answer' => 'Franchisees can receive product guidance, service workflow support, sales enablement, and help with solution planning. Support may also include catalogue knowledge, demo guidance, and operational coordination. Learn more on the franchise page.',
+                        ],
+                    ],
+                ],
+            ];
+        @endphp
+
         <!-- ================= FAQ CONTENT ================= -->
         <section
             class="flex w-full flex-col items-center gap-[48px] px-[293.5px] pt-[64px] pb-[112px] max-[1280px]:px-[24px] max-[1024px]:gap-[32px] max-[1024px]:pt-[48px] max-[1024px]:pb-[64px] max-[767px]:px-[16px]">
 
-
-            <!-- ================= CATEGORY ================= -->
-            <div class="mx-auto flex w-[800px] max-w-[800px] flex-col gap-[24px] max-[1280px]:w-full 
-                /* h-[312px] */">
-
-                <div class="w-full border-b-[2px] border-[#155DFC] pb-[8px]">
-                    <h3 class="text-[24px] font-bold text-[#101828]">General</h3>
-                </div>
-
-                <div class="flex flex-col gap-[16px]">
-                    <div
-                        class="flex w-full items-center justify-between gap-3 rounded-[14px] border border-[#E5E7EB] bg-white px-[20px] py-[20px]">
-                        <p class="min-w-0 flex-1 text-[18px] font-semibold">What is digital signage?</p>
-                        <span class="ml-auto shrink-0 text-[#155DFC]"><img src="{{ asset('icons/lowerarrow.svg') }}"></span>
+            @foreach ($faqCategories as $category)
+                <div class="mx-auto flex w-[800px] max-w-[800px] flex-col gap-[24px] max-[1280px]:w-full">
+                    <div class="w-full border-b-[2px] border-[#155DFC] pb-[8px]">
+                        <h3 class="text-[24px] font-bold text-[#101828]">{{ $category['title'] }}</h3>
                     </div>
 
-                    <div
-                        class="flex w-full items-center justify-between gap-3 rounded-[14px] border border-[#E5E7EB] bg-white px-[20px] py-[20px]">
-                        <p class="min-w-0 flex-1 text-[18px] font-semibold">What industries do you serve?</p>
-                        <span class="ml-auto shrink-0 text-[#155DFC]"><img src="{{ asset('icons/lowerarrow.svg') }}"></span>
-                    </div>
+                    <div class="flex flex-col gap-[16px]">
+                        @foreach ($category['items'] as $item)
+                            @php
+                                $faqItemId = 'faq-answer-' . $loop->parent->index . '-' . $loop->index;
+                            @endphp
+                            <div class="faq-item flex w-full flex-col rounded-[14px] border border-[#E5E7EB] bg-white px-[24px] py-[20px] max-[767px]:px-[20px]">
+                                <button
+                                    type="button"
+                                    class="faq-toggle flex w-full items-center justify-between gap-3 text-left"
+                                    aria-expanded="false"
+                                    aria-controls="{{ $faqItemId }}">
+                                    <span class="min-w-0 flex-1 text-[18px] leading-[28px] font-semibold text-[#101828]">
+                                        {{ $item['question'] }}
+                                    </span>
 
-                    <div
-                        class="flex w-full items-center justify-between gap-3 rounded-[14px] border border-[#E5E7EB] bg-white px-[20px] py-[20px]">
-                        <p class="min-w-0 flex-1 text-[18px] font-semibold">Do you offer support?</p>
-                        <span class="ml-auto shrink-0 text-[#155DFC]"><img src="{{ asset('icons/lowerarrow.svg') }}"></span>
-                    </div>
-                </div>
-            </div>
+                                    <span class="ml-auto flex h-[24px] w-[24px] shrink-0 items-center justify-center">
+                                        <img
+                                            class="faq-arrow h-[24px] w-[24px]"
+                                            src="{{ asset('icons/lowerarrow.svg') }}"
+                                            data-open-src="{{ asset('icons/upperarrow.svg') }}"
+                                            data-closed-src="{{ asset('icons/lowerarrow.svg') }}"
+                                            alt="">
+                                    </span>
+                                </button>
 
-
-            <!-- ================= CATEGORY2 ================= -->
-            <div class="mx-auto flex w-[800px] max-w-[800px] flex-col gap-[24px] max-[1280px]:w-full">
-
-                <!-- HEADING -->
-                <div class="w-full border-b-[2px] border-[#155DFC] pb-[8px] flex items-end">
-                    <h3 class="text-[24px] leading-[32px] font-bold text-[#101828]">
-                        Products & Hardware
-                    </h3>
-                </div>
-
-
-                <!-- ITEMS WRAPPER -->
-                <div class="w-full flex flex-col gap-[16px]">
-
-
-                    <!-- ================= OPEN ITEM ================= -->
-                    <div
-                        class="flex w-full flex-col gap-[12px] rounded-[14px] border border-[#E5E7EB] bg-white px-[24px] py-[20px]">
-
-                        <!-- QUESTION ROW -->
-                        <div class="flex w-full items-center justify-between gap-3">
-
-                            <!-- TEXT -->
-                            <p class="min-w-0 flex-1 text-[18px] leading-[28px] font-semibold text-[#101828]">
-                                What types of displays do you offer?
-                            </p>
-
-                            <!-- ICON -->
-                            <div class="ml-auto flex h-[24px] w-[24px] shrink-0 items-center justify-center rotate-360">
-                                <span class="text-[#155DFC] text-[18px]"><img src="{{ asset('icons/upperarrow.svg') }}"></span>
+                                <div id="{{ $faqItemId }}" class="faq-answer hidden w-full pt-[12px]">
+                                    <p class="text-[16px] leading-[26px] text-[#364153]">
+                                        {{ $item['answer'] }}
+                                    </p>
+                                </div>
                             </div>
-
-                        </div>
-
-                        <!-- ANSWER -->
-                        <div class="w-full">
-                            <p class="text-[16px] leading-[26px] text-[#364153]">
-                                We offer Pro Series 4K Displays (43”-85”), High-Bright Window Displays for direct
-                                sunlight,
-                                Video Wall solutions, and Edge Media Players. All our hardware is commercial-grade and
-                                rated
-                                for 24/7 operation.
-                            </p>
-                        </div>
-
-                    </div>
-
-
-                    <!-- ================= CLOSED ITEM ================= -->
-                    <div
-                        class="flex w-full items-center justify-between gap-3 rounded-[14px] border border-[#E5E7EB] bg-white px-[24px] py-[20px]">
-
-                        <p class="min-w-0 flex-1 text-[18px] leading-[28px] font-semibold text-[#101828]">
-                            Can I use my existing screens?
-                        </p>
-
-                        <div class="ml-auto flex h-[24px] w-[24px] shrink-0 items-center justify-center">
-                            <span class="text-[#155DFC] text-[18px]"><img src="{{ asset('icons/lowerarrow.svg') }}"></span>
-                        </div>
-
-                    </div>
-
-
-                    <!-- ================= CLOSED ITEM ================= -->
-                    <div
-                        class="flex w-full items-center justify-between gap-3 rounded-[14px] border border-[#E5E7EB] bg-white px-[24px] py-[20px]">
-
-                        <p class="min-w-0 flex-1 text-[18px] leading-[28px] font-semibold text-[#101828]">
-                            What is the difference between indoor and outdoor displays?
-                        </p>
-
-                        <div class="ml-auto flex h-[24px] w-[24px] shrink-0 items-center justify-center">
-                            <span class="text-[#155DFC] text-[18px]"><img src="{{ asset('icons/lowerarrow.svg') }}"></span>
-                        </div>
-
-                    </div>
-
-
-                </div>
-
-            </div>
-
-
-            <!-- ================= CATEGORY3 ================= -->
-            <div class="mx-auto flex w-[800px] max-w-[800px] flex-col gap-[24px] max-[1280px]:w-full 
-                /* h-[398px] */">
-
-                <div class="w-full border-b-[2px] border-[#155DFC] pb-[8px]">
-                    <h3 class="text-[24px] font-bold text-[#101828]">Software & Content Management</h3>
-                </div>
-
-                <div class="flex flex-col gap-[16px]">
-                    <div
-                        class="flex w-full items-center justify-between gap-3 rounded-[14px] border border-[#E5E7EB] bg-white px-[20px] py-[20px]">
-                        <p class="min-w-0 flex-1 text-[18px] font-semibold">How do I update content on my screens?</p>
-                        <span class="ml-auto shrink-0 text-[#155DFC]"><img src="{{ asset('icons/lowerarrow.svg') }}"></span>
-                    </div>
-
-                    <div
-                        class="flex w-full items-center justify-between gap-3 rounded-[14px] border border-[#E5E7EB] bg-white px-[20px] py-[20px]">
-                        <p class="min-w-0 flex-1 text-[18px] font-semibold">Can I schedule different content for different times?</p>
-                        <span class="ml-auto shrink-0 text-[#155DFC]"><img src="{{ asset('icons/lowerarrow.svg') }}"></span>
-                    </div>
-
-                    <div
-                        class="flex w-full items-center justify-between gap-3 rounded-[14px] border border-[#E5E7EB] bg-white px-[20px] py-[20px]">
-                        <p class="min-w-0 flex-1 text-[18px] font-semibold">Does the system work offline?</p>
-                        <span class="ml-auto shrink-0 text-[#155DFC]"><img src="{{ asset('icons/lowerarrow.svg') }}"></span>
-                    </div>
-
-                    <div
-                        class="flex w-full items-center justify-between gap-3 rounded-[14px] border border-[#E5E7EB] bg-white px-[20px] py-[20px]">
-                        <p class="min-w-0 flex-1 text-[18px] font-semibold">What is Unicast, Multicast, and Broadcast?</p>
-                        <span class="ml-auto shrink-0 text-[#155DFC]"><img src="{{ asset('icons/lowerarrow.svg') }}"></span>
+                        @endforeach
                     </div>
                 </div>
-            </div>
-
-            <!-- category 4 -->
-
-            <div class="mx-auto flex w-[800px] max-w-[800px] flex-col gap-[24px] max-[1280px]:w-full 
-                /* h-[398px] */">
-
-                <div class="w-full border-b-[2px] border-[#155DFC] pb-[8px]">
-                    <h3 class="text-[24px] font-bold text-[#101828]">Pricing & Plans</h3>
-                </div>
-
-                <div class="flex flex-col gap-[16px]">
-                    <div
-                        class="flex w-full items-center justify-between gap-3 rounded-[14px] border border-[#E5E7EB] bg-white px-[20px] py-[20px]">
-                        <p class="min-w-0 flex-1 text-[18px] font-semibold">How much does digital signage cost?</p>
-                        <span class="ml-auto shrink-0 text-[#155DFC]"><img src="{{ asset('icons/lowerarrow.svg') }}"></span>
-                    </div>
-
-                    <div
-                        class="flex w-full items-center justify-between gap-3 rounded-[14px] border border-[#E5E7EB] bg-white px-[20px] py-[20px]">
-                        <p class="min-w-0 flex-1 text-[18px] font-semibold">What is Hardware as a Service (HaaS)?</p>
-                        <span class="ml-auto shrink-0 text-[#155DFC]"><img src="{{ asset('icons/lowerarrow.svg') }}"></span>
-                    </div>
-
-                    <div
-                        class="flex w-full items-center justify-between gap-3 rounded-[14px] border border-[#E5E7EB] bg-white px-[20px] py-[20px]">
-                        <p class="min-w-0 flex-1 text-[18px] font-semibold">Are there any hidden fees?</p>
-                        <span class="ml-auto shrink-0 text-[#155DFC]"><img src="{{ asset('icons/lowerarrow.svg') }}"></span>
-                    </div>
-
-                    <div
-                        class="flex w-full items-center justify-between gap-3 rounded-[14px] border border-[#E5E7EB] bg-white px-[20px] py-[20px]">
-                        <p class="min-w-0 flex-1 text-[18px] font-semibold">Do you offer screen rental services?</p>
-                        <span class="ml-auto shrink-0 text-[#155DFC]"><img src="{{ asset('icons/lowerarrow.svg') }}"></span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- 5 -->
-
-            <div class="mx-auto flex w-[800px] max-w-[800px] flex-col gap-[24px] max-[1280px]:w-full 
-                /* h-[310px] */">
-
-                <div class="w-full border-b-[2px] border-[#155DFC] pb-[8px]">
-                    <h3 class="text-[24px] font-bold text-[#101828]">Installation & Setup</h3>
-                </div>
-
-                <div class="flex flex-col gap-[16px]">
-                    <div
-                        class="flex w-full items-center justify-between gap-3 rounded-[14px] border border-[#E5E7EB] bg-white px-[20px] py-[20px]">
-                        <p class="min-w-0 flex-1 text-[18px] font-semibold">Do you provide installation services?</p>
-                        <span class="ml-auto shrink-0 text-[#155DFC]"><img src="{{ asset('icons/lowerarrow.svg') }}"></span>
-                    </div>
-
-                    <div
-                        class="flex w-full items-center justify-between gap-3 rounded-[14px] border border-[#E5E7EB] bg-white px-[20px] py-[20px]">
-                        <p class="min-w-0 flex-1 text-[18px] font-semibold">How long does installation take?</p>
-                        <span class="ml-auto shrink-0 text-[#155DFC]"><img src="{{ asset('icons/lowerarrow.svg') }}"></span>
-                    </div>
-
-                    <div
-                        class="flex w-full items-center justify-between gap-3 rounded-[14px] border border-[#E5E7EB] bg-white px-[20px] py-[20px]">
-                        <p class="min-w-0 flex-1 text-[18px] font-semibold">Can I install the hardware myself?</p>
-                        <span class="ml-auto shrink-0 text-[#155DFC]"><img src="{{ asset('icons/lowerarrow.svg') }}"></span>
-                    </div>
-
-
-                </div>
-            </div>
-
-            <!-- 6 -->
-
-            <div class="mx-auto flex w-[800px] max-w-[800px] flex-col gap-[24px] max-[1280px]:w-full 
-                /* h-[310px] */">
-
-                <div class="w-full border-b-[2px] border-[#155DFC] pb-[8px]">
-                    <h3 class="text-[24px] font-bold text-[#101828]">Licensing & Activation</h3>
-                </div>
-
-                <div class="flex flex-col gap-[16px]">
-                    <div
-                        class="flex w-full items-center justify-between gap-3 rounded-[14px] border border-[#E5E7EB] bg-white px-[20px] py-[20px]">
-                        <p class="min-w-0 flex-1 text-[18px] font-semibold">How do I activate my software license?</p>
-                        <span class="ml-auto shrink-0 text-[#155DFC]"><img src="{{ asset('icons/lowerarrow.svg') }}"></span>
-                    </div>
-
-                    <div
-                        class="flex w-full items-center justify-between gap-3 rounded-[14px] border border-[#E5E7EB] bg-white px-[20px] py-[20px]">
-                        <p class="min-w-0 flex-1 text-[18px] font-semibold">How many devices can I use with one license?</p>
-                        <span class="ml-auto shrink-0 text-[#155DFC]"><img src="{{ asset('icons/lowerarrow.svg') }}"></span>
-                    </div>
-
-                    <div
-                        class="flex w-full items-center justify-between gap-3 rounded-[14px] border border-[#E5E7EB] bg-white px-[20px] py-[20px]">
-                        <p class="min-w-0 flex-1 text-[18px] font-semibold">What happens if my license expires?</p>
-                        <span class="ml-auto shrink-0 text-[#155DFC]"><img src="{{ asset('icons/lowerarrow.svg') }}"></span>
-                    </div>
-
-
-                </div>
-            </div>
-
-            <!-- 7 -->
-
-            <div class="mx-auto flex w-[800px] max-w-[800px] flex-col gap-[24px] max-[1280px]:w-full 
-                /* h-[300px] */">
-
-                <div class="w-full border-b-[2px] border-[#155DFC] pb-[8px]">
-                    <h3 class="text-[24px] font-bold text-[#101828]">Franchise & Partnership</h3>
-                </div>
-
-                <div class="flex flex-col gap-[16px]">
-                    <div
-                        class="flex w-full items-center justify-between gap-3 rounded-[14px] border border-[#E5E7EB] bg-white px-[20px] py-[20px]">
-                        <p class="min-w-0 flex-1 text-[18px] font-semibold">What franchise opportunities do you offer?</p>
-                        <span class="ml-auto shrink-0 text-[#155DFC]"><img src="{{ asset('icons/lowerarrow.svg') }}"></span>
-                    </div>
-
-                    <div
-                        class="flex w-full items-center justify-between gap-3 rounded-[14px] border border-[#E5E7EB] bg-white px-[20px] py-[20px]">
-                        <p class="min-w-0 flex-1 text-[18px] font-semibold">What territories are available?</p>
-                        <span class="ml-auto shrink-0 text-[#155DFC]"><img src="{{ asset('icons/lowerarrow.svg') }}"></span>
-                    </div>
-
-                    <div
-                        class="flex w-full items-center justify-between gap-3 rounded-[14px] border border-[#E5E7EB] bg-white px-[20px] py-[20px]">
-                        <p class="min-w-0 flex-1 text-[18px] font-semibold">What kind of support do franchisees receive?</p>
-                        <span class="ml-auto shrink-0 text-[#155DFC]"><img src="{{ asset('icons/lowerarrow.svg') }}"></span>
-                    </div>
-
-
-                </div>
-            </div>
+            @endforeach
 
         </section>
         <!-- ================= CTA ================= -->
@@ -378,101 +271,24 @@
 
     <!-- ****************** -->
 
-    <div
-        class="w-screen relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] min-h-[410px] mt-[92px] bg-[#F9FAFB] border-t border-[#E5E7EB] flex justify-center">
+    @include('partials.site-footer')
 
-        <!-- 🔷 FOOTER INNER -->
-        <div class="w-full max-w-[1280px] px-4 sm:px-6 lg:px-[48px] py-10 sm:py-14 lg:py-[81px] flex flex-col">
+    <script>
+        document.querySelectorAll('.faq-toggle').forEach((button) => {
+            button.addEventListener('click', () => {
+                const answer = document.getElementById(button.getAttribute('aria-controls'));
+                const arrow = button.querySelector('.faq-arrow');
+                const isOpen = button.getAttribute('aria-expanded') === 'true';
 
-            <!-- 🔷 TOP GRID -->
-            <div
-                class="w-full lg:w-[1184px] min-h-[176px] flex flex-col sm:flex-row sm:flex-wrap xl:flex-nowrap justify-between gap-8 lg:gap-10">
+                button.setAttribute('aria-expanded', String(!isOpen));
+                answer?.classList.toggle('hidden', isOpen);
 
-                <!-- 🔷 COLUMN 1 -->
-                <div class="w-full max-w-[260px] min-h-[176px] flex flex-col gap-[24px]">
-
-                    <!-- LOGO -->
-                    <div class="w-[144.5px] h-[40.33px] flex items-center">
-                        <a href="{{ route('home') }}" class="flex items-center">
-                            <img src="{{ asset('icons/logosmall.svg') }}" alt="Logo" class="max-w-full h-auto">
-                        </a>
-                    </div>
-
-                    <!-- TEXT -->
-                    <p class="w-full max-w-[260px] text-[14px] leading-[22.75px] text-[#4A5565]">
-                        Transforming spaces with smart, cloud-powered digital signage
-                        solutions for every industry.
-                    </p>
-
-                </div>
-
-                <!-- 🔷 COLUMN 2 -->
-                <div class="w-full max-w-[260px] min-h-[176px] flex flex-col gap-[16px]">
-
-                    <a href="{{ route('products.index-d') }}" class="text-[14px] leading-[20px] text-[#4A5565]">Retail Displays</a>
-                    <a href="{{ route('industries') }}" class="text-[14px] leading-[20px] text-[#4A5565]">Hospitality Signage</a>
-                    <a href="{{ route('industries') }}" class="text-[14px] leading-[20px] text-[#4A5565]">Corporate Communications</a>
-                    <a href="{{ route('industries') }}" class="text-[14px] leading-[20px] text-[#4A5565]">Healthcare Boards</a>
-
-                </div>
-
-                <!-- 🔷 COLUMN 3 -->
-                <div class="w-full max-w-[260px] min-h-[176px] flex flex-col gap-[16px]">
-
-                    <a href="{{ route('about') }}" class="text-[14px] leading-[20px] text-[#4A5565]">About Us</a>
-                    <a href="{{ route('services') }}" class="text-[14px] leading-[20px] text-[#4A5565]">Our Services</a>
-                    <a href="{{ route('signage') }}" class="text-[14px] leading-[20px] text-[#4A5565]">Franchise Program</a>
-                    <a href="{{ route('contact.alt') }}" class="text-[14px] leading-[20px] text-[#4A5565]">Contact</a>
-
-                </div>
-
-                <!-- 🔷 COLUMN 4 -->
-                <div class="w-full max-w-[260px] min-h-[176px] flex flex-col gap-[16px]">
-
-                    <a href="mailto:hello@pixelwave.demo" class="text-[14px] leading-[20px] text-[#4A5565]">
-                        hello@pixelwave.demo
-                    </a>
-
-                    <a href="tel:+15551234567" class="text-[14px] leading-[20px] text-[#4A5565]">
-                        +1 (555) 123-4567
-                    </a>
-
-                    <p class="text-[14px] leading-[20px] text-[#4A5565] w-full max-w-[260px]">
-                        100 Tech Hub Boulevard, Suite 500<br>
-                        San Francisco, CA 94105
-                    </p>
-
-                </div>
-
-            </div>
-
-            <!-- 🔷 BOTTOM BAR -->
-            <div
-                class="w-full lg:w-[1184px] min-h-[49px] border-t border-[#E5E7EB] flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 pt-[24px] sm:pt-[32px] mt-[24px]">
-
-                <!-- COPYRIGHT -->
-                <p class="text-[12px] leading-[16px] text-[#6A7282]">
-                    © 2026 TheLocads Solutions. All rights reserved.
-                </p>
-
-                <!-- LINKS -->
-                <div class="flex flex-wrap gap-[24px] text-[12px] text-[#6A7282]">
-                    <a href="{{ route('faq') }}">Privacy Policy</a>
-                    <a href="{{ route('services') }}">Terms of Service</a>
-                </div>
-
-            </div>
-
-        </div>
-    </div>
-
-    <a href="{{ route('contact.alt') }}"
-        class="fixed right-4 bottom-4 z-50 w-[56px] h-[56px] rounded-full bg-[#E7000B] flex items-center justify-center shadow-[0_0_20px_rgba(37,99,235,0.6)]"
-        aria-label="Chat support">
-        <img src="{{ asset('icons/logoicon.svg') }}" alt="Chat support" class="w-[24px] h-[24px]">
-    </a>
-
-
+                if (arrow) {
+                    arrow.src = isOpen ? arrow.dataset.closedSrc : arrow.dataset.openSrc;
+                }
+            });
+        });
+    </script>
 
 </body>
 

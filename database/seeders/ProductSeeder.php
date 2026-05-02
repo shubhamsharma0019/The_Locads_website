@@ -93,7 +93,7 @@ class ProductSeeder extends Seeder
                 'short_description' => 'Rent-ready 43 inch 4K commercial signage display.',
                 'description' => 'A compact signage display option for monthly deployments and flexible rental programs.',
                 'features' => ['43" 4K UHD', '500 nits brightness', 'Android OS', 'Commercial signage ready'],
-                'specifications' => ['Purchase: $899', 'Rent: $49/month'],
+                'specifications' => ['Purchase: Rs 899', 'Rent: Rs 49/month'],
                 'image_path' => 'icons/ledimage.jpg',
             ],
             [
@@ -110,7 +110,7 @@ class ProductSeeder extends Seeder
                 'short_description' => 'Rental-friendly high-bright signage display for storefront windows.',
                 'description' => 'Designed for high-visibility placements where standard indoor panels are not enough.',
                 'features' => ['55" commercial panel', 'High brightness output', 'Window-facing signage', 'Rental deployment ready'],
-                'specifications' => ['Purchase: $1299', 'Rent: $49/month'],
+                'specifications' => ['Purchase: Rs 1299', 'Rent: Rs 49/month'],
                 'image_path' => 'icons/ledimage.jpg',
             ],
             [
@@ -127,7 +127,7 @@ class ProductSeeder extends Seeder
                 'short_description' => 'Rental media player for demanding signage playback setups.',
                 'description' => 'Good for campaigns needing a reliable media player without a full hardware purchase.',
                 'features' => ['Intel i5 performance', '4K playback', 'Signage-ready OS', 'Commercial deployment'],
-                'specifications' => ['Purchase: $799', 'Rent: $49/month'],
+                'specifications' => ['Purchase: Rs 799', 'Rent: Rs 49/month'],
                 'image_path' => 'icons/ledimage.jpg',
             ],
             [

@@ -29,14 +29,14 @@ class PageController extends Controller
         return view('pages.signage.index');
     }
 
-    public function contactA()
+    public function contact()
     {
-        return view('pages.contact-a');
+        return view('pages.contact.index');
     }
 
-    public function contactB()
+    public function bookDemo()
     {
-        return view('pages.contact-b');
+        return view('pages.contact.book-demo');
     }
 
     public function faq()

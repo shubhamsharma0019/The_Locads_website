@@ -5,7 +5,7 @@
         ['route' => 'about', 'label' => 'About', 'activePages' => [2]],
         ['route' => 'services', 'label' => 'Services', 'activePages' => [3]],
         ['type' => 'products'],
-        ['route' => 'industries', 'label' => 'Industries', 'activePages' => [5, 6]],
+        ['route' => 'industries', 'label' => 'Industries', 'activePages' => [6]],
         ['route' => 'signage', 'label' => 'Franchise', 'activePages' => [7]],
         ['route' => 'blog.index', 'label' => 'Blog', 'activePages' => [16, 17]],
         ['route' => 'faq', 'label' => 'FAQ', 'activePages' => [18]],
@@ -18,7 +18,7 @@
         ['page' => 12, 'route' => 'products.index-f', 'label' => 'Media Players'],
         ['page' => 13, 'route' => 'products.index-g', 'label' => 'Software & Licenses'],
     ];
-    $productActivePages = [4, 9, 10, 11, 12, 13, 14, 15];
+    $productActivePages = [4, 5, 9, 10, 11, 12, 13, 14, 15];
 @endphp
 
 <div

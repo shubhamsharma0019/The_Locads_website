@@ -5,7 +5,11 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreEnquiryRequest;
 use App\Models\Enquiry;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Validation\Rule;
 use Illuminate\View\View;
+use Throwable;
 
 class EnquiryController extends Controller
 {
@@ -55,7 +59,47 @@ class EnquiryController extends Controller
             Enquiry::query()->create($data + ['enquiry_type' => $enquiryType]);
         }
 
+        if ($data['source_page'] === 'Blog Newsletter') {
+            $this->notifyNewsletterSubscription($data);
+        }
+
         return back()->with('contact_success', true);
+    }
+
+    public function update(Request $request, Enquiry $enquiry): RedirectResponse
+    {
+        $data = $request->validate([
+            'first_name' => ['required', 'string', 'max:100'],
+            'last_name' => ['required', 'string', 'max:100'],
+            'email' => ['required', 'email', 'max:255'],
+            'company_name' => ['nullable', 'string', 'max:255'],
+            'message' => ['required', 'string', 'max:2000'],
+            'source_page' => ['required', 'string', 'max:50'],
+            'enquiry_type' => ['required', Rule::in(['sell', 'rent', 'ticket'])],
+        ]);
+
+        $enquiry->update($data);
+
+        return redirect()
+            ->route('enquiries.index', $request->only(['type', 'source']))
+            ->with('enquiry_updated', true);
+    }
+
+    private function notifyNewsletterSubscription(array $data): void
+    {
+        try {
+            Mail::raw(
+                "New newsletter subscription received.\n\nEmail: {$data['email']}\nSource: {$data['source_page']}",
+                function ($message) use ($data) {
+                    $message
+                        ->to('info@thelocads.com')
+                        ->replyTo($data['email'])
+                        ->subject('New Newsletter Subscription - The Locads');
+                }
+            );
+        } catch (Throwable $exception) {
+            report($exception);
+        }
     }
 
     private function detectEnquiryTypes(string $message): array

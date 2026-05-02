@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -120,8 +120,8 @@
 
             <!-- DASHBOARD LINK INDICATOR -->
             <a
-                href="{{ route('dashboard') }}"
-                aria-label="Go to dashboard"
+                href="{{ route('login') }}"
+                aria-label="Login to dashboard"
                 class="flex self-center mt-[16px] mb-[8px] h-[34px] w-[20px] rounded-full border-[2px] border-[#99A1AF] items-start justify-center px-[6px] pt-[7px] transition hover:border-[#155DFC] hover:bg-[#EFF6FF] lg:absolute lg:left-[681.5px] lg:top-[751.65px] lg:mt-0">
 
                 <!-- INNER DOT -->
@@ -994,7 +994,7 @@
 
                     <!-- CTA -->
                     <div class="absolute top-[430px] sm:top-[455px] lg:top-[469.25px] left-[24px] sm:left-[40px] lg:left-[80px]">
-                        <a href="{{ route('blog.show') }}" class="text-[16px] font-bold text-white flex items-center gap-[8px]">
+                        <a href="{{ route('blog.show', 'airport-wayfinding-case-study') }}" class="text-[16px] font-bold text-white flex items-center gap-[8px]">
                             Read Full Story →
                         </a>
                     </div>
@@ -1165,99 +1165,7 @@
 <!-- ******** -->
 
 <!-- 🔷 THIRD DIV (FOOTER) -->
-        <div
-            class="w-screen relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] min-h-[410px] mt-[87.55px] bg-[#F9FAFB] border-t border-[#E5E7EB] flex justify-center">
-
-            <!-- 🔷 FOOTER INNER -->
-            <div class="w-full max-w-[1280px] px-4 sm:px-6 lg:px-[48px] py-10 sm:py-14 lg:py-[81px] flex flex-col">
-
-                <!-- 🔷 TOP GRID -->
-                <div
-                    class="w-full lg:w-[1184px] min-h-[176px] flex flex-col sm:flex-row sm:flex-wrap xl:flex-nowrap justify-between gap-8 lg:gap-10">
-
-                    <!-- 🔷 COLUMN 1 -->
-                    <div class="w-full max-w-[260px] min-h-[176px] flex flex-col gap-[24px]">
-
-                        <!-- LOGO -->
-                        <div class="w-[144.5px] h-[40.33px] flex items-center">
-                            <a href="{{ route('home') }}" class="flex items-center">
-                                <img src="{{ asset('icons/logosmall.svg') }}" alt="Logo" class="max-w-full h-auto">
-                            </a>
-                        </div>
-
-                        <!-- TEXT -->
-                        <p class="w-full max-w-[260px] text-[14px] leading-[22.75px] text-[#4A5565]">
-                            Transforming spaces with smart, cloud-powered digital signage
-                            solutions for every industry.
-                        </p>
-
-                    </div>
-
-                    <!-- 🔷 COLUMN 2 -->
-                    <div class="w-full max-w-[260px] min-h-[176px] flex flex-col gap-[16px]">
-
-                        <a href="{{ route('products.index-d') }}" class="text-[14px] leading-[20px] text-[#4A5565]">Retail Displays</a>
-                        <a href="{{ route('industries') }}" class="text-[14px] leading-[20px] text-[#4A5565]">Hospitality Signage</a>
-                        <a href="{{ route('industries') }}" class="text-[14px] leading-[20px] text-[#4A5565]">Corporate Communications</a>
-                        <a href="{{ route('industries') }}" class="text-[14px] leading-[20px] text-[#4A5565]">Healthcare Boards</a>
-
-                    </div>
-
-                    <!-- 🔷 COLUMN 3 -->
-                    <div class="w-full max-w-[260px] min-h-[176px] flex flex-col gap-[16px]">
-
-                        <a href="{{ route('about') }}" class="text-[14px] leading-[20px] text-[#4A5565]">About Us</a>
-                        <a href="{{ route('services') }}" class="text-[14px] leading-[20px] text-[#4A5565]">Our Services</a>
-                        <a href="{{ route('signage') }}" class="text-[14px] leading-[20px] text-[#4A5565]">Franchise Program</a>
-                        <a href="{{ route('contact.alt') }}" class="text-[14px] leading-[20px] text-[#4A5565]">Contact</a>
-
-                    </div>
-
-                    <!-- 🔷 COLUMN 4 -->
-                    <div class="w-full max-w-[260px] min-h-[176px] flex flex-col gap-[16px]">
-
-                        <a href="mailto:hello@pixelwave.demo" class="text-[14px] leading-[20px] text-[#4A5565]">
-                            hello@pixelwave.demo
-                        </a>
-
-                        <a href="tel:+15551234567" class="text-[14px] leading-[20px] text-[#4A5565]">
-                            +1 (555) 123-4567
-                        </a>
-
-                        <p class="text-[14px] leading-[20px] text-[#4A5565] w-full max-w-[260px]">
-                            100 Tech Hub Boulevard, Suite 500<br>
-                            San Francisco, CA 94105
-                        </p>
-
-                    </div>
-
-                </div>
-
-                <!-- 🔷 BOTTOM BAR -->
-                <div
-                    class="w-full lg:w-[1184px] min-h-[49px] border-t border-[#E5E7EB] flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 pt-[24px] sm:pt-[32px] mt-[24px]">
-
-                    <!-- COPYRIGHT -->
-                    <p class="text-[12px] leading-[16px] text-[#6A7282]">
-                        © 2026 TheLocads Solutions. All rights reserved.
-                    </p>
-
-                    <!-- LINKS -->
-                    <div class="flex flex-wrap gap-[24px] text-[12px] text-[#6A7282]">
-                        <a href="{{ route('faq') }}">Privacy Policy</a>
-                        <a href="{{ route('services') }}">Terms of Service</a>
-                    </div>
-
-                </div>
-
-            </div>
-        </div>
-<!-- ***** -->
-    </div>
-
-    <a href="{{ route('contact.alt') }}" class="fixed right-4 bottom-4 z-50 w-[56px] h-[56px] rounded-full bg-[#E7000B] flex items-center justify-center shadow-[0_0_20px_rgba(37,99,235,0.6)]" aria-label="Chat support">
-        <img src="{{ asset('icons/logoicon.svg') }}" alt="Chat support" class="w-[24px] h-[24px]">
-    </a>
+        @include('partials.site-footer')
 
 </body>
 

@@ -1,20 +1,27 @@
 @php
     $products = ($products ?? collect())->values();
-    $title = $title ?? 'Recently Added Products';
-    $description = $description ?? 'The products you create in the dashboard will appear here automatically.';
+    $title = $title ?? null;
+    $description = $description ?? null;
 @endphp
 
 @if ($products->isNotEmpty())
     <section class="w-full max-w-[1387px] mx-auto px-4 sm:px-6 lg:px-[101.5px] pb-10 lg:pb-[64px]">
         <div class="w-full max-w-[1184px] mx-auto">
-            <div class="mb-8 text-center">
-                <h2 class="text-[30px] leading-[36px] font-bold text-[#101828] max-md:text-[28px] max-md:leading-[34px]">
-                    {{ $title }}
-                </h2>
-                <p class="mt-3 text-[18px] leading-[28px] text-[#364153] max-md:text-[16px] max-md:leading-[26px]">
-                    {{ $description }}
-                </p>
-            </div>
+            @if ($title || $description)
+                <div class="mb-8 text-center">
+                    @if ($title)
+                        <h2 class="text-[30px] leading-[36px] font-bold text-[#101828] max-md:text-[28px] max-md:leading-[34px]">
+                            {{ $title }}
+                        </h2>
+                    @endif
+
+                    @if ($description)
+                        <p class="mt-3 text-[18px] leading-[28px] text-[#364153] max-md:text-[16px] max-md:leading-[26px]">
+                            {{ $description }}
+                        </p>
+                    @endif
+                </div>
+            @endif
 
             <div class="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-3 lg:gap-[24px]">
                 @foreach ($products as $product)
@@ -106,7 +113,7 @@
 
                                 <div class="mt-4 flex items-center gap-2 max-md:flex-col max-md:items-stretch">
                                     <a
-                                        href="{{ route('products.detail', $product['slug']) }}"
+                                        href="{{ route('products.detail', ['productSlug' => $product['slug'], 'return_to' => request()->fullUrl()]) }}"
                                         class="flex-1 h-[42px] bg-[#155DFC] rounded-[14px] flex items-center justify-center text-white text-[14px] font-medium"
                                     >
                                         View Details

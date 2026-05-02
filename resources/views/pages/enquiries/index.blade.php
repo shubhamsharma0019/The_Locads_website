@@ -29,6 +29,12 @@
     };
   </script>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+  @php
+    $currentType = request('type');
+    $sidebarActiveClass = 'bg-brand text-white transition hover:bg-red-500';
+    $sidebarInactiveClass = 'text-[#4A5565] transition hover:bg-slate-50 hover:text-[#101828]';
+    $isTicketActive = $currentType === 'ticket';
+  @endphp
   <style>
     .enquiry-card { transition: box-shadow 0.18s, border-color 0.18s, transform 0.18s; }
     .enquiry-card:hover { box-shadow: 0 8px 28px rgba(242,72,72,0.10); border-color: #fecaca; transform: translateY(-2px); }
@@ -52,13 +58,13 @@
         <svg class="h-[17px] w-[17px] shrink-0" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="2"/><rect x="14" y="3" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="2"/><rect x="3" y="14" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="2"/><rect x="14" y="14" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="2"/></svg>
         Dashboard
       </a>
-      <a href="{{ route('enquiries.index') }}" class="flex items-center gap-3 rounded-lg bg-brand px-3.5 py-2.5 text-[13.5px] font-medium text-white transition hover:bg-red-500">
+      <a href="{{ route('enquiries.index') }}" class="flex items-center gap-3 rounded-lg px-3.5 py-2.5 text-[13.5px] font-medium {{ $isTicketActive ? $sidebarInactiveClass : $sidebarActiveClass }}">
         <svg class="h-[17px] w-[17px] shrink-0" viewBox="0 0 24 24" fill="none"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
         Enquiry
       </a>
-      <a href="{{ route('enquiries.index', ['type' => 'ticket']) }}" class="flex items-center gap-3 rounded-lg px-3.5 py-2.5 text-[13.5px] font-medium text-[#4A5565] transition hover:bg-slate-50 hover:text-[#101828]">
+      <a href="{{ route('enquiries.index', ['type' => 'ticket']) }}" class="flex items-center gap-3 rounded-lg px-3.5 py-2.5 text-[13.5px] font-medium {{ $isTicketActive ? $sidebarActiveClass : $sidebarInactiveClass }}">
         <svg class="h-[17px] w-[17px] shrink-0" viewBox="0 0 24 24" fill="none"><path d="M15 5v2m0 4v2m0 4v2M5 5a2 2 0 00-2 2v3a2 2 0 110 4v3a2 2 0 002 2h14a2 2 0 002-2v-3a2 2 0 110-4V7a2 2 0 00-2-2H5z" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-        Ticket
+        Ticket Enquiry
       </a>
       <a href="{{ route('products.index-g') }}" class="flex items-center gap-3 rounded-lg px-3.5 py-2.5 text-[13.5px] font-medium text-[#4A5565] transition hover:bg-slate-50 hover:text-[#101828]">
         <svg class="h-[17px] w-[17px] shrink-0" viewBox="0 0 24 24" fill="none"><path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
@@ -104,6 +110,9 @@
         <div>
           <h1 class="text-[21px] font-semibold tracking-[-0.02em] text-[#101828]">Enquiries</h1>
           <p class="mt-1 text-[12.5px] text-[#4A5565]">Track sell, rent, and ticket enquiries live from the contact forms.</p>
+          @if (session('enquiry_updated'))
+            <p class="mt-2 text-[12.5px] font-semibold text-green-600">Enquiry updated and synced with database.</p>
+          @endif
         </div>
         <a href="{{ route('enquiries.index') }}" class="inline-flex items-center justify-center gap-2 rounded-xl bg-brand px-4 py-2.5 text-[13.5px] font-semibold text-white shadow-sm transition hover:bg-red-500">
           <svg width="15" height="15" fill="none" viewBox="0 0 24 24"><path d="M21 12a9 9 0 10-2.64 6.36" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M21 3v6h-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -153,6 +162,7 @@
             $typeLabel = $enquiry['enquiry_type'] === 'rent' ? 'Rental Enquiry' : ($enquiry['enquiry_type'] === 'ticket' ? 'Ticket Enquiry' : 'Sell Enquiry');
             $typeClass = $enquiry['enquiry_type'] === 'rent' ? 'badge-rent' : ($enquiry['enquiry_type'] === 'ticket' ? 'badge-ticket' : 'badge-sell');
             $viewPayload = [
+              'id' => $enquiry['id'],
               'name' => $fullName,
               'email' => $enquiry['email'],
               'company_name' => $enquiry['company_name'] ?: 'Not shared',
@@ -160,6 +170,16 @@
               'type' => $typeLabel,
               'message' => $enquiry['message'],
               'created_at' => $enquiry['created_at'] ?: 'Not available',
+            ];
+            $editPayload = [
+              'action' => route('enquiries.update', $enquiry['id']),
+              'first_name' => $enquiry['first_name'],
+              'last_name' => $enquiry['last_name'],
+              'email' => $enquiry['email'],
+              'company_name' => $enquiry['company_name'] ?? '',
+              'source_page' => $enquiry['source_page'],
+              'enquiry_type' => $enquiry['enquiry_type'],
+              'message' => $enquiry['message'],
             ];
           @endphp
           <div class="enquiry-card overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-soft" data-name="{{ strtolower($fullName) }}" data-email="{{ strtolower($enquiry['email']) }}" data-company="{{ strtolower($enquiry['company_name'] ?? '') }}" data-source="{{ strtolower($enquiry['source_page']) }}" data-type="{{ $enquiry['enquiry_type'] }}">
@@ -180,10 +200,16 @@
               <div class="mt-3 text-[11px] font-medium uppercase tracking-wide text-slate-400">Message</div>
               <div class="mt-1 min-h-[56px] text-[12px] leading-5 text-[#4A5565]">{{ $messagePreview }}</div>
               <div class="mt-4 flex items-center justify-between gap-2">
-                <button type="button" data-enquiry="{{ e(json_encode($viewPayload)) }}" onclick="openEnquiryModal(this.dataset.enquiry)" class="flex h-8 items-center gap-2 rounded-lg border border-slate-200 bg-slate-50 px-3 text-[11.5px] font-medium text-slate-600 transition hover:border-sky-200 hover:bg-sky-50 hover:text-sky-600">
-                  <svg width="14" height="14" fill="none" viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="2"/></svg>
-                  View
-                </button>
+                <div class="flex items-center gap-2">
+                  <button type="button" onclick="openEnquiryModal(@js($viewPayload))" class="flex h-8 items-center gap-2 rounded-lg border border-slate-200 bg-slate-50 px-3 text-[11.5px] font-medium text-slate-600 transition hover:border-sky-200 hover:bg-sky-50 hover:text-sky-600">
+                    <svg width="14" height="14" fill="none" viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="2"/></svg>
+                    View
+                  </button>
+                  <button type="button" onclick="openEditEnquiryModal(@js($editPayload))" class="flex h-8 items-center gap-2 rounded-lg border border-slate-200 bg-white px-3 text-[11.5px] font-medium text-slate-600 transition hover:border-amber-200 hover:bg-amber-50 hover:text-amber-600">
+                    <svg width="14" height="14" fill="none" viewBox="0 0 24 24"><path d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4 4 0 01-1.897 1.13L6 18l.8-2.685a4 4 0 011.13-1.897l8.932-8.931z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    Edit
+                  </button>
+                </div>
                 <div class="text-right">
                   <div class="text-[10px] uppercase tracking-wide text-slate-400">Received</div>
                   <div class="text-[11.5px] font-medium text-[#101828]">{{ $enquiry['created_at'] }}</div>
@@ -202,6 +228,62 @@
         <div class="mt-1 text-[12.5px] text-[#4A5565]">New sell, rental, and ticket enquiries from the contact forms will appear here automatically.</div>
       </div>
     </main>
+  </div>
+</div>
+
+<div id="enquiryEditModal" class="hidden fixed inset-0 z-50 flex items-center justify-center bg-black/40 p-4 modal-overlay">
+  <div class="max-h-[92vh] w-full max-w-2xl overflow-y-auto rounded-2xl bg-white shadow-2xl">
+    <div class="flex items-center justify-between border-b border-slate-100 px-6 py-4">
+      <div>
+        <div class="text-[15px] font-semibold text-[#101828]">Edit Enquiry</div>
+        <div class="text-[11.5px] text-[#4A5565]">Changes are saved directly to the database.</div>
+      </div>
+      <button type="button" onclick="closeEditEnquiryModal()" class="flex h-8 w-8 items-center justify-center rounded-lg border border-slate-200 text-slate-500 hover:bg-slate-50">
+        <svg width="14" height="14" fill="none" viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+      </button>
+    </div>
+    <form id="enquiryEditForm" method="POST" action="#" class="grid gap-4 p-6 md:grid-cols-2">
+      @csrf
+      @method('PUT')
+      <input type="hidden" name="type" value="{{ request('type') }}">
+      <input type="hidden" name="source" value="{{ request('source') }}">
+      <div>
+        <label for="editFirstName" class="text-[11px] font-medium uppercase tracking-wide text-slate-400">First Name</label>
+        <input id="editFirstName" name="first_name" class="mt-1 w-full rounded-xl border border-slate-200 px-3 py-2.5 text-sm outline-none focus:border-brand" required maxlength="100">
+      </div>
+      <div>
+        <label for="editLastName" class="text-[11px] font-medium uppercase tracking-wide text-slate-400">Last Name</label>
+        <input id="editLastName" name="last_name" class="mt-1 w-full rounded-xl border border-slate-200 px-3 py-2.5 text-sm outline-none focus:border-brand" required maxlength="100">
+      </div>
+      <div>
+        <label for="editEmail" class="text-[11px] font-medium uppercase tracking-wide text-slate-400">Email</label>
+        <input id="editEmail" name="email" type="email" class="mt-1 w-full rounded-xl border border-slate-200 px-3 py-2.5 text-sm outline-none focus:border-brand" required maxlength="255">
+      </div>
+      <div>
+        <label for="editCompany" class="text-[11px] font-medium uppercase tracking-wide text-slate-400">Company</label>
+        <input id="editCompany" name="company_name" class="mt-1 w-full rounded-xl border border-slate-200 px-3 py-2.5 text-sm outline-none focus:border-brand" maxlength="255">
+      </div>
+      <div>
+        <label for="editSource" class="text-[11px] font-medium uppercase tracking-wide text-slate-400">Source</label>
+        <input id="editSource" name="source_page" class="mt-1 w-full rounded-xl border border-slate-200 px-3 py-2.5 text-sm outline-none focus:border-brand" required maxlength="50">
+      </div>
+      <div>
+        <label for="editType" class="text-[11px] font-medium uppercase tracking-wide text-slate-400">Type</label>
+        <select id="editType" name="enquiry_type" class="mt-1 w-full rounded-xl border border-slate-200 bg-white px-3 py-2.5 text-sm outline-none focus:border-brand" required>
+          <option value="sell">Sell Enquiry</option>
+          <option value="rent">Rental Enquiry</option>
+          <option value="ticket">Ticket Enquiry</option>
+        </select>
+      </div>
+      <div class="md:col-span-2">
+        <label for="editMessage" class="text-[11px] font-medium uppercase tracking-wide text-slate-400">Message</label>
+        <textarea id="editMessage" name="message" rows="5" class="mt-1 w-full rounded-2xl border border-slate-200 px-3 py-2.5 text-sm leading-6 outline-none focus:border-brand" required maxlength="2000"></textarea>
+      </div>
+      <div class="flex justify-end gap-2 md:col-span-2">
+        <button type="button" onclick="closeEditEnquiryModal()" class="rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-[13px] font-medium text-[#4A5565] transition hover:bg-slate-50">Cancel</button>
+        <button type="submit" class="rounded-xl bg-brand px-4 py-2.5 text-[13px] font-semibold text-white transition hover:bg-red-500">Save Changes</button>
+      </div>
+    </form>
   </div>
 </div>
 
@@ -293,8 +375,7 @@
     filterEnquiries();
   }
 
-  function openEnquiryModal(payload) {
-    const enquiry = JSON.parse(payload);
+  function openEnquiryModal(enquiry) {
     document.getElementById('modalName').textContent = enquiry.name || '-';
     document.getElementById('modalEmail').textContent = enquiry.email || '-';
     document.getElementById('modalCompany').textContent = enquiry.company_name || '-';
@@ -311,9 +392,33 @@
     document.body.classList.remove('overflow-hidden');
   }
 
+  function openEditEnquiryModal(enquiry) {
+    document.getElementById('enquiryEditForm').action = enquiry.action;
+    document.getElementById('editFirstName').value = enquiry.first_name || '';
+    document.getElementById('editLastName').value = enquiry.last_name || '';
+    document.getElementById('editEmail').value = enquiry.email || '';
+    document.getElementById('editCompany').value = enquiry.company_name || '';
+    document.getElementById('editSource').value = enquiry.source_page || '';
+    document.getElementById('editType').value = enquiry.enquiry_type || 'sell';
+    document.getElementById('editMessage').value = enquiry.message || '';
+    document.getElementById('enquiryEditModal').classList.remove('hidden');
+    document.body.classList.add('overflow-hidden');
+  }
+
+  function closeEditEnquiryModal() {
+    document.getElementById('enquiryEditModal').classList.add('hidden');
+    document.body.classList.remove('overflow-hidden');
+  }
+
   document.getElementById('enquiryViewModal').addEventListener('click', (event) => {
     if (event.target.id === 'enquiryViewModal') {
       closeEnquiryModal();
+    }
+  });
+
+  document.getElementById('enquiryEditModal').addEventListener('click', (event) => {
+    if (event.target.id === 'enquiryEditModal') {
+      closeEditEnquiryModal();
     }
   });
 

@@ -163,34 +163,57 @@ class ProductCatalog
     public function categories(): array
     {
         $savedCategories = $this->all()->pluck('category')->filter()->unique()->values()->all();
-
-        return array_values(array_unique(array_merge([
+        $defaultCategories = [
             'Indoor Display',
             'Outdoor Display',
             'Media Player',
             'Software',
-            'Kiosk',
-            'Video Wall',
-        ], $savedCategories)));
+        ];
+
+        return collect(array_merge($defaultCategories, $savedCategories))
+            ->reject(fn (string $category) => in_array(Str::lower($category), [
+                'kiosk',
+                'video wall',
+            ], true))
+            ->unique(fn (string $category) => Str::lower($category))
+            ->values()
+            ->all();
     }
 
     private function mapAttributes(array $attributes): array
     {
         return [
             'type' => $attributes['type'],
-            'name' => trim((string) $attributes['name']),
+            'name' => $this->sentenceCase($attributes['name']),
             'sku' => trim((string) ($attributes['sku'] ?? '')),
-            'category' => trim((string) $attributes['category']),
+            'category' => $this->sentenceCase($attributes['category']),
             'status' => trim((string) ($attributes['status'] ?? 'active')),
             'price' => $this->numericOrNull($attributes['price'] ?? null),
             'rent_price' => $this->numericOrNull($attributes['rent_price'] ?? null),
             'billing_period' => trim((string) ($attributes['billing_period'] ?? 'month')),
-            'best_for' => trim((string) ($attributes['best_for'] ?? '')),
-            'short_description' => trim((string) ($attributes['short_description'] ?? '')),
-            'description' => trim((string) ($attributes['description'] ?? '')),
+            'best_for' => $this->sentenceCase($attributes['best_for'] ?? ''),
+            'short_description' => $this->sentenceCase($attributes['short_description'] ?? ''),
+            'description' => $this->sentenceCase($attributes['description'] ?? ''),
             'features' => $this->stringToList($attributes['features'] ?? ''),
             'specifications' => $this->stringToList($attributes['specifications'] ?? ''),
         ];
+    }
+
+    private function sentenceCase(mixed $value): string
+    {
+        $value = trim((string) $value);
+
+        if ($value === '') {
+            return '';
+        }
+
+        $lowercaseValue = Str::lower($value);
+
+        return preg_replace_callback(
+            '/(^|[.!?]\s+)([^a-z]*)([a-z])/',
+            fn (array $matches) => $matches[1] . $matches[2] . Str::upper($matches[3]),
+            $lowercaseValue
+        ) ?? $lowercaseValue;
     }
 
     private function numericOrNull(mixed $value): ?float
@@ -205,7 +228,7 @@ class ProductCatalog
     private function stringToList(string $value): array
     {
         return collect(preg_split('/\r\n|\r|\n/', $value) ?: [])
-            ->map(fn (string $item) => trim($item))
+            ->map(fn (string $item) => $this->sentenceCase($item))
             ->filter()
             ->values()
             ->all();

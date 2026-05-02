@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -58,7 +58,11 @@
 
             <!-- INNER WRAPPER -->
             <div
-                class="signage16-featured-inner w-[1056px] h-[354px] max-[1387px]:w-full max-[1387px]:max-w-[1184px] bg-white rounded-[24px] border border-[#E5E7EB] shadow-[0_25px_50px_-12px_rgba(0,0,0,0.25)] flex max-lg:h-auto max-lg:flex-col">
+                onclick="window.location='{{ route('blog.show', 'top-5-digital-signage-trends-2026') }}'"
+                onkeydown="if(event.key==='Enter' || event.key===' '){ event.preventDefault(); window.location='{{ route('blog.show', 'top-5-digital-signage-trends-2026') }}'; }"
+                role="link"
+                tabindex="0"
+                class="signage16-featured-inner w-[1056px] h-[354px] max-[1387px]:w-full max-[1387px]:max-w-[1184px] bg-white rounded-[24px] border border-[#E5E7EB] shadow-[0_25px_50px_-12px_rgba(0,0,0,0.25)] flex max-lg:h-auto max-lg:flex-col cursor-pointer">
 
                 <!-- ================= IMAGE DIV ================= -->
                 <div class="signage16-featured-media w-[527px] h-[352px] max-lg:w-full max-lg:h-auto max-lg:aspect-[527/352]">
@@ -150,7 +154,7 @@
                 <div class="signage16-articles-grid w-full flex flex-wrap gap-[24px] max-[1387px]:w-full max-[1387px]:max-w-[1184px]">
 
                     <!-- ================= CARD ================= -->
-                    <div class="signage16-article-card w-[373.33px] max-[1387px]:w-[calc(50%_-_12px)] max-md:w-full bg-white rounded-[16px] border border-[#E5E7EB] overflow-hidden">
+                    <div onclick="window.location='{{ route('blog.show', 'retail-digital-signage-guide') }}'" onkeydown="if(event.key==='Enter' || event.key===' '){ event.preventDefault(); window.location='{{ route('blog.show', 'retail-digital-signage-guide') }}'; }" role="link" tabindex="0" class="signage16-article-card w-[373.33px] max-[1387px]:w-[calc(50%_-_12px)] max-md:w-full bg-white rounded-[16px] border border-[#E5E7EB] overflow-hidden cursor-pointer">
                         <div class="w-full h-[192px]">
                             <img src={{ asset('icons/articles1img.jpg') }} class="w-full h-full object-cover" />
                         </div>
@@ -226,7 +230,7 @@
 
                     <!-- ================= CARD ================= -->
                      <!-- ================= CARD ================= -->
-                    <div class="signage16-article-card w-[373.33px] max-[1387px]:w-[calc(50%_-_12px)] max-md:w-full bg-white rounded-[16px] border border-[#E5E7EB] overflow-hidden">
+                    <div onclick="window.location='{{ route('blog.show', 'cloud-digital-signage-roi') }}'" onkeydown="if(event.key==='Enter' || event.key===' '){ event.preventDefault(); window.location='{{ route('blog.show', 'cloud-digital-signage-roi') }}'; }" role="link" tabindex="0" class="signage16-article-card w-[373.33px] max-[1387px]:w-[calc(50%_-_12px)] max-md:w-full bg-white rounded-[16px] border border-[#E5E7EB] overflow-hidden cursor-pointer">
                         <div class="w-full h-[192px]">
                             <img src={{ asset('icons/article2img.jpg') }} class="w-full h-full object-cover" />
                         </div>
@@ -302,7 +306,7 @@
 
                     <!-- ================= CARD ================= -->
                      <!-- ================= CARD ================= -->
-                    <div class="signage16-article-card w-[373.33px] max-[1387px]:w-[calc(50%_-_12px)] max-md:w-full bg-white rounded-[16px] border border-[#E5E7EB] overflow-hidden">
+                    <div onclick="window.location='{{ route('blog.show', 'healthcare-digital-signage-best-practices') }}'" onkeydown="if(event.key==='Enter' || event.key===' '){ event.preventDefault(); window.location='{{ route('blog.show', 'healthcare-digital-signage-best-practices') }}'; }" role="link" tabindex="0" class="signage16-article-card w-[373.33px] max-[1387px]:w-[calc(50%_-_12px)] max-md:w-full bg-white rounded-[16px] border border-[#E5E7EB] overflow-hidden cursor-pointer">
                         <div class="w-full h-[192px]">
                             <img src={{ asset('icons/article3img.jpg') }} class="w-full h-full object-cover" />
                         </div>
@@ -379,7 +383,7 @@
 
                     <!-- ================= CARD 2 ================= -->
                     <!-- ================= CARD ================= -->
-                    <div class="signage16-article-card w-[373.33px] max-[1387px]:w-[calc(50%_-_12px)] max-md:w-full bg-white rounded-[16px] border border-[#E5E7EB] overflow-hidden">
+                    <div onclick="window.location='{{ route('blog.show', 'digital-signage-content-creation-guide') }}'" onkeydown="if(event.key==='Enter' || event.key===' '){ event.preventDefault(); window.location='{{ route('blog.show', 'digital-signage-content-creation-guide') }}'; }" role="link" tabindex="0" class="signage16-article-card w-[373.33px] max-[1387px]:w-[calc(50%_-_12px)] max-md:w-full bg-white rounded-[16px] border border-[#E5E7EB] overflow-hidden cursor-pointer">
                         <div class="w-full h-[192px]">
                             <img src={{ asset('icons/article4img.jpg') }} class="w-full h-full object-cover" />
                         </div>
@@ -455,7 +459,7 @@
 
                     <!-- ================= CARD 3 ================= -->
                      <!-- ================= CARD ================= -->
-                    <div class="signage16-article-card w-[373.33px] max-[1387px]:w-[calc(50%_-_12px)] max-md:w-full bg-white rounded-[16px] border border-[#E5E7EB] overflow-hidden">
+                    <div onclick="window.location='{{ route('blog.show', 'airport-wayfinding-case-study') }}'" onkeydown="if(event.key==='Enter' || event.key===' '){ event.preventDefault(); window.location='{{ route('blog.show', 'airport-wayfinding-case-study') }}'; }" role="link" tabindex="0" class="signage16-article-card w-[373.33px] max-[1387px]:w-[calc(50%_-_12px)] max-md:w-full bg-white rounded-[16px] border border-[#E5E7EB] overflow-hidden cursor-pointer">
                         <div class="w-full h-[192px]">
                             <img src={{ asset('icons/article5img.jpg') }} class="w-full h-full object-cover" />
                         </div>
@@ -556,123 +560,49 @@
                     </p>
                 </div>
 
+                @if (session('contact_success'))
+                    <p class="mt-[18px] text-center text-[14px] font-semibold text-green-600">
+                        Thank you. Your newsletter request has been received.
+                    </p>
+                @endif
+
+                @if ($errors->any())
+                    <p class="mt-[18px] text-center text-[14px] font-semibold text-red-600">
+                        Please enter a valid email address.
+                    </p>
+                @endif
+
                 <!-- Input + Button -->
-                <div class="signage16-newsletter-form w-[448px] h-[50px] mt-[32px] flex gap-[16px] max-md:w-full max-md:h-auto max-md:flex-col">
+                <form method="POST" action="{{ route('enquiries.store') }}" class="signage16-newsletter-form w-[560px] h-[50px] mt-[32px] flex gap-[16px] max-md:w-full max-md:h-auto max-md:flex-col">
+                    @csrf
+                    <input type="hidden" name="first_name" value="Newsletter">
+                    <input type="hidden" name="last_name" value="Subscriber">
+                    <input type="hidden" name="company_name" value="">
+                    <input type="hidden" name="source_page" value="Blog Newsletter">
+                    <input type="hidden" name="message" value="Newsletter subscription request from blog page.">
 
                     <!-- Input Field -->
                     <div
                         class="w-full h-[50px] border border-[#D1D5DC] rounded-full px-[24px] py-[12px] flex items-center">
-                        <input type="email" placeholder="Enter your email"
-                            class="w-full outline-none text-[16px] text-[#101828]/50 bg-transparent" />
+                        <input name="email" type="email" value="{{ old('email') }}" placeholder="Enter your email"
+                            class="w-full outline-none text-[16px] text-[#101828] placeholder:text-[#101828]/50 bg-transparent" required />
                     </div>
 
                     <!-- Button -->
-                    <button class="w-[143.45px] h-[50px] rounded-full bg-[#E7000B] flex items-center justify-center max-md:w-full">
+                    <button type="submit" class="w-[143.45px] h-[50px] shrink-0 rounded-full bg-[#E7000B] flex items-center justify-center max-md:w-full">
                         <span class="text-white text-[16px] font-bold leading-[24px]">
                             Subscribe
                         </span>
                     </button>
 
-                </div>
+                </form>
 
             </div>
 
         </section>
 
         <!-- ================= FOOTER ================= -->
-        <div
-            class="w-screen relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] min-h-[410px] mt-[92px] bg-[#F9FAFB] border-t border-[#E5E7EB] flex justify-center">
-
-            <!-- 🔷 FOOTER INNER -->
-            <div class="w-full max-w-[1280px] px-4 sm:px-6 lg:px-[48px] py-10 sm:py-14 lg:py-[81px] flex flex-col">
-
-                <!-- 🔷 TOP GRID -->
-                <div
-                    class="w-full lg:w-[1184px] min-h-[176px] flex flex-col sm:flex-row sm:flex-wrap xl:flex-nowrap justify-between gap-8 lg:gap-10">
-
-                    <!-- 🔷 COLUMN 1 -->
-                    <div class="w-full max-w-[260px] min-h-[176px] flex flex-col gap-[24px]">
-
-                        <!-- LOGO -->
-                        <div class="w-[144.5px] h-[40.33px] flex items-center">
-                            <img src="{{ asset('icons/logosmall.svg') }}" alt="Logo" class="max-w-full h-auto">
-                        </div>
-
-                        <!-- TEXT -->
-                        <p class="w-full max-w-[260px] text-[14px] leading-[22.75px] text-[#4A5565]">
-                            Transforming spaces with smart, cloud-powered digital signage
-                            solutions for every industry.
-                        </p>
-
-                    </div>
-
-                    <!-- 🔷 COLUMN 2 -->
-                    <div class="w-full max-w-[260px] min-h-[176px] flex flex-col gap-[16px]">
-
-                        <a href="{{ route('products.index-d') }}" class="text-[14px] leading-[20px] text-[#4A5565] transition hover:text-[#E7000B]">Retail Displays</a>
-                        <a href="{{ route('industries') }}" class="text-[14px] leading-[20px] text-[#4A5565] transition hover:text-[#E7000B]">Hospitality Signage</a>
-                        <a href="{{ route('industries') }}" class="text-[14px] leading-[20px] text-[#4A5565] transition hover:text-[#E7000B]">Corporate Communications</a>
-                        <a href="{{ route('industries') }}" class="text-[14px] leading-[20px] text-[#4A5565] transition hover:text-[#E7000B]">Healthcare Boards</a>
-
-                    </div>
-
-                    <!-- 🔷 COLUMN 3 -->
-                    <div class="w-full max-w-[260px] min-h-[176px] flex flex-col gap-[16px]">
-
-                        <a href="{{ route('about') }}" class="text-[14px] leading-[20px] text-[#4A5565] transition hover:text-[#E7000B]">About Us</a>
-                        <a href="{{ route('services') }}" class="text-[14px] leading-[20px] text-[#4A5565] transition hover:text-[#E7000B]">Our Services</a>
-                        <a href="{{ route('signage') }}" class="text-[14px] leading-[20px] text-[#4A5565] transition hover:text-[#E7000B]">Franchise Program</a>
-                        <a href="{{ route('contact.alt') }}" class="text-[14px] leading-[20px] text-[#4A5565] transition hover:text-[#E7000B]">Contact</a>
-
-                    </div>
-
-                    <!-- 🔷 COLUMN 4 -->
-                    <div class="w-full max-w-[260px] min-h-[176px] flex flex-col gap-[16px]">
-
-                        <p class="text-[14px] leading-[20px] text-[#4A5565]">
-                            hello@pixelwave.demo
-                        </p>
-
-                        <p class="text-[14px] leading-[20px] text-[#4A5565]">
-                            +1 (555) 123-4567
-                        </p>
-
-                        <p class="text-[14px] leading-[20px] text-[#4A5565] w-full max-w-[260px]">
-                            100 Tech Hub Boulevard, Suite 500<br>
-                            San Francisco, CA 94105
-                        </p>
-
-                    </div>
-
-                </div>
-
-                <!-- 🔷 BOTTOM BAR -->
-                <div
-                    class="w-full lg:w-[1184px] min-h-[49px] border-t border-[#E5E7EB] flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 pt-[24px] sm:pt-[32px] mt-[24px]">
-
-                    <!-- COPYRIGHT -->
-                    <p class="text-[12px] leading-[16px] text-[#6A7282]">
-                        © 2026 TheLocads Solutions. All rights reserved.
-                    </p>
-
-                    <!-- LINKS -->
-                    <div class="flex flex-wrap gap-[24px] text-[12px] text-[#6A7282]">
-                        <a href="{{ route('faq') }}" class="transition hover:text-[#E7000B]">Privacy Policy</a>
-                        <a href="{{ route('services') }}" class="transition hover:text-[#E7000B]">Terms of Service</a>
-                    </div>
-
-                </div>
-
-            </div>
-        </div>
-
-    </div>
-
-    <button
-        class="fixed right-4 bottom-4 z-50 w-[56px] h-[56px] rounded-full bg-[#E7000B] flex items-center justify-center shadow-[0_0_20px_rgba(37,99,235,0.6)]"
-        aria-label="Chat support">
-        <img src="{{ asset('icons/logoicon.svg') }}" alt="Chat support" class="w-[24px] h-[24px]">
-    </button>
+        @include('partials.site-footer')
 
 </body>
 

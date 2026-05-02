@@ -43,7 +43,7 @@
         ['title' => 'Cloud CMS Detail', 'description' => 'Review the cloud CMS license details and CTA section.', 'cta' => 'Go to CMS', 'url' => route('products.show'), 'tone' => 'brand'],
         ['title' => 'USB License Detail', 'description' => 'Review the pen drive software license detail page.', 'cta' => 'Go to USB License', 'url' => route('products.show-b'), 'tone' => 'green'],
         ['title' => 'Blog Listing', 'description' => 'Open the latest articles and public insights feed.', 'cta' => 'Go to Blog', 'url' => route('blog.index'), 'tone' => 'amber'],
-        ['title' => 'Blog Detail', 'description' => 'Open the featured blog detail article page.', 'cta' => 'Go to Article', 'url' => route('blog.show'), 'tone' => 'sky'],
+        ['title' => 'Blog Detail', 'description' => 'Open the featured blog detail article page.', 'cta' => 'Go to Article', 'url' => route('blog.show', 'retail-digital-signage-guide'), 'tone' => 'sky'],
         ['title' => 'Enquiries Page', 'description' => 'Manage sell, rent, and ticket enquiries from one place.', 'cta' => 'Go to Enquiries', 'url' => route('enquiries.index'), 'tone' => 'brand'],
         ['title' => 'Rental Queries', 'description' => 'Open rental enquiries directly with the rent filter applied.', 'cta' => 'Go to Rentals', 'url' => route('enquiries.index', ['type' => 'rent']), 'tone' => 'green'],
         ['title' => 'Create Product', 'description' => 'Add, edit, and manage products and rental inventory.', 'cta' => 'Go to Create', 'url' => route('products.create'), 'tone' => 'violet'],
@@ -72,7 +72,7 @@
       ['label' => 'Cloud CMS License', 'url' => route('products.show')],
       ['label' => 'Pen Drive Software Licence', 'url' => route('products.show-b')],
       ['label' => 'Blog Listing', 'url' => route('blog.index')],
-      ['label' => 'Blog Detail', 'url' => route('blog.show')],
+      ['label' => 'Blog Detail', 'url' => route('blog.show', 'retail-digital-signage-guide')],
       ['label' => 'FAQ', 'url' => route('faq')],
       ['label' => 'Book Demo', 'url' => route('contact.alt')],
     ];
@@ -124,7 +124,7 @@
         </a>
         <a href="{{ route('enquiries.index', ['type' => 'ticket']) }}" class="flex items-center gap-3 rounded-lg px-3.5 py-2.5 text-[13.5px] font-medium text-[#4A5565] transition hover:bg-slate-50 hover:text-[#101828]">
           <svg class="h-[17px] w-[17px] shrink-0" viewBox="0 0 24 24" fill="none"><path d="M15 5v2m0 4v2m0 4v2M5 5a2 2 0 00-2 2v3a2 2 0 110 4v3a2 2 0 002 2h14a2 2 0 002-2v-3a2 2 0 110-4V7a2 2 0 00-2-2H5z" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-          Ticket
+          Ticket Enquiry
         </a>
         <a href="{{ route('products.index-g') }}" class="flex items-center gap-3 rounded-lg px-3.5 py-2.5 text-[13.5px] font-medium text-[#4A5565] transition hover:bg-slate-50 hover:text-[#101828]">
           <svg class="h-[17px] w-[17px] shrink-0" viewBox="0 0 24 24" fill="none"><path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>

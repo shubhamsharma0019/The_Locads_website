@@ -5,6 +5,7 @@ use App\Http\Controllers\PageController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\EnquiryController;
+use App\Http\Controllers\LicenseController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,19 +14,25 @@ use Illuminate\Support\Facades\Route;
 |--------------------------------------------------------------------------
 */
 Route::controller(PageController::class)->group(function () {
-    Route::get('/', 'home')->name('home');
+    Route::get('/', fn () => redirect()->route('login'));
+    Route::get('/home', 'home')->middleware('auth')->name('home');
     Route::get('/about', 'about')->name('about');
     Route::get('/services', 'services')->name('services');
     Route::get('/industries', 'industries')->name('industries');
     Route::get('/signage', 'signage')->name('signage');
-    Route::get('/contact', 'contactA')->name('contact');
-    Route::get('/contact-alt', 'contactB')->name('contact.alt');
+    Route::get('/contact', 'contact')->name('contact');
+    Route::get('/book-demo', 'bookDemo')->name('contact.alt');
+    Route::redirect('/contact-alt', '/book-demo');
     Route::get('/faq', 'faq')->name('faq');
 });
 Route::get('/dashboard/enquiries', [EnquiryController::class, 'index'])
     ->middleware('auth')
     ->name('enquiries.index');
+Route::put('/dashboard/enquiries/{enquiry}', [EnquiryController::class, 'update'])
+    ->middleware('auth')
+    ->name('enquiries.update');
 Route::post('/enquiries', [EnquiryController::class, 'store'])->name('enquiries.store');
+Route::post('/licence', [LicenseController::class, 'store'])->name('licence.store');
 
 /*
 |--------------------------------------------------------------------------
@@ -57,7 +64,8 @@ Route::prefix('products')->name('products.')->controller(ProductController::clas
 */
 Route::prefix('blog')->name('blog.')->controller(BlogController::class)->group(function () {
     Route::get('/', 'index')->name('index');
-    Route::get('/post', 'show')->name('show');
+    Route::get('/post', 'show')->name('post');
+    Route::get('/{blogSlug}', 'show')->name('show');
 });
 
 /*

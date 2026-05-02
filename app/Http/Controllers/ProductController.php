@@ -94,15 +94,22 @@ class ProductController extends Controller
         ]);
     }
 
-    public function showProduct(string $productSlug, ProductCatalog $catalog): View
+    public function showProduct(Request $request, string $productSlug, ProductCatalog $catalog): View
     {
         $product = $catalog->findBySlug($productSlug)
             ?? $this->seededProductDetail($productSlug);
 
         abort_if(!$product, 404);
 
+        $detail = $this->detailFromProduct($product);
+        $returnTo = $this->resolveReturnTo($request);
+
+        if ($returnTo) {
+            $detail['back_route'] = $returnTo;
+        }
+
         return view('pages.products.show-a', [
-            'productDetail' => $this->detailFromProduct($product),
+            'productDetail' => $detail,
         ]);
     }
 
@@ -178,17 +185,36 @@ class ProductController extends Controller
     {
         $redirectTo = trim((string) $request->input('redirect_to', ''));
 
-        if ($redirectTo === '') {
-            return $fallback;
+        return $this->isSafeLocalUrl($redirectTo) ? $redirectTo : $fallback;
+    }
+
+    private function resolveReturnTo(Request $request): ?string
+    {
+        $returnTo = trim((string) $request->query('return_to', ''));
+
+        return $this->isSafeLocalUrl($returnTo) ? $returnTo : null;
+    }
+
+    private function isSafeLocalUrl(string $url): bool
+    {
+        if ($url === '') {
+            return false;
         }
 
-        $appUrl = rtrim(url('/'), '/');
-
-        if (str_starts_with($redirectTo, $appUrl) || str_starts_with($redirectTo, '/')) {
-            return $redirectTo;
+        if (str_starts_with($url, '/') && !str_starts_with($url, '//') && !str_starts_with($url, '/\\')) {
+            return true;
         }
 
-        return $fallback;
+        $target = parse_url($url);
+        $app = parse_url(url('/'));
+
+        if (!is_array($target) || !is_array($app)) {
+            return false;
+        }
+
+        return ($target['scheme'] ?? null) === ($app['scheme'] ?? null)
+            && ($target['host'] ?? null) === ($app['host'] ?? null)
+            && ($target['port'] ?? null) === ($app['port'] ?? null);
     }
 
     private function detailFromProduct(array $product): array
@@ -218,6 +244,7 @@ class ProductController extends Controller
         }
 
         return [
+            'slug' => $product['slug'] ?? null,
             'title' => $product['name'],
             'seo_title' => $product['name'] . ' | The Locads',
             'seo_description' => $product['short_description'] ?: $product['description'] ?: 'View product details, features, pricing, and specifications from The Locads.',
@@ -227,6 +254,7 @@ class ProductController extends Controller
             'price' => $this->formatPrice($product),
             'purchase_label' => ($product['type'] ?? 'product') === 'rent' ? 'Request Rental' : 'Purchase Now',
             'back_route' => $this->backRouteForProduct($product),
+            'license_enabled' => $this->canGenerateLicenseForProduct($product),
             'features' => $features,
             'specifications' => $specifications,
             'badges' => [
@@ -277,17 +305,27 @@ class ProductController extends Controller
         return route('products.index-c');
     }
 
+    private function canGenerateLicenseForProduct(array $product): bool
+    {
+        $category = strtolower((string) ($product['category'] ?? ''));
+
+        return str_contains($category, 'software')
+            || str_contains($category, 'license')
+            || str_contains($category, 'licence');
+    }
+
     private function seededProductDetail(string $slug): ?array
     {
         $seededProducts = [
             'pro-series-4k-displays' => [
+                'slug' => 'pro-series-4k-displays',
                 'title' => 'Pro Series 4K Display',
                 'seo_title' => 'Pro Series 4K Display | The Locads',
                 'seo_description' => 'View Pro Series 4K Display details, features, pricing, and specifications.',
                 'seo_keywords' => 'Pro Series 4K Display, indoor digital signage, The Locads',
                 'description' => 'Commercial-grade indoor 4K display for retail, corporate, and customer-facing signage environments.',
                 'image' => asset('icons/commercial1.jpg'),
-                'price' => '$899',
+                'price' => 'Rs 899',
                 'purchase_label' => 'Purchase Now',
                 'back_route' => route('products.index-d'),
                 'features' => [
@@ -309,6 +347,7 @@ class ProductController extends Controller
                 'badges' => ['3 Year Warranty', 'Installation Support', 'In Stock'],
             ],
             'pro-series-4k-display-43-rent' => [
+                'slug' => 'pro-series-4k-display-43-rent',
                 'title' => 'Pro Series 4K Display - 43" Rent',
                 'seo_title' => 'Pro Series 4K Display Rental | The Locads',
                 'seo_description' => 'View rental details for Pro Series 4K Display from The Locads.',
@@ -335,13 +374,14 @@ class ProductController extends Controller
                 'badges' => ['Rental Available', 'Setup Support', 'In Stock'],
             ],
             'high-bright-window-displays' => [
+                'slug' => 'high-bright-window-displays',
                 'title' => 'High-Bright Window Display - 55"',
                 'seo_title' => 'High-Bright Window Display | The Locads',
                 'seo_description' => 'View High-Bright Window Display details for storefront and outdoor-facing signage.',
                 'seo_keywords' => 'high bright window display, outdoor signage, The Locads',
                 'description' => 'High-brightness display designed for storefront windows and daylight-facing signage with strong visibility.',
                 'image' => asset('icons/outdoorimage.jpg'),
-                'price' => '$1,499',
+                'price' => 'Rs 1,499',
                 'purchase_label' => 'Purchase Now',
                 'back_route' => route('products.index-e'),
                 'features' => [
@@ -361,6 +401,7 @@ class ProductController extends Controller
                 'badges' => ['3 Year Warranty', 'Storefront Ready', 'In Stock'],
             ],
             'high-bright-window-display-55-rent' => [
+                'slug' => 'high-bright-window-display-55-rent',
                 'title' => 'High-Bright Window Display - 55" Rent',
                 'seo_title' => 'High-Bright Window Display Rental | The Locads',
                 'seo_description' => 'View rental details for High-Bright Window Display from The Locads.',
@@ -387,13 +428,14 @@ class ProductController extends Controller
                 'badges' => ['Rental Available', 'Campaign Ready', 'In Stock'],
             ],
             'edge-media-players' => [
+                'slug' => 'edge-media-players',
                 'title' => 'Edge Media Player - i5',
                 'seo_title' => 'Edge Media Player i5 | The Locads',
                 'seo_description' => 'View Edge Media Player i5 details, features, pricing, and specifications.',
                 'seo_keywords' => 'edge media player, signage player i5, The Locads',
                 'description' => 'Compact i5-powered media player for reliable digital signage playback across single-screen and multi-screen deployments.',
                 'image' => asset('icons/mediaimage.jpg'),
-                'price' => '$699',
+                'price' => 'Rs 699',
                 'purchase_label' => 'Purchase Now',
                 'back_route' => route('products.index-f'),
                 'features' => [
@@ -413,6 +455,7 @@ class ProductController extends Controller
                 'badges' => ['Compact Device', 'CMS Ready', 'In Stock'],
             ],
             'edge-media-player-i5-rent' => [
+                'slug' => 'edge-media-player-i5-rent',
                 'title' => 'Edge Media Player - i5 Rent',
                 'seo_title' => 'Edge Media Player i5 Rental | The Locads',
                 'seo_description' => 'View rental details for Edge Media Player i5 from The Locads.',
@@ -439,13 +482,15 @@ class ProductController extends Controller
                 'badges' => ['Rental Available', 'Configured Setup', 'In Stock'],
             ],
             'cloud-cms-license-annual-rent' => [
+                'slug' => 'cloud-cms-license-annual-rent',
+                'license_enabled' => true,
                 'title' => 'Cloud CMS License (Annual)',
                 'seo_title' => 'Cloud CMS License | The Locads',
                 'seo_description' => 'View The Locads Cloud CMS License features, technical specifications, pricing, and software capabilities.',
                 'seo_keywords' => 'cloud CMS license, signage software license, The Locads CMS',
                 'description' => 'Full-featured cloud-based content management system for digital signage. Manage unlimited content, schedule playlists, monitor screen health, and access real-time analytics from anywhere.',
                 'image' => asset('icons/14pageimg.jpg'),
-                'price' => '$299/year',
+                'price' => 'Rs 299/year',
                 'purchase_label' => 'Purchase Now',
                 'back_route' => route('products.index-g'),
                 'features' => [
@@ -475,13 +520,15 @@ class ProductController extends Controller
                 'badges' => ['3 Year Warranty', 'Free Shipping', 'In Stock'],
             ],
             'pen-drive-software-licence' => [
+                'slug' => 'pen-drive-software-licence',
+                'license_enabled' => true,
                 'title' => 'Pen Drive Software Licence',
                 'seo_title' => 'Pen Drive Software License | The Locads',
                 'seo_description' => 'View The Locads Pen Drive Software License details for offline digital signage playback and secure environments.',
                 'seo_keywords' => 'pen drive software license, offline signage software, The Locads',
                 'description' => 'Offline signage playback software for secure locations where cloud access is limited. Load content with USB, run scheduled media, and keep screens operational without internet dependency.',
                 'image' => asset('icons/softwareimage.jpg'),
-                'price' => '$899',
+                'price' => 'Rs 899',
                 'purchase_label' => 'Purchase Now',
                 'back_route' => route('products.index-g'),
                 'features' => [

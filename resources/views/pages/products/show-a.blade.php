@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -10,7 +10,8 @@
         $detailTitle = $detail['title'] ?? 'Cloud CMS License (Annual)';
         $detailDescription = $detail['description'] ?? 'Full-featured cloud-based content management system for digital signage.';
         $detailImage = $detail['image'] ?? asset('icons/14pageimg.jpg');
-        $detailPrice = $detail['price'] ?? '$299/year';
+        $detailPrice = $detail['price'] ?? 'Rs 299/year';
+        $licenseEnabled = (bool) ($detail['license_enabled'] ?? false);
         $detailFeatures = collect($detail['features'] ?? [])->filter()->values();
         $detailSpecs = collect($detail['specifications'] ?? [])->filter()->values();
         $detailBadges = collect($detail['badges'] ?? ['3 Year Warranty', 'Free Shipping', 'In Stock'])->filter()->take(3)->values();
@@ -89,7 +90,7 @@
 
 
                 <!-- ========= DIV 2: CONTENT WRAPPER ========= -->
-                <div class="signage14-hero-content w-1/2 h-[568px] flex flex-col max-lg:w-full max-lg:h-auto">
+                <div class="signage14-hero-content w-1/2 min-h-[568px] flex flex-col max-lg:w-full max-lg:min-h-0">
 
                     <!-- ===== DIV 2.1: TITLE + DESCRIPTION BLOCK ===== -->
                     <div class="w-full flex flex-col gap-[16px]">
@@ -110,59 +111,126 @@
 
                     </div>
 
+                    @if ($licenseEnabled)
+                        <form method="POST" action="{{ route('licence.store') }}" data-license-form>
+                            @csrf
+                            <input type="hidden" name="product_slug" value="{{ $detail['slug'] ?? request()->route('productSlug') }}">
+                            <input type="hidden" name="product_name" value="{{ $detailTitle }}">
+
+                            @error('mac_number')
+                                <div class="mt-[16px] w-[568px] max-[1387px]:w-full max-[1387px]:max-w-full rounded-[12px] border border-red-200 bg-red-50 px-[16px] py-[12px] text-[13px] font-medium text-red-600">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+
+                            @error('product_slug')
+                                <div class="mt-[16px] w-[568px] max-[1387px]:w-full max-[1387px]:max-w-full rounded-[12px] border border-red-200 bg-red-50 px-[16px] py-[12px] text-[13px] font-medium text-red-600">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                            <div data-license-error class="mt-[16px] hidden w-[568px] max-[1387px]:w-full max-[1387px]:max-w-full rounded-[12px] border border-red-200 bg-red-50 px-[16px] py-[12px] text-[13px] font-medium text-red-600"></div>
+                    @endif
+
 
                     <!-- ===== DIV 2.2: PRICE CARD ===== -->
                     <div
-                        class="signage14-price-card w-[568px] h-[110px] max-[1387px]:w-full max-[1387px]:max-w-full mt-[32px] bg-[#F9FAFB] border border-[#E5E7EB] rounded-[16px] px-[25px] pt-[25px] max-lg:h-auto max-lg:pb-[24px]">
+                        class="signage14-price-card w-[568px] min-h-[110px] max-[1387px]:w-full max-[1387px]:max-w-full mt-[32px] bg-[#F9FAFB] border border-[#E5E7EB] rounded-[16px] px-[25px] py-[25px]">
 
                         <!-- INNER PRICE WRAPPER -->
-                        <div class="flex flex-col gap-[4px]">
+                        <div class="flex items-center justify-between gap-[24px] max-md:flex-col max-md:items-stretch">
+                            @unless ($licenseEnabled)
+                                <div class="flex min-w-[150px] flex-col gap-[4px]">
 
-                            <!-- LABEL -->
-                            <p class="text-sm text-gray-500">Price</p>
+                                    <!-- LABEL -->
+                                    <p class="text-sm text-gray-500">Price</p>
 
-                            <!-- PRICE TEXT -->
-                            <h2 class="text-[30px] leading-[36px] font-black text-[#101828]">
-                                {{ $detailPrice }}
-                            </h2>
+                                    <!-- PRICE TEXT -->
+                                    <h2 class="text-[30px] leading-[36px] font-black text-[#101828]">
+                                        {{ $detailPrice }}
+                                    </h2>
+                                </div>
+                            @endunless
 
+                            @if ($licenseEnabled)
+                                <div data-license-result class="{{ session('activation_key') ? '' : 'hidden' }} w-full">
+                                    <p class="text-[14px] font-semibold text-green-700">Activation Key Generated</p>
+                                    <p data-license-key class="mt-[6px] break-all text-[24px] font-black tracking-[1px] text-[#101828]">{{ session('activation_key') }}</p>
+                                    <p class="mt-[4px] text-[12px] text-green-700">MAC: <span data-license-mac>{{ session('activation_mac') }}</span></p>
+                                </div>
+
+                                @unless (session('activation_key'))
+                                    <div data-license-input class="w-full">
+                                        <label for="macNumber" class="mb-[8px] block text-[14px] leading-[20px] text-[#4A5565]">MAC Number</label>
+                                        <input
+                                            id="macNumber"
+                                            name="mac_number"
+                                            type="text"
+                                            placeholder="Enter MAC number"
+                                            class="h-[48px] w-full rounded-[14px] border border-[#D1D5DC] bg-white px-[16px] text-[15px] text-[#101828] outline-none transition focus:border-[#155DFC] focus:ring-2 focus:ring-[#155DFC]/15">
+                                    </div>
+                                @endunless
+                            @endif
                         </div>
                     </div>
 
 
                     <!-- ===== DIV 2.3: BUTTON GROUP ===== -->
-                    <div class="signage14-button-group w-[568px] h-[60px] max-[1387px]:w-full max-[1387px]:max-w-full flex gap-[16px] mt-[32px] max-lg:h-auto max-lg:flex-col">
+                    @if ($licenseEnabled && !session('activation_key'))
+                        <div data-license-actions class="signage14-button-group w-[568px] h-[60px] max-[1387px]:w-full max-[1387px]:max-w-full mt-[32px]">
 
-                        <!-- ===== BUTTON 1: PURCHASE ===== -->
-                        <a href="{{ route('contact') }}" class="w-[274px] h-[60px] max-lg:w-full bg-[#155DFC] text-white rounded-[14px] 
-                 flex items-center justify-center gap-[8px]
-                 shadow-[0_4px_6px_rgba(0,0,0,0.1),0_10px_15px_rgba(0,0,0,0.1)]">
+                            <!-- ===== BUTTON: PURCHASE ===== -->
+                            <button type="submit" class="w-full h-[60px] bg-[#155DFC] text-white rounded-[14px] 
+                     flex items-center justify-center
+                     shadow-[0_4px_6px_rgba(0,0,0,0.1),0_10px_15px_rgba(0,0,0,0.1)]">
 
-                            <!-- ICON -->
-                            <span class="w-[20px] h-[20px] flex items-center justify-center">
-                                <img src="{{ asset('icons/cartpurchase.svg') }}">
-                            </span>
+                                <!-- TEXT -->
+                                <span class="text-[16px] leading-[24px] font-bold">
+                                    Activate Key
+                                </span>
 
-                            <!-- TEXT -->
-                            <span class="text-[16px] leading-[24px] font-bold">
-                                {{ $detailPurchaseLabel }}
-                            </span>
+                            </button>
 
-                        </a>
+                        </div>
+                    @endif
+
+                    @if ($licenseEnabled)
+                        </form>
+                    @endif
+
+                    @unless ($licenseEnabled)
+                        <div class="signage14-button-group w-[568px] h-[60px] max-[1387px]:w-full max-[1387px]:max-w-full flex gap-[16px] mt-[32px] max-lg:h-auto max-lg:flex-col">
+
+                            <!-- ===== BUTTON 1: PURCHASE ===== -->
+                            <a href="{{ route('contact') }}" class="w-[274px] h-[60px] max-lg:w-full bg-[#155DFC] text-white rounded-[14px] 
+                     flex items-center justify-center gap-[8px]
+                     shadow-[0_4px_6px_rgba(0,0,0,0.1),0_10px_15px_rgba(0,0,0,0.1)]">
+
+                                <!-- ICON -->
+                                <span class="w-[20px] h-[20px] flex items-center justify-center">
+                                    <img src="{{ asset('icons/cartpurchase.svg') }}">
+                                </span>
+
+                                <!-- TEXT -->
+                                <span class="text-[16px] leading-[24px] font-bold">
+                                    {{ $detailPurchaseLabel }}
+                                </span>
+
+                            </a>
 
 
-                        <!-- ===== BUTTON 2: REQUEST QUOTE ===== -->
-                        <a href="{{ route('contact.alt') }}" class="w-[278px] h-[60px] max-lg:w-full border-[2px] border-[#D1D5DC] rounded-[14px] 
-                 flex items-center justify-center">
+                            <!-- ===== BUTTON 2: REQUEST QUOTE ===== -->
+                            <a href="{{ route('contact.alt') }}" class="w-[278px] h-[60px] max-lg:w-full border-[2px] border-[#D1D5DC] rounded-[14px] 
+                     flex items-center justify-center">
 
-                            <!-- TEXT -->
-                            <span class="text-[16px] leading-[24px] font-bold text-[#101828]">
-                                Request Quote
-                            </span>
+                                <!-- TEXT -->
+                                <span class="text-[16px] leading-[24px] font-bold text-[#101828]">
+                                    Request Quote
+                                </span>
 
-                        </a>
+                            </a>
 
-                    </div>
+                        </div>
+                    @endunless
 
                     <!-- ===== DIV 2.4: FEATURES ===== -->
                     <!-- ===== DIV 2.4: FEATURES ===== -->
@@ -324,99 +392,78 @@
         </section>
 
         <!-- ================== FOOTER ================== -->
-        <div
-            class="w-screen relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] min-h-[410px] mt-[92px] bg-[#F9FAFB] border-t border-[#E5E7EB] flex justify-center">
+        @include('partials.site-footer')
 
-            <!-- 🔷 FOOTER INNER -->
-            <div class="w-full max-w-[1280px] px-4 sm:px-6 lg:px-[48px] py-10 sm:py-14 lg:py-[81px] flex flex-col">
+    @if ($licenseEnabled)
+        <script>
+            document.querySelectorAll('[data-license-form]').forEach((form) => {
+                form.addEventListener('submit', async (event) => {
+                    event.preventDefault();
 
-                <!-- 🔷 TOP GRID -->
-                <div
-                    class="w-full lg:w-[1184px] min-h-[176px] flex flex-col sm:flex-row sm:flex-wrap xl:flex-nowrap justify-between gap-8 lg:gap-10">
+                    const errorBox = form.querySelector('[data-license-error]');
+                    const inputWrap = form.querySelector('[data-license-input]');
+                    const resultBox = form.querySelector('[data-license-result]');
+                    const keyText = form.querySelector('[data-license-key]');
+                    const macText = form.querySelector('[data-license-mac]');
+                    const actions = form.querySelector('[data-license-actions]');
+                    const button = actions?.querySelector('button[type="submit"]');
+                    const originalButtonText = button?.textContent?.trim() || 'Activate Key';
 
-                    <!-- 🔷 COLUMN 1 -->
-                    <div class="w-full max-w-[260px] min-h-[176px] flex flex-col gap-[24px]">
+                    if (errorBox) {
+                        errorBox.classList.add('hidden');
+                        errorBox.textContent = '';
+                    }
 
-                        <!-- LOGO -->
-                        <div class="w-[144.5px] h-[40.33px] flex items-center">
-                            <img src="{{ asset('icons/logosmall.svg') }}" alt="Logo" class="max-w-full h-auto">
-                        </div>
+                    if (button) {
+                        button.disabled = true;
+                        button.classList.add('opacity-70', 'cursor-not-allowed');
+                        button.querySelector('span').textContent = 'Generating...';
+                    }
 
-                        <!-- TEXT -->
-                        <p class="w-full max-w-[260px] text-[14px] leading-[22.75px] text-[#4A5565]">
-                            Transforming spaces with smart, cloud-powered digital signage
-                            solutions for every industry.
-                        </p>
+                    try {
+                        const response = await fetch(form.action, {
+                            method: 'POST',
+                            headers: {
+                                'Accept': 'application/json',
+                                'X-Requested-With': 'XMLHttpRequest',
+                            },
+                            body: new FormData(form),
+                        });
 
-                    </div>
+                        const payload = await response.json();
 
-                    <!-- 🔷 COLUMN 2 -->
-                    <div class="w-full max-w-[260px] min-h-[176px] flex flex-col gap-[16px]">
+                        if (!response.ok) {
+                            const firstError = payload.errors ? Object.values(payload.errors).flat()[0] : null;
+                            throw new Error(firstError || payload.message || 'Activation key generate nahi ho payi.');
+                        }
 
-                        <a href="{{ route('products.index-d') }}" class="text-[14px] leading-[20px] text-[#4A5565] transition hover:text-[#E7000B]">Retail Displays</a>
-                        <a href="{{ route('industries') }}" class="text-[14px] leading-[20px] text-[#4A5565] transition hover:text-[#E7000B]">Hospitality Signage</a>
-                        <a href="{{ route('industries') }}" class="text-[14px] leading-[20px] text-[#4A5565] transition hover:text-[#E7000B]">Corporate Communications</a>
-                        <a href="{{ route('industries') }}" class="text-[14px] leading-[20px] text-[#4A5565] transition hover:text-[#E7000B]">Healthcare Boards</a>
+                        if (keyText) {
+                            keyText.textContent = payload.activation_key;
+                        }
 
-                    </div>
+                        if (macText) {
+                            macText.textContent = payload.activation_mac;
+                        }
 
-                    <!-- 🔷 COLUMN 3 -->
-                    <div class="w-full max-w-[260px] min-h-[176px] flex flex-col gap-[16px]">
+                        resultBox?.classList.remove('hidden');
+                        inputWrap?.remove();
+                        actions?.remove();
+                    } catch (error) {
+                        if (errorBox) {
+                            errorBox.textContent = error.message;
+                            errorBox.classList.remove('hidden');
+                        }
 
-                        <a href="{{ route('about') }}" class="text-[14px] leading-[20px] text-[#4A5565] transition hover:text-[#E7000B]">About Us</a>
-                        <a href="{{ route('services') }}" class="text-[14px] leading-[20px] text-[#4A5565] transition hover:text-[#E7000B]">Our Services</a>
-                        <a href="{{ route('signage') }}" class="text-[14px] leading-[20px] text-[#4A5565] transition hover:text-[#E7000B]">Franchise Program</a>
-                        <a href="{{ route('contact.alt') }}" class="text-[14px] leading-[20px] text-[#4A5565] transition hover:text-[#E7000B]">Contact</a>
-
-                    </div>
-
-                    <!-- 🔷 COLUMN 4 -->
-                    <div class="w-full max-w-[260px] min-h-[176px] flex flex-col gap-[16px]">
-
-                        <p class="text-[14px] leading-[20px] text-[#4A5565]">
-                            hello@pixelwave.demo
-                        </p>
-
-                        <p class="text-[14px] leading-[20px] text-[#4A5565]">
-                            +1 (555) 123-4567
-                        </p>
-
-                        <p class="text-[14px] leading-[20px] text-[#4A5565] w-full max-w-[260px]">
-                            100 Tech Hub Boulevard, Suite 500<br>
-                            San Francisco, CA 94105
-                        </p>
-
-                    </div>
-
-                </div>
-
-                <!-- 🔷 BOTTOM BAR -->
-                <div
-                    class="w-full lg:w-[1184px] min-h-[49px] border-t border-[#E5E7EB] flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 pt-[24px] sm:pt-[32px] mt-[24px]">
-
-                    <!-- COPYRIGHT -->
-                    <p class="text-[12px] leading-[16px] text-[#6A7282]">
-                        © 2026 TheLocads Solutions. All rights reserved.
-                    </p>
-
-                    <!-- LINKS -->
-                    <div class="flex flex-wrap gap-[24px] text-[12px] text-[#6A7282]">
-                        <a href="{{ route('faq') }}" class="transition hover:text-[#E7000B]">Privacy Policy</a>
-                        <a href="{{ route('services') }}" class="transition hover:text-[#E7000B]">Terms of Service</a>
-                    </div>
-
-                </div>
-
-            </div>
-        </div>
-
-    </div>
-
-    <a href="{{ route('contact.alt') }}"
-        class="fixed right-4 bottom-4 z-50 w-[56px] h-[56px] rounded-full bg-[#E7000B] flex items-center justify-center shadow-[0_0_20px_rgba(37,99,235,0.6)]"
-        aria-label="Chat support">
-        <img src="{{ asset('icons/logoicon.svg') }}" alt="Chat support" class="w-[24px] h-[24px]">
-    </a>
+                        if (button) {
+                            button.disabled = false;
+                            button.classList.remove('opacity-70', 'cursor-not-allowed');
+                            button.querySelector('span').textContent = originalButtonText;
+                        }
+                    }
+                });
+            });
+        </script>
+    @endif
 
 </body>
 
