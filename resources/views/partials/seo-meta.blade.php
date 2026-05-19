@@ -3,8 +3,9 @@
     $seoDescription = $description ?? 'The Locads provides digital signage products, software, support, and industry-ready display solutions for modern businesses.';
     $seoKeywords = $keywords ?? 'The Locads, digital signage, digital displays, signage software, signage hardware, smart displays, commercial displays';
     $seoRobots = $robots ?? 'index,follow';
-    $seoImage = $image ?? asset('icons/locadsicon.svg');
+    $seoImage = $image ?? asset('icons/locadsicon.jpeg');
     $seoType = $type ?? 'website';
+    $pageTransition = $pageTransition ?? ! request()->routeIs('dashboard', 'enquiries.*', 'products.create', 'products.rentals');
 @endphp
 <title>{{ $seoTitle }}</title>
 <meta name="description" content="{{ $seoDescription }}">
@@ -20,3 +21,4 @@
 <meta name="twitter:title" content="{{ $seoTitle }}">
 <meta name="twitter:description" content="{{ $seoDescription }}">
 <meta name="twitter:image" content="{{ $seoImage }}">
+@include('partials.responsive-guard', ['pageTransition' => $pageTransition])

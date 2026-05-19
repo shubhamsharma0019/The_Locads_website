@@ -24,6 +24,11 @@
     if ($dashboardInitials === '') {
         $dashboardInitials = strtoupper(substr($dashboardDisplayName, 0, 2));
     }
+    $sidebarActiveClass = 'bg-brand text-white shadow-brand transition hover:bg-red-500';
+    $sidebarInactiveClass = 'text-[#4A5565] transition hover:bg-slate-50 hover:text-[#101828]';
+    $licenseSlug = (string) request()->route('productSlug', '');
+    $isLicenceSidebarActive = request()->routeIs('products.index-g', 'products.show', 'products.show-b')
+        || (request()->routeIs('products.detail') && str_contains(strtolower($licenseSlug), 'licen'));
     $quickNavigationCards = [
         ['title' => 'Dashboard', 'description' => 'Return to the main admin dashboard overview and analytics.', 'cta' => 'Go to Dashboard', 'url' => route('dashboard'), 'tone' => 'slate'],
         ['title' => 'Home Page', 'description' => 'Open the public landing page and main website entry point.', 'cta' => 'Go to Home', 'url' => route('home'), 'tone' => 'brand'],
@@ -107,9 +112,9 @@
 <body class="bg-[#F9FAFB] font-sans text-[#364153] [font-family:'Inter',sans-serif]">
   <div class="flex h-screen overflow-hidden bg-[#F9FAFB]">
     <aside class="hidden w-[234px] shrink-0 flex-col overflow-y-auto border-r border-slate-200 bg-white md:flex">
-      <div class="border-b border-slate-100 px-4 pb-3 pt-5">
-        <div class="flex items-center justify-center">
-          <img src="{{ asset('icons/locadsicon.svg') }}" alt="ThLocads Logo" class="h-auto w-full max-w-[140px] object-contain">
+      <div class="border-b border-slate-100 px-4 pb-4 pt-5">
+        <div class="flex h-[66px] items-center justify-center">
+          <img src="{{ asset('icons/locadsicon.jpeg') }}" alt="ThLocads Logo" class="h-full w-full max-w-[173px] object-contain">
         </div>
       </div>
 
@@ -126,17 +131,17 @@
           <svg class="h-[17px] w-[17px] shrink-0" viewBox="0 0 24 24" fill="none"><path d="M15 5v2m0 4v2m0 4v2M5 5a2 2 0 00-2 2v3a2 2 0 110 4v3a2 2 0 002 2h14a2 2 0 002-2v-3a2 2 0 110-4V7a2 2 0 00-2-2H5z" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
           Ticket Enquiry
         </a>
-        <a href="{{ route('products.index-g') }}" class="flex items-center gap-3 rounded-lg px-3.5 py-2.5 text-[13.5px] font-medium text-[#4A5565] transition hover:bg-slate-50 hover:text-[#101828]">
+        <a href="{{ route('products.index-g') }}" class="flex items-center gap-3 rounded-lg px-3.5 py-2.5 text-[13.5px] font-medium {{ $isLicenceSidebarActive ? $sidebarActiveClass : $sidebarInactiveClass }}">
           <svg class="h-[17px] w-[17px] shrink-0" viewBox="0 0 24 24" fill="none"><path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
           Licence
         </a>
         <a href="{{ route('products.create') }}" class="flex items-center gap-3 rounded-lg px-3.5 py-2.5 text-[13.5px] font-medium text-[#4A5565] transition hover:bg-slate-50 hover:text-[#101828]">
           <svg class="h-[17px] w-[17px] shrink-0" viewBox="0 0 24 24" fill="none"><path d="M20 7l-8-4-8 4m16 0v10l-8 4m-8-4V7m16 3l-8 4M4 10l8 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          Create Product
+          Products
         </a>
         <a href="{{ route('products.rentals') }}" class="flex items-center gap-3 rounded-lg px-3.5 py-2.5 text-[13.5px] font-medium text-[#4A5565] transition hover:bg-slate-50 hover:text-[#101828]">
           <svg class="h-[17px] w-[17px] shrink-0" viewBox="0 0 24 24" fill="none"><path d="M3 7h18M3 12h18M3 17h18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="7" cy="7" r="2" fill="currentColor"/><circle cx="7" cy="17" r="2" fill="currentColor"/></svg>
-          Rental Product
+          Rental Products
         </a>
         <div class="mx-1 mt-2 h-px bg-slate-100"></div>
         <form method="POST" action="{{ route('logout') }}">
@@ -148,28 +153,10 @@
         </form>
       </nav>
 
-      <div class="m-2.5 rounded-xl border border-sky-100 bg-gradient-to-br from-white to-sky-50 px-3.5 py-3.5">
-        <div class="flex items-center gap-3">
-          <div class="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-white-100">
-            <div class="flex h-9 w-9 items-center justify-center rounded-full bg-brand shadow-[0_14px_24px_rgba(239,68,68,0.2)]">
-              <svg width="18" height="18" fill="none" viewBox="0 0 24 24">
-                <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-            </div>
-          </div>
-          <div>
-            <div class="text-[13px] font-semibold leading-5 text-[#101828]">Need Help?</div>
-            <div class="mt-1 flex items-center gap-1.5 text-[11px] text-[#4A5565]">
-              <span class="inline-block h-1.5 w-1.5 shrink-0 rounded-full bg-green-500"></span>
-              Ready to help
-            </div>
-          </div>
-        </div>
-      </div>
     </aside>
 
-    <div class="flex min-w-0 flex-1 flex-col overflow-hidden">
-      <header class="flex h-16 shrink-0 items-center justify-between border-b border-slate-200 bg-white px-4 sm:px-6">
+    <div class="flex min-h-0 min-w-0 flex-1 flex-col">
+      <header class="relative z-40 flex h-16 shrink-0 items-center justify-between border-b border-slate-200 bg-white px-4 sm:px-6">
         <div class="flex flex-1 items-center pr-4 max-w-[820px]">
           <div class="relative w-full">
             <svg class="absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400" fill="none" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8" stroke="currentColor" stroke-width="2"/><path d="M21 21l-4.35-4.35" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
@@ -205,7 +192,7 @@
             </button>
             <div
               id="dashboard-user-menu"
-              class="hidden absolute right-0 top-full z-30 mt-2 w-56 rounded-2xl border border-slate-200 bg-white p-2 shadow-soft">
+              class="hidden absolute right-0 top-full z-50 mt-2 w-56 max-w-[calc(100vw-2rem)] rounded-2xl border border-slate-200 bg-white p-2 shadow-[0_18px_40px_rgba(15,23,42,0.14)]">
               <button
                 type="button"
                 id="open-password-modal"
@@ -224,6 +211,7 @@
           </div>
         </div>
       </header>
+      @include('partials.admin-mobile-nav')
 
       <main class="flex-1 overflow-y-auto bg-[#F9FAFB] p-4 sm:p-6">
         @if (session('success'))
@@ -238,9 +226,15 @@
           </div>
         @endif
 
-        <div class="mb-5">
-          <h1 class="text-[21px] font-semibold tracking-[-0.02em] text-[#101828]">Dashboard</h1>
-          <p class="mt-1 text-[12.5px] font-normal text-[#4A5565]">Welcome back - here's what's happening today.</p>
+        <div class="mb-5 flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
+          <div>
+            <h1 class="text-[21px] font-medium tracking-[-0.02em] text-[#101828]">Dashboard</h1>
+            <p class="mt-1 text-[12.5px] font-normal text-[#4A5565]">Welcome back - here's what's happening today.</p>
+          </div>
+          <button type="button" onclick="window.location.reload()" class="inline-flex h-10 items-center justify-center gap-2 rounded-xl border border-slate-200 bg-white px-4 text-[13px] font-semibold text-[#4A5565] transition hover:bg-slate-50 hover:text-[#101828]">
+            <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M20 6v5h-5M4 18v-5h5M18.5 10A7 7 0 006.1 7.1L4 11m2 3a7 7 0 0011.9 2.9L20 13" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Refresh
+          </button>
         </div>
 
         <div class="mb-4 grid grid-cols-1 gap-3.5 xl:grid-cols-3">

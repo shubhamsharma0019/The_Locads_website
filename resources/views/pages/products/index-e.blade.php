@@ -3,6 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     @include('partials.seo-meta', [
         'title' => 'Outdoor Displays | The Locads',
         'description' => 'Browse outdoor and high-bright digital signage displays from The Locads for windows, storefronts, and public spaces.',
@@ -28,7 +29,7 @@
 
                 <!-- ================= HEADING ================= -->
                 <div class="signage11-hero-title w-[371px] h-[72px] mx-auto max-lg:w-full max-lg:max-w-[768px] max-lg:h-auto">
-                    <h1 class="text-[60px] leading-[72px] font-bold tracking-[-1.5px] text-[#111827] max-lg:text-[44px] max-lg:leading-[1.15] max-md:text-[34px]">
+                    <h1 class="text-[60px] leading-[72px] font-medium tracking-[-1.5px] text-[#111827] max-lg:text-[44px] max-lg:leading-[1.15] max-md:text-[34px]">
                         Our <span class="text-[#4F46E5] tracking-[-1.8px]">Products</span>
                     </h1>
                 </div>
@@ -70,6 +71,11 @@
         </section>
         @include('partials.product-filter', ['currentPage' => 11])
 
+        @include('partials.public-product-grid', [
+            'products' => $outdoorProducts ?? collect(),
+        ])
+
+        @if (($outdoorProducts ?? collect())->isEmpty())
         <section class="signage11-products w-full max-w-[1387px] mx-auto px-[101.5px] pt-[64px] pb-[64px] max-[1387px]:px-[24px] max-md:px-[16px] max-md:pt-[40px] max-md:pb-[40px]">
 
             <!-- INNER WRAPPER -->
@@ -87,7 +93,7 @@
 
                         <!-- TITLE -->
                         <div class="signage11-card-title w-[323.33px] max-[1387px]:w-full mt-[24px] h-[28px]">
-                            <h3 class="text-[20px] leading-[28px] font-bold text-[#101828]">
+                            <h3 class="text-[20px] leading-[28px] font-medium text-[#101828]">
                                 High-Bright Window Display - 55"
                             </h3>
                         </div>
@@ -99,28 +105,28 @@
                             <div class="flex items-center gap-[8px]">
                                 <div class="w-[6px] h-[6px] bg-[#155DFC] rounded-full"></div>
                                 <span class="text-[14px] text-[#4A5565] leading-[20px]">
-                                    43" 4K UHD
+                                    High-brightness window visibility
                                 </span>
                             </div>
 
                             <div class="flex items-center gap-[8px]">
                                 <div class="w-[6px] h-[6px] bg-[#155DFC] rounded-full"></div>
                                 <span class="text-[14px] text-[#4A5565]">
-                                    500 nits brightness
+                                    55 inch commercial display
                                 </span>
                             </div>
 
                             <div class="flex items-center gap-[8px]">
                                 <div class="w-[6px] h-[6px] bg-[#155DFC] rounded-full"></div>
                                 <span class="text-[14px] text-[#4A5565]">
-                                    500 nits brightness
+                                    Anti-glare presentation
                                 </span>
                             </div>
 
                             <div class="flex items-center gap-[8px]">
                                 <div class="w-[6px] h-[6px] bg-[#155DFC] rounded-full"></div>
                                 <span class="text-[14px] text-[#4A5565]">
-                                    Android OS
+                                    Built for storefront promotions
                                 </span>
                             </div>
 
@@ -136,20 +142,20 @@
                                 <!-- LEFT (PURCHASE) -->
                                 <div class="flex flex-col justify-between h-[52px]">
                                     <span class="text-[14px] leading-[20px] text-[#4A5565]">
-                                        Purchase
+                                        Purchase Price
                                     </span>
                                     <span class="text-[24px] leading-[32px] font-bold text-[#101828]">
-                                        Rs 899
+                                        ₹1,499
                                     </span>
                                 </div>
 
                                 <!-- RIGHT (RENT) -->
                                 <div class="flex flex-col justify-between items-end h-[52px]">
                                     <span class="text-[14px] leading-[20px] text-[#4A5565]">
-                                        Rent
+                                        Rent Price
                                     </span>
                                     <span class="text-[20px] leading-[28px] font-bold text-[#E7000B]">
-                                        Rs 49/month
+                                        On request
                                     </span>
                                 </div>
 
@@ -193,7 +199,7 @@
 
                         <!-- TITLE -->
                         <div class="signage11-card-title w-[323.33px] max-[1387px]:w-full mt-[24px] h-[28px]">
-                            <h3 class="text-[20px] leading-[28px] font-bold text-[#101828]">
+                            <h3 class="text-[20px] leading-[28px] font-medium text-[#101828]">
                                 High-Bright Window Display - 55"
                             </h3>
                         </div>
@@ -205,28 +211,28 @@
                             <div class="flex items-center gap-[8px]">
                                 <div class="w-[6px] h-[6px] bg-[#155DFC] rounded-full"></div>
                                 <span class="text-[14px] text-[#4A5565] leading-[20px]">
-                                    43" 4K UHD
+                                    55 inch high-bright rental display
                                 </span>
                             </div>
 
                             <div class="flex items-center gap-[8px]">
                                 <div class="w-[6px] h-[6px] bg-[#155DFC] rounded-full"></div>
                                 <span class="text-[14px] text-[#4A5565]">
-                                    500 nits brightness
+                                    Great for storefront campaigns
                                 </span>
                             </div>
 
                             <div class="flex items-center gap-[8px]">
                                 <div class="w-[6px] h-[6px] bg-[#155DFC] rounded-full"></div>
                                 <span class="text-[14px] text-[#4A5565]">
-                                    Android OS
+                                    Temporary promotion friendly
                                 </span>
                             </div>
 
                             <div class="flex items-center gap-[8px]">
                                 <div class="w-[6px] h-[6px] bg-[#155DFC] rounded-full"></div>
                                 <span class="text-[14px] text-[#4A5565]">
-                                    Android OS
+                                    Delivery and installation support
                                 </span>
                             </div>
 
@@ -242,20 +248,20 @@
                                 <!-- LEFT (PURCHASE) -->
                                 <div class="flex flex-col justify-between h-[52px]">
                                     <span class="text-[14px] leading-[20px] text-[#4A5565]">
-                                        Purchase
+                                        Purchase Price
                                     </span>
                                     <span class="text-[24px] leading-[32px] font-bold text-[#101828]">
-                                        Rs 899
+                                        ₹1,299
                                     </span>
                                 </div>
 
                                 <!-- RIGHT (RENT) -->
                                 <div class="flex flex-col justify-between items-end h-[52px]">
                                     <span class="text-[14px] leading-[20px] text-[#4A5565]">
-                                        Rent
+                                        Rent Price
                                     </span>
                                     <span class="text-[20px] leading-[28px] font-bold text-[#E7000B]">
-                                        Rs 49/month
+                                        ₹49 per month
                                     </span>
                                 </div>
 
@@ -289,11 +295,7 @@
                 </div>
             </div>
         </section>
-        @include('partials.public-product-grid', [
-            'products' => $outdoorProducts ?? collect(),
-            'title' => 'Created Outdoor Products',
-            'description' => 'Aap jo bhi outdoor category product create karenge, woh yahan automatically show hoga.',
-        ])
+        @endif
         <!-- ================= CTA SECTION ================= -->
         <section class="signage11-cta relative z-0 w-full max-w-[1387px] h-[296px] mx-auto mt-[64px] px-[53.5px] pt-[64px] bg-[#F9FAFB] max-[1387px]:px-[24px] max-lg:h-auto max-lg:pt-[56px] max-lg:pb-[56px] max-md:mt-[48px] max-md:px-[16px] max-md:pt-[48px] max-md:pb-[48px] before:absolute before:inset-y-0 before:-left-[100vmax] before:-right-[100vmax] before:-z-10 before:content-[''] before:bg-[#F9FAFB]">
 
@@ -302,7 +304,7 @@
 
                 <!-- HEADING -->
                 <div class="signage11-cta-heading w-[1184px] h-[36px] max-[1387px]:w-full flex justify-center">
-                    <h2 class="text-[30px] leading-[36px] font-bold text-[#101828] text-center max-md:text-[28px] max-md:leading-[1.2]">
+                    <h2 class="text-[30px] leading-[36px] font-medium text-[#101828] text-center max-md:text-[28px] max-md:leading-[1.2]">
                         Need Help Choosing?
                     </h2>
                 </div>

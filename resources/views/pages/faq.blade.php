@@ -3,6 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     @include('partials.seo-meta', [
         'title' => 'FAQ | The Locads Digital Signage Questions',
         'description' => 'Find answers to common The Locads questions about digital signage products, pricing, installation, licensing, and support.',
@@ -32,7 +33,7 @@
 
                     <!-- HEADING -->
                     <h1
-                        class="text-center text-[60px] font-bold leading-[72px] tracking-[-1.5px] text-[#101828] max-[1024px]:text-[42px] max-[1024px]:leading-[1.15] max-[767px]:text-[34px] max-[767px]:leading-[1.2]">
+                        class="text-center text-[60px] font-medium leading-[72px] tracking-[-1.5px] text-[#101828] max-[1024px]:text-[42px] max-[1024px]:leading-[1.15] max-[767px]:text-[34px] max-[767px]:leading-[1.2]">
                         Frequently Asked
                         <span
                             class="bg-gradient-to-r from-[#7F56D9] to-[#2E90FA] bg-clip-text text-transparent tracking-[-1.8px]">
@@ -191,7 +192,7 @@
             @foreach ($faqCategories as $category)
                 <div class="mx-auto flex w-[800px] max-w-[800px] flex-col gap-[24px] max-[1280px]:w-full">
                     <div class="w-full border-b-[2px] border-[#155DFC] pb-[8px]">
-                        <h3 class="text-[24px] font-bold text-[#101828]">{{ $category['title'] }}</h3>
+                        <h3 class="text-[24px] font-medium text-[#101828]">{{ $category['title'] }}</h3>
                     </div>
 
                     <div class="flex flex-col gap-[16px]">
@@ -242,7 +243,7 @@
 
                     <!-- HEADING -->
                     <div class="w-full flex justify-center">
-                        <h2 class="text-[30px] leading-[36px] font-bold text-[#101828]">
+                        <h2 class="text-[30px] leading-[36px] font-medium text-[#101828]">
                             Still have questions?
                         </h2>
                     </div>

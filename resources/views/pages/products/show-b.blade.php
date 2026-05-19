@@ -70,7 +70,7 @@
 
                         <!-- ---- HEADING DIV ---- -->
                         <div class="signage15-title-wrap w-[568px] h-[96px] max-[1387px]:w-full max-[1387px]:max-w-full max-lg:h-auto">
-                            <h1 class="text-[40px] leading-[48px] font-bold text-[#101828] max-lg:text-[34px] max-lg:leading-[1.15] max-md:text-[30px]">
+                            <h1 class="text-[40px] leading-[48px] font-medium text-[#101828] max-lg:text-[34px] max-lg:leading-[1.15] max-md:text-[30px]">
                                 Pen Drive Software <div>License</div>
                             </h1>
                         </div>
@@ -96,8 +96,8 @@
                             <p class="text-sm text-gray-500">Price</p>
 
                             <!-- PRICE TEXT -->
-                            <h2 class="text-[30px] leading-[36px] font-black text-[#101828]">
-                              Rs 149/year
+                            <h2 class="text-[30px] leading-[36px] font-medium text-[#101828]">
+                              ₹149/year
                             </h2>
 
                         </div>
@@ -198,7 +198,7 @@
 
                 <!-- ===== HEADING DIV ===== -->
                 <div class="w-full h-[36px]">
-                    <h2 class="text-[30px] leading-[36px] font-bold text-[#101828]">
+                    <h2 class="text-[30px] leading-[36px] font-medium text-[#101828]">
                         Key Features
                     </h2>
                 </div>
@@ -387,7 +387,7 @@
 
                 <!-- ===== HEADING DIV ===== -->
                 <div class="w-full h-[36px]">
-                    <h2 class="text-[30px] leading-[36px] font-bold text-[#101828]">
+                    <h2 class="text-[30px] leading-[36px] font-medium text-[#101828]">
                         Technical Specifications
                     </h2>
                 </div>
@@ -517,7 +517,7 @@
 
                 <!-- ===== HEADING DIV ===== -->
                 <div class="signage15-cta-heading w-full h-[36px]">
-                    <h2 class="text-[30px] leading-[36px] font-bold text-[#101828] max-md:text-[28px] max-md:leading-[1.2]">
+                    <h2 class="text-[30px] leading-[36px] font-medium text-[#101828] max-md:text-[28px] max-md:leading-[1.2]">
                         Ready to Get Started?
                     </h2>
                 </div>

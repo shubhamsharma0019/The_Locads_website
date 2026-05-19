@@ -15,6 +15,7 @@ class RouteSmokeTest extends TestCase
     public function test_public_pages_are_available(): void
     {
         $routes = [
+            '/',
             '/about',
             '/services',
             '/industries',
@@ -45,14 +46,18 @@ class RouteSmokeTest extends TestCase
         $routes = [
             '/dashboard',
             '/dashboard/enquiries',
-            '/home',
             '/products/create',
             '/products/rentals',
         ];
 
         foreach ($routes as $route) {
-            $this->get($route)->assertRedirect('/login');
+            $this->get($route)->assertRedirect('/admin');
         }
+    }
+
+    public function test_home_alias_redirects_to_default_home_page(): void
+    {
+        $this->get('/home')->assertRedirect('/');
     }
 
     public function test_created_product_detail_page_uses_product_data(): void

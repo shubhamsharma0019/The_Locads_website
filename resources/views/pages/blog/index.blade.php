@@ -3,6 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     @include('partials.seo-meta', [
         'title' => 'The Locads Blog | Digital Signage Insights',
         'description' => 'Read the latest The Locads insights, digital signage trends, best practices, and business success stories.',
@@ -31,7 +32,7 @@
                 <div class="w-[1184px] h-[152px] flex flex-col items-center max-[1387px]:w-full max-[1387px]:max-w-full max-[1387px]:h-auto">
 
                     <!-- HEADING -->
-                    <h1 class="signage16-hero-title text-[60px] font-[700] leading-[72px] tracking-[-1.5px] text-[#0F172A] max-lg:text-[44px] max-lg:leading-[1.15] max-lg:text-center max-md:text-[34px]">
+                    <h1 class="signage16-hero-title text-[60px] font-medium leading-[72px] tracking-[-1.5px] text-[#0F172A] max-lg:text-[44px] max-lg:leading-[1.15] max-lg:text-center max-md:text-[34px]">
                         Latest
                         <span
                             class="bg-gradient-to-r from-[#7C3AED] to-[#2563EB] bg-clip-text text-transparent tracking-[-1.8px]">
@@ -83,7 +84,7 @@
 
                     <!-- HEADING -->
                     <div class="absolute top-[84px] left-[40px] w-[447px] h-[72px] max-lg:static max-lg:w-full max-lg:h-auto max-lg:mb-[16px]">
-                        <h2 class="text-[30px] font-[700] leading-[36px] text-[#101828]">
+                        <h2 class="text-[30px] font-medium leading-[36px] text-[#101828]">
                             Top 5 Digital Signage Trends for 2026
                         </h2>
                     </div>
@@ -103,7 +104,7 @@
                         <div class="flex items-center gap-[8px]">
                             <div class="w-[16px] h-[16px] bg-white-300"><img src="{{ asset('icons/sarahicon.svg') }}">
                             </div>
-                            <span class="text-[14px] text-[#4A5565]">Sarah Johnson</span>
+                            <span class="text-[14px] text-[#4A5565]">Priya Sharma</span>
                         </div>
 
                         <!-- DATE -->
@@ -142,7 +143,7 @@
 
             <!-- HEADING WRAPPER -->
             <div class="signage16-articles-heading w-[1184px] h-[36px] max-lg:w-full">
-                <h2 class="text-[30px] font-[700] leading-[36px] text-[#101828]">
+                <h2 class="text-[30px] font-medium leading-[36px] text-[#101828]">
                     Recent Articles
                 </h2>
             </div>
@@ -188,7 +189,7 @@
 
                             </div>
 
-                            <h3 class="text-[20px] font-bold leading-[28px] text-[#101828]">
+                            <h3 class="text-[20px] font-medium leading-[28px] text-[#101828]">
                                 How to Choose the Right Digital Signage for Retail
                             </h3>
 
@@ -203,7 +204,7 @@
                                         <img src={{ asset('icons/sarahicon.svg') }} alt="icon"
                                             class="w-full h-full object-contain" />
                                     </div>
-                                    <span class="text-[14px]">Michael Chen</span>
+                                    <span class="text-[14px]">Rohan Mehta</span>
                                 </div>
 
                                 <div class="flex items-center  gap-[6px]">
@@ -264,7 +265,7 @@
 
                             </div>
 
-                            <h3 class="text-[20px] font-bold leading-[28px] text-[#101828]">
+                            <h3 class="text-[20px] font-medium leading-[28px] text-[#101828]">
                                 Maximizing ROI with Cloud-Based Digital Signage
                             </h3>
 
@@ -279,7 +280,7 @@
                                         <img src={{ asset('icons/sarahicon.svg') }} alt="icon"
                                             class="w-full h-full object-contain" />
                                     </div>
-                                    <span class="text-[14px]">Emily Rodriguez</span>
+                                    <span class="text-[14px]">Ananya Verma</span>
                                 </div>
 
                                 <div class="flex items-center  gap-[6px]">
@@ -340,7 +341,7 @@
 
                             </div>
 
-                            <h3 class="text-[20px] font-bold leading-[28px] text-[#101828]">
+                            <h3 class="text-[20px] font-medium leading-[28px] text-[#101828]">
                                 Digital Signage Best Practices for Healthcare
                             </h3>
 
@@ -355,7 +356,7 @@
                                         <img src={{ asset('icons/sarahicon.svg') }} alt="icon"
                                             class="w-full h-full object-contain" />
                                     </div>
-                                    <span class="text-[14px]">Dr. James Park</span>
+                                    <span class="text-[14px]">Dr. Arjun Kapoor</span>
                                 </div>
 
                                 <div class="flex items-center  gap-[6px]">
@@ -417,7 +418,7 @@
 
                             </div>
 
-                            <h3 class="text-[20px] font-bold leading-[28px] text-[#101828]">
+                            <h3 class="text-[20px] font-medium leading-[28px] text-[#101828]">
                                The Ultimate Guide to Content Creation for Digital Signage
                             </h3>
 
@@ -432,7 +433,7 @@
                                         <img src={{ asset('icons/sarahicon.svg') }} alt="icon"
                                             class="w-full h-full object-contain" />
                                     </div>
-                                    <span class="text-[14px]">Lisa Thompson</span>
+                                    <span class="text-[14px]">Neha Iyer</span>
                                 </div>
 
                                 <div class="flex items-center  gap-[6px]">
@@ -493,7 +494,7 @@
 
                             </div>
 
-                            <h3 class="text-[20px] font-bold leading-[28px] text-[#101828]">
+                            <h3 class="text-[20px] font-medium leading-[28px] text-[#101828]">
                                Case Study: Transforming Airport Wayfinding
                             </h3>
 
@@ -508,7 +509,7 @@
                                         <img src={{ asset('icons/sarahicon.svg') }} alt="icon"
                                             class="w-full h-full object-contain" />
                                     </div>
-                                    <span class="text-[14px]">David Martinez</span>
+                                    <span class="text-[14px]">Vikram Singh</span>
                                 </div>
 
                                 <div class="flex items-center  gap-[6px]">
@@ -547,7 +548,7 @@
 
                 <!-- Heading -->
                 <div class="w-[800px] h-[36px] flex justify-center items-center max-lg:w-full max-lg:max-w-[800px] max-lg:h-auto">
-                    <h2 class="text-[30px] leading-[36px] font-bold text-[#101828] text-center">
+                    <h2 class="text-[30px] leading-[36px] font-medium text-[#101828] text-center">
                         Stay Updated
                     </h2>
                 </div>

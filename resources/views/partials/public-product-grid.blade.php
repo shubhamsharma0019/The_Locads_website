@@ -10,7 +10,7 @@
             @if ($title || $description)
                 <div class="mb-8 text-center">
                     @if ($title)
-                        <h2 class="text-[30px] leading-[36px] font-bold text-[#101828] max-md:text-[28px] max-md:leading-[34px]">
+                        <h2 class="text-[30px] leading-[36px] font-medium text-[#101828] max-md:text-[28px] max-md:leading-[34px]">
                             {{ $title }}
                         </h2>
                     @endif
@@ -23,12 +23,15 @@
                 </div>
             @endif
 
-            <div class="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-3 lg:gap-[24px]">
+            <div class="grid grid-cols-1 items-stretch gap-4 md:grid-cols-2 xl:grid-cols-3 lg:gap-[24px]">
                 @foreach ($products as $product)
                     @php
                         $productFeatures = collect($product['features'] ?? [])
                             ->filter()
                             ->take(4);
+                        $isRentalProduct = ($product['type'] ?? 'product') === 'rent';
+                        $billingPeriod = $product['billing_period'] ?? 'month';
+                        $billingLabel = $billingPeriod === 'month' ? 'month' : $billingPeriod;
 
                         if ($productFeatures->isEmpty()) {
                             $productFeatures = collect($product['specifications'] ?? [])
@@ -37,7 +40,7 @@
                         }
                     @endphp
 
-                    <div class="w-full max-w-[373.33px] mx-auto bg-white rounded-[16px] border border-[#E5E7EB] overflow-hidden">
+                    <div class="flex h-full w-full max-w-[373.33px] flex-col mx-auto bg-white rounded-[16px] border border-[#E5E7EB] overflow-hidden">
                         <div class="w-full aspect-[371.33/224] bg-[#F3F4F6]">
                             @if (!empty($product['image_path']))
                                 <img
@@ -55,10 +58,10 @@
                             @endif
                         </div>
 
-                        <div class="px-6 pt-6 pb-5 max-md:px-4">
+                        <div class="flex flex-1 flex-col px-6 pt-6 pb-5 max-md:px-4">
                             <div class="flex items-start justify-between gap-3">
                                 <div>
-                                    <h3 class="text-[20px] leading-[28px] font-bold text-[#101828]">
+                                    <h3 class="text-[20px] leading-[28px] font-medium text-[#101828]">
                                         {{ $product['name'] }}
                                     </h3>
                                     <p class="mt-1 text-[14px] leading-[20px] text-[#4A5565]">
@@ -84,48 +87,70 @@
                                 @endforelse
                             </div>
 
-                            <div class="mt-6 pt-4 border-t border-[#E5E7EB]">
-                                <div class="flex items-start justify-between gap-4">
-                                    <div>
-                                        <p class="text-[14px] leading-[20px] text-[#4A5565]">Purchase</p>
-                                        <p class="text-[24px] leading-[32px] font-bold text-[#101828]">
-                                            @if (!empty($product['price']))
-                                                Rs {{ number_format($product['price'], 0) }}
-                                            @else
-                                                On request
-                                            @endif
-                                        </p>
-                                    </div>
+                            <div class="mt-auto pt-4">
+                                <div class="border-t border-[#E5E7EB] pt-6">
+                                    <div class="grid min-h-[56px] grid-cols-[minmax(0,1fr)_auto] items-start gap-4">
+                                        @if ($isRentalProduct)
+                                            <div>
+                                                <p class="text-[14px] leading-[20px] text-[#4A5565]">Rent Price</p>
+                                                <p class="text-[24px] leading-[32px] font-bold text-[#E7000B] max-sm:text-[22px]">
+                                                    @if (!empty($product['rent_price']))
+                                                        ₹{{ number_format($product['rent_price'], 0) }} per {{ $billingLabel }}
+                                                    @else
+                                                        On request
+                                                    @endif
+                                                </p>
+                                            </div>
 
-                                    <div class="text-right">
-                                        <p class="text-[14px] leading-[20px] text-[#4A5565]">Rent</p>
-                                        <p class="text-[20px] leading-[28px] font-bold text-[#E7000B]">
+                                            <div class="shrink-0 text-right">
+                                                <p class="text-[14px] leading-[20px] text-[#4A5565]">Purchase Price</p>
+                                                <p class="text-[20px] leading-[28px] font-bold text-[#101828]">
+                                                    @if (!empty($product['price']))
+                                                        ₹{{ number_format($product['price'], 0) }}
+                                                    @else
+                                                        On request
+                                                    @endif
+                                                </p>
+                                            </div>
+                                        @else
+                                            <div>
+                                                <p class="text-[14px] leading-[20px] text-[#4A5565]">Purchase Price</p>
+                                                <p class="text-[24px] leading-[32px] font-bold text-[#101828]">
+                                                    @if (!empty($product['price']))
+                                                        ₹{{ number_format($product['price'], 0) }}
+                                                    @else
+                                                        On request
+                                                    @endif
+                                                </p>
+                                            </div>
+
                                             @if (!empty($product['rent_price']))
-                                                Rs {{ number_format($product['rent_price'], 0) }}/{{ $product['billing_period'] ?? 'month' }}
-                                            @elseif (!empty($product['price']))
-                                                Rs {{ number_format($product['price'], 0) }}
-                                            @else
-                                                On request
+                                                <div class="shrink-0 text-right">
+                                                    <p class="text-[14px] leading-[20px] text-[#4A5565]">Rent Price</p>
+                                                    <p class="text-[20px] leading-[28px] font-bold text-[#E7000B]">
+                                                        ₹{{ number_format($product['rent_price'], 0) }} per {{ $billingLabel }}
+                                                    </p>
+                                                </div>
                                             @endif
-                                        </p>
+                                        @endif
                                     </div>
-                                </div>
 
-                                <div class="mt-4 flex items-center gap-2 max-md:flex-col max-md:items-stretch">
+                                <div class="mt-4 grid grid-cols-[minmax(0,1fr)_54px] items-center gap-2 max-md:grid-cols-1">
                                     <a
                                         href="{{ route('products.detail', ['productSlug' => $product['slug'], 'return_to' => request()->fullUrl()]) }}"
-                                        class="flex-1 h-[42px] bg-[#155DFC] rounded-[14px] flex items-center justify-center text-white text-[14px] font-medium"
+                                        class="h-[42px] min-w-0 bg-[#155DFC] rounded-[14px] flex items-center justify-center text-white text-[14px] font-medium"
                                     >
                                         View Details
                                     </a>
 
                                     <a
                                         href="{{ route('contact.alt') }}"
-                                        class="w-[54px] h-[42px] border-[2px] border-[#D1D5DC] rounded-[14px] flex items-center justify-center max-md:w-full"
+                                        class="h-[42px] w-[54px] border-[2px] border-[#D1D5DC] rounded-[14px] flex items-center justify-center max-md:w-full"
                                         aria-label="Enquire about {{ $product['name'] }}"
                                     >
                                         <img src="{{ asset('icons/carticon.svg') }}" class="w-[18px] h-[18px]" alt="">
                                     </a>
+                                    </div>
                                 </div>
                             </div>
                         </div>

@@ -54,6 +54,28 @@
             .signage3-service-card p {
                 width: 100% !important;
             }
+
+            .signage3-noc-step-card {
+                height: auto !important;
+                min-height: 142px;
+                padding: 48px 24px 24px !important;
+            }
+
+            .signage3-noc-step-card > div:first-child {
+                left: 50% !important;
+                transform: translateX(-50%);
+            }
+
+            .signage3-noc-step-card > div:last-child {
+                position: static !important;
+                width: 100% !important;
+                text-align: center;
+            }
+
+            .signage3-noc-step-card h4,
+            .signage3-noc-step-card p {
+                text-align: center;
+            }
         }
     </style>
 </head>
@@ -71,7 +93,7 @@
         <section class="w-screen relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] min-h-[639.09px] bg-[#A3A3A3]">
 
             <!-- BACKGROUND IMAGE -->
-            <img src="{{ asset('icons/backgroundimage.jpg') }}" class="absolute top-0 left-0 w-full h-full object-cover" onerror="this.remove()" />
+            <img src="{{ asset('icons/servicesimg.svg') }}" class="absolute top-0 left-0 w-full h-full object-cover" onerror="this.remove()" />
 
             <!-- OVERLAY -->
             <div class="absolute inset-0 bg-black/40"></div>
@@ -89,7 +111,7 @@
 
                 <!-- HEADING -->
                 <div class="w-full max-w-[768px] min-h-[144px] mt-[24px]">
-                    <h1 class="text-white text-[38px] leading-[46px] sm:text-[50px] sm:leading-[60px] lg:text-[60px] lg:leading-[72px] font-bold tracking-[-1.5px]">
+                    <h1 class="text-white text-[38px] leading-[46px] sm:text-[50px] sm:leading-[60px] lg:text-[60px] lg:leading-[72px] font-medium tracking-[-1.5px]">
                         End - to - End
                         <span class="text-red-500 tracking-[-1.5px]">
                             <div>Services</div>
@@ -123,7 +145,7 @@
                     </div>
 
                     <div class="w-[calc(100%-66px)] absolute top-[113px] left-[33px]">
-                        <h3 class="text-[24px] leading-[32px] font-bold text-[#101828]">
+                        <h3 class="text-[24px] leading-[32px] font-medium text-[#101828]">
                             Network Operations Center (NOC)
                         </h3>
                     </div>
@@ -147,7 +169,7 @@
                     </div>
 
                     <div class="w-[calc(100%-66px)] absolute top-[113px] left-[33px]">
-                        <h3 class="text-[24px] leading-[32px] font-bold text-[#101828]">
+                        <h3 class="text-[24px] leading-[32px] font-medium text-[#101828]">
                             Content Management Strategy
                         </h3>
                     </div>
@@ -171,7 +193,7 @@
                     </div>
 
                     <div class="w-[calc(100%-66px)] absolute top-[113px] left-[33px]">
-                        <h3 class="text-[24px] leading-[32px] font-bold text-[#101828]">
+                        <h3 class="text-[24px] leading-[32px] font-medium text-[#101828]">
                             Hardware as a Service (HaaS)
                         </h3>
                     </div>
@@ -195,7 +217,7 @@
                     </div>
 
                     <div class="w-[calc(100%-66px)] absolute top-[113px] left-[33px]">
-                        <h3 class="text-[24px] leading-[32px] font-bold text-[#101828]">
+                        <h3 class="text-[24px] leading-[32px] font-medium text-[#101828]">
                             Custom Software Integration
                         </h3>
                     </div>
@@ -219,7 +241,7 @@
                     </div>
 
                     <div class="w-[calc(100%-66px)] absolute top-[113px] left-[33px]">
-                        <h3 class="text-[24px] leading-[32px] font-bold text-[#101828]">
+                        <h3 class="text-[24px] leading-[32px] font-medium text-[#101828]">
                             White-Glove Installation
                         </h3>
                     </div>
@@ -247,7 +269,7 @@
 
                     <!-- HEADING -->
                     <div class="w-full min-h-[48px] text-center">
-                        <h2 class="text-[36px] leading-[40px] sm:text-[42px] sm:leading-[44px] lg:text-[48px] lg:leading-[48px] font-bold text-[#101828]">
+                        <h2 class="text-[36px] leading-[40px] sm:text-[42px] sm:leading-[44px] lg:text-[48px] lg:leading-[48px] font-medium text-[#101828]">
                             How Our NOC Works
                         </h2>
                     </div>
@@ -271,7 +293,7 @@
 
                     <!-- STEP 1 -->
                     <div
-                        class="w-full max-w-[320px] h-[162px] mx-auto bg-white rounded-[16px] border border-[#E5E7EB] shadow-[0_25px_50px_-12px_rgba(0,0,0,0.08)] relative">
+                        class="signage3-noc-step-card w-full max-w-[320px] h-[162px] mx-auto bg-white rounded-[16px] border border-[#E5E7EB] shadow-[0_25px_50px_-12px_rgba(0,0,0,0.08)] relative">
 
                         <!-- NUMBER -->
                         <div
@@ -282,7 +304,7 @@
                         <!-- CONTENT -->
                         <div class="absolute top-[49px] left-[33px] w-[254px] text-center">
 
-                            <h4 class="text-[20px] leading-[28px] font-bold text-[#101828]">
+                            <h4 class="text-[20px] leading-[28px] font-medium text-[#101828]">
                                 Continuous Monitoring
                             </h4>
 
@@ -297,7 +319,7 @@
 
                     <!-- STEP 2 -->
                     <div
-                        class="w-full max-w-[320px] h-[162px] mx-auto bg-white rounded-[16px] border border-[#E5E7EB] shadow-[0_25px_50px_-12px_rgba(0,0,0,0.08)] relative">
+                        class="signage3-noc-step-card w-full max-w-[320px] h-[162px] mx-auto bg-white rounded-[16px] border border-[#E5E7EB] shadow-[0_25px_50px_-12px_rgba(0,0,0,0.08)] relative">
 
                         <div
                             class="absolute top-[-23px] left-[136px] w-[48px] h-[48px] rounded-full bg-[#155DFC] text-white flex items-center justify-center border-[2px] border-white shadow-[0_0_20px_rgba(37,99,235,0.6)]">
@@ -306,7 +328,7 @@
 
                         <div class="absolute top-[49px] left-[33px] w-[254px] text-center">
 
-                            <h4 class="text-[20px] leading-[28px] font-bold text-[#101828]">
+                            <h4 class="text-[20px] leading-[28px] font-medium text-[#101828]">
                                 Automated Alerts
                             </h4>
 
@@ -321,7 +343,7 @@
 
                     <!-- STEP 3 -->
                     <div
-                        class="w-full max-w-[320px] h-[162px] mx-auto bg-white rounded-[16px] border border-[#E5E7EB] shadow-[0_25px_50px_-12px_rgba(0,0,0,0.08)] relative">
+                        class="signage3-noc-step-card w-full max-w-[320px] h-[162px] mx-auto bg-white rounded-[16px] border border-[#E5E7EB] shadow-[0_25px_50px_-12px_rgba(0,0,0,0.08)] relative">
 
                         <div
                             class="absolute top-[-23px] left-[136px] w-[48px] h-[48px] rounded-full bg-[#155DFC] text-white flex items-center justify-center border-[2px] border-white shadow-[0_0_20px_rgba(37,99,235,0.6)]">
@@ -330,7 +352,7 @@
 
                         <div class="absolute top-[49px] left-[33px] w-[254px] text-center">
 
-                            <h4 class="text-[20px] leading-[28px] font-bold text-[#101828]">
+                            <h4 class="text-[20px] leading-[28px] font-medium text-[#101828]">
                                 Rapid Resolution
                             </h4>
 

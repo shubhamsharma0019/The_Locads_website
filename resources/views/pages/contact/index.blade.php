@@ -3,6 +3,7 @@
 
 <head>
   <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   @include('partials.seo-meta', [
       'title' => 'Contact The Locads | Request a Demo',
       'description' => 'Contact The Locads to request a demo, ask questions, or get help choosing the right digital signage solution.',
@@ -81,7 +82,7 @@
 
               <!-- 🔷 HEADING -->
               <div class="w-full min-h-[36px] flex items-center justify-center lg:justify-start">
-                <h2 class="text-[24px] sm:text-[28px] lg:text-[30px] font-bold leading-[36px] text-[#101828]">
+                <h2 class="text-[24px] sm:text-[28px] lg:text-[30px] font-medium leading-[36px] text-[#101828]">
                   Get in Touch
                 </h2>
               </div>
@@ -106,8 +107,8 @@
                     </p>
 
                     <p class="text-[14px] sm:text-[16px] leading-[24px] text-[#4A5565] w-full max-w-[266px]">
-                      C-78,<br>
-                      Sector-63, Noida(UP)
+                      712 A Tower C<br>
+                      Cybar Park Noida 62 (UP)
                     </p>
 
                   </div>
@@ -129,7 +130,7 @@
 
                     <p class="text-[14px] sm:text-[16px] leading-[24px] text-[#4A5565] w-full max-w-[266px]">
                       +91 9911916600<br>
-                      Mon-Fri, 9am - 6pm PST
+                      Mon-Fri, 9am - 6pm IST
                     </p>
 
                   </div>
@@ -150,7 +151,6 @@
                     </p>
 
                     <p class="text-[14px] sm:text-[16px] leading-[24px] text-[#4A5565] w-full max-w-[266px]">
-                      info@thelocads.com<br>
                       info@thelocads.com
                     </p>
 
@@ -173,7 +173,7 @@
               </p>
 
               <p class="text-[24px] font-black leading-[32px] tracking-[1.2px] text-[#FF6467]">
-                1-800-NOC-DOWN
+                +91 9911916600
               </p>
 
             </div>
@@ -190,7 +190,7 @@
 
               <!-- 🔷 HEADING -->
               <div class="w-full min-h-[32px] flex items-center">
-                <h3 class="text-[22px] sm:text-[24px] font-bold leading-[32px] text-[#101828]">
+                <h3 class="text-[22px] sm:text-[24px] font-medium leading-[32px] text-[#101828]">
                   Request a Demo
                 </h3>
               </div>

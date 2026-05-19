@@ -14,8 +14,8 @@ use Illuminate\Support\Facades\Route;
 |--------------------------------------------------------------------------
 */
 Route::controller(PageController::class)->group(function () {
-    Route::get('/', fn () => redirect()->route('login'));
-    Route::get('/home', 'home')->middleware('auth')->name('home');
+    Route::get('/', 'home')->name('home');
+    Route::redirect('/home', '/');
     Route::get('/about', 'about')->name('about');
     Route::get('/services', 'services')->name('services');
     Route::get('/industries', 'industries')->name('industries');
@@ -47,6 +47,7 @@ Route::prefix('products')->name('products.')->controller(ProductController::clas
     Route::get('/style-e', 'indexE')->name('index-e');
     Route::get('/style-f', 'indexF')->name('index-f');
     Route::get('/style-g', 'indexG')->name('index-g');
+    Route::get('/rental-products', 'publicRentals')->name('rental-products');
     Route::get('/detail', 'showA')->name('show');
     Route::get('/detail-b', 'showB')->name('show-b');
     Route::get('/item/{productSlug}', 'showProduct')->name('detail');
@@ -74,11 +75,12 @@ Route::prefix('blog')->name('blog.')->controller(BlogController::class)->group(f
 |--------------------------------------------------------------------------
 */
 
-// Login page
-Route::get('/login', [AuthController::class, 'showLogin'])->middleware('guest')->name('login');
+// Admin login page
+Route::get('/admin', [AuthController::class, 'showLogin'])->middleware('guest')->name('login');
+Route::redirect('/login', '/admin');
 
-// Login submit
-Route::post('/login', [AuthController::class, 'login'])->middleware('guest');
+// Admin login submit
+Route::post('/admin', [AuthController::class, 'login'])->middleware('guest');
 
 // Dashboard (protected)
 Route::get('/dashboard', [AuthController::class, 'dashboard'])

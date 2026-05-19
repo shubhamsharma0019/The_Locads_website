@@ -25,6 +25,7 @@ class EnquiryController extends Controller
                 'email' => $enquiry->email,
                 'company_name' => $enquiry->company_name,
                 'message' => $enquiry->message,
+                'feedback_remark' => $enquiry->feedback_remark,
                 'enquiry_type' => $enquiry->enquiry_type,
                 'source_page' => $enquiry->source_page,
                 'created_at' => optional($enquiry->created_at)->format('d M Y, h:i A'),
@@ -73,7 +74,7 @@ class EnquiryController extends Controller
             'last_name' => ['required', 'string', 'max:100'],
             'email' => ['required', 'email', 'max:255'],
             'company_name' => ['nullable', 'string', 'max:255'],
-            'message' => ['required', 'string', 'max:2000'],
+            'feedback_remark' => ['nullable', 'string', 'max:2000'],
             'source_page' => ['required', 'string', 'max:50'],
             'enquiry_type' => ['required', Rule::in(['sell', 'rent', 'ticket'])],
         ]);

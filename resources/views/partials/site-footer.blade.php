@@ -3,15 +3,15 @@
 @endphp
 
 <div
-    class="w-screen relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] min-h-[410px] {{ $marginTop }} bg-[#F9FAFB] border-t border-[#E5E7EB] flex justify-center">
+    class="w-screen relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] min-h-[410px] {{ $marginTop }} bg-[#F9FAFB] flex justify-center">
 
-    <div class="w-full max-w-[1280px] px-4 sm:px-6 lg:px-[48px] py-10 sm:py-14 lg:py-[64px] flex flex-col">
+    <div class="w-full max-w-[1440px] px-4 sm:px-6 lg:px-[56px] py-10 sm:py-14 lg:py-[64px] flex flex-col">
         <div
-            class="w-full lg:w-[1184px] min-h-[176px] flex flex-col sm:flex-row sm:flex-wrap xl:flex-nowrap justify-between gap-8 lg:gap-10">
+            class="w-full min-h-[176px] flex flex-col sm:flex-row sm:flex-wrap xl:flex-nowrap justify-between gap-8 lg:gap-10">
 
             <div class="w-full max-w-[300px] min-h-[176px] flex flex-col gap-[24px]">
-                <a href="{{ route('home') }}" class="w-[144.5px] h-[40.33px] flex items-center" aria-label="Go to home">
-                    <img src="{{ asset('icons/logosmall.svg') }}" alt="Logo" class="max-w-full h-auto">
+                <a href="{{ route('home') }}" class="flex h-[72px] w-[189px] items-center" aria-label="Go to home">
+                    <img src="{{ asset('icons/locadsicon.jpeg') }}" alt="Logo" class="h-full w-full object-contain">
                 </a>
 
                 <p class="w-full max-w-[300px] text-[14px] leading-[22.75px] text-[#4A5565]">
@@ -31,6 +31,8 @@
                 <a href="{{ route('about') }}" class="text-[14px] leading-[20px] text-[#4A5565] transition hover:text-[#E7000B]">About Us</a>
                 <a href="{{ route('services') }}" class="text-[14px] leading-[20px] text-[#4A5565] transition hover:text-[#E7000B]">Our Services</a>
                 <a href="{{ route('signage') }}" class="text-[14px] leading-[20px] text-[#4A5565] transition hover:text-[#E7000B]">Franchise Program</a>
+                <a href="{{ route('blog.index') }}" class="text-[14px] leading-[20px] text-[#4A5565] transition hover:text-[#E7000B]">Blog</a>
+                <a href="{{ route('faq') }}" class="text-[14px] leading-[20px] text-[#4A5565] transition hover:text-[#E7000B]">FAQ</a>
                 <a href="{{ route('contact.alt') }}" class="text-[14px] leading-[20px] text-[#4A5565] transition hover:text-[#E7000B]">Contact</a>
             </div>
 
@@ -44,14 +46,14 @@
                 </a>
 
                 <p class="text-[14px] leading-[20px] text-[#4A5565] w-full max-w-[260px]">
-                    C-78,<br>
-                    Sector-63, Noida(UP)
+                    712 A Tower C<br>
+                    Cybar Park Noida 62 (UP)
                 </p>
             </div>
         </div>
 
         <div
-            class="w-full lg:w-[1184px] min-h-[49px] border-t border-[#E5E7EB] flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 pt-[24px] sm:pt-[32px] mt-[24px]">
+            class="w-full min-h-[49px] flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 pt-[24px] sm:pt-[32px] mt-[24px]">
             <p class="text-[12px] leading-[16px] text-[#6A7282]">
                 &copy; 2026 TheLocads Solutions. All rights reserved.
             </p>

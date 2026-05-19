@@ -3,6 +3,7 @@
 
 <head>
   <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   @include('partials.seo-meta', [
       'title' => 'Book a Demo | The Locads',
       'description' => 'Book a digital signage demo with The Locads and connect with our team for sales, rental, or support enquiries.',
@@ -70,7 +71,7 @@
 
               <!-- 🔷 HEADING -->
               <div class="w-full min-h-[36px] flex items-center justify-center lg:justify-start">
-                <h2 class="text-[24px] sm:text-[28px] lg:text-[30px] font-bold leading-[36px] text-[#101828]">
+                <h2 class="text-[24px] sm:text-[28px] lg:text-[30px] font-medium leading-[36px] text-[#101828]">
                   Get in Touch
                 </h2>
               </div>
@@ -95,8 +96,8 @@
                     </p>
 
                     <p class="text-[14px] sm:text-[16px] leading-[24px] text-[#4A5565] w-full max-w-[266px]">
-                      C-78,<br>
-                      Sector-63, Noida(UP)
+                      712 A Tower C<br>
+                      Cybar Park Noida 62 (UP)
                     </p>
 
                   </div>
@@ -118,7 +119,7 @@
 
                     <p class="text-[14px] sm:text-[16px] leading-[24px] text-[#4A5565] w-full max-w-[266px]">
                       +91 9911916600<br>
-                      Mon-Fri, 9am - 6pm PST
+                      Mon-Fri, 9am - 6pm IST
                     </p>
 
                   </div>
@@ -139,7 +140,6 @@
                     </p>
 
                     <p class="text-[14px] sm:text-[16px] leading-[24px] text-[#4A5565] w-full max-w-[266px]">
-                      info@thelocads.com<br>
                       info@thelocads.com
                     </p>
 
@@ -162,7 +162,7 @@
               </p>
 
               <p class="text-[24px] font-black leading-[32px] tracking-[1.2px] text-[#FF6467]">
-                1-800-NOC-DOWN
+                +91 9911916600
               </p>
 
             </div>
@@ -179,7 +179,7 @@
 
               <!-- 🔷 HEADING -->
               <div class="w-full min-h-[32px] flex items-center">
-                <h3 class="text-[22px] sm:text-[24px] font-bold leading-[32px] text-[#101828]">
+                <h3 class="text-[22px] sm:text-[24px] font-medium leading-[32px] text-[#101828]">
                   Request a Demo
                 </h3>
               </div>
@@ -260,6 +260,28 @@
 
     <!-- 🔷 THIRD DIV (FOOTER) -->
     @include('partials.site-footer')
+
+  <div id="signage19-popup" class="hidden fixed inset-0 z-50 items-center justify-center bg-black/50 px-4" hidden>
+    <div class="w-full max-w-[420px] rounded-[24px] bg-white px-6 py-7 text-center shadow-[0_25px_50px_-12px_rgba(0,0,0,0.35)]">
+      <div class="mx-auto flex h-[56px] w-[56px] items-center justify-center rounded-full bg-[#DCFCE7]">
+        <svg class="h-[28px] w-[28px] text-[#16A34A]" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+
+      <h2 class="mt-5 text-[24px] font-medium leading-[32px] text-[#101828]">
+        Submitted Successfully
+      </h2>
+
+      <p class="mt-3 text-[15px] leading-[24px] text-[#4A5565]">
+        Your enquiry has been submitted successfully. Our team will get back to you soon.
+      </p>
+
+      <button type="button" data-popup-close class="mt-6 h-[48px] w-full rounded-[14px] bg-[#155DFC] text-[15px] font-bold text-white">
+        OK
+      </button>
+    </div>
+  </div>
 
   <script>
     (() => {

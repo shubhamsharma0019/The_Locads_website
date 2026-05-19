@@ -3,6 +3,7 @@
 
 <head>
     <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     @include('partials.seo-meta', [
         'title' => ($article['title'] ?? 'Digital Signage Article') . ' | The Locads Blog',
         'description' => $article['excerpt'] ?? 'Explore detailed digital signage insights and case-study content from The Locads blog.',
@@ -81,7 +82,7 @@
 
                 <!-- ===== HEADING ===== -->
                 <div class="signage17-hero-title-wrap w-[800px] h-[120px] absolute left-[48px] top-[56px] max-lg:static max-lg:w-full max-lg:max-w-[800px] max-lg:h-auto max-lg:mx-auto max-lg:text-center">
-                    <h1 class="text-[48px] leading-[60px] font-bold text-[#101828] relative top-[-0.5px] max-lg:w-full max-lg:max-w-[800px] max-lg:mx-0 max-lg:text-left max-lg:text-[40px] max-lg:leading-[1.2] max-md:text-[32px]">
+                    <h1 class="text-[48px] leading-[60px] font-medium text-[#101828] relative top-[-0.5px] max-lg:w-full max-lg:max-w-[800px] max-lg:mx-0 max-lg:text-left max-lg:text-[40px] max-lg:leading-[1.2] max-md:text-[32px]">
                         {{ $article['title'] ?? 'How to Choose the Right Digital Signage for Retail' }}
                     </h1>
                 </div>
@@ -93,7 +94,7 @@
                     <div class="flex items-center gap-[8px]">
                         <div class="w-[16px] h-[16px] bg-white-300"><img src="{{ asset('icons/sarahicon.svg') }}">
                         </div>
-                        <span class="text-[14px] text-[#4A5565]">{{ $article['author'] ?? 'Michael Chen' }}</span>
+                        <span class="text-[14px] text-[#4A5565]">{{ $article['author'] ?? 'Rohan Mehta' }}</span>
                     </div>
 
                     <!-- DATE -->
@@ -153,7 +154,7 @@
                 <!-- AVATAR -->
                 <div
                     class="w-[80px] h-[80px] rounded-full bg-[#DBEAFE] flex items-center justify-center text-[20px] font-bold text-[#155DFC]">
-                    {{ $article['author_initial'] ?? 'M' }}
+                    {{ $article['author_initial'] ?? 'R' }}
                 </div>
 
                 <!-- TEXT BLOCK -->
@@ -162,7 +163,7 @@
                     <!-- NAME -->
                     <p
                         class="w-full text-[20px] leading-[28px] font-bold text-[#101828] relative top-[-0.5px]">
-                        {{ $article['author'] ?? 'Michael Chen' }}
+                        {{ $article['author'] ?? 'Rohan Mehta' }}
                     </p>
 
                     <!-- DESCRIPTION -->
@@ -183,7 +184,7 @@
 
                 <!-- ===== HEADING ===== -->
                 <div class="signage17-cta-title flex w-full justify-center">
-                    <h2 class="text-[30px] leading-[36px] font-bold text-[#101828] text-center">
+                    <h2 class="text-[30px] leading-[36px] font-medium text-[#101828] text-center">
                         Ready to Transform Your Space?
                     </h2>
                 </div>

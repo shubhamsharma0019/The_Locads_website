@@ -44,13 +44,18 @@
   $formProduct = $editingProduct ?? null;
   $hasFormErrors = $errors->any();
   $selectedType = old('type', $formProduct['type'] ?? 'product');
+  $licenseSlug = (string) request()->route('productSlug', '');
+  $isLicenceSidebarActive = request()->routeIs('products.index-g', 'products.show', 'products.show-b')
+      || (request()->routeIs('products.detail') && str_contains(strtolower($licenseSlug), 'licen'));
+  $sidebarActiveClass = 'bg-brand text-white transition hover:bg-red-500';
+  $sidebarInactiveClass = 'text-[#4A5565] transition hover:bg-slate-50 hover:text-[#101828]';
 @endphp
 
 <div class="flex h-screen overflow-hidden bg-[#F9FAFB]">
   <aside class="hidden w-[234px] shrink-0 flex-col overflow-y-auto border-r border-slate-200 bg-white md:flex">
-    <div class="border-b border-slate-100 px-4 pb-3 pt-5">
-      <div class="flex items-center justify-center">
-        <img src="{{ asset('icons/locadsicon.svg') }}" alt="TheLocads Logo" class="h-auto w-full max-w-[140px] object-contain">
+    <div class="border-b border-slate-100 px-4 pb-4 pt-5">
+      <div class="flex h-[66px] items-center justify-center">
+        <img src="{{ asset('icons/locadsicon.jpeg') }}" alt="TheLocads Logo" class="h-full w-full max-w-[173px] object-contain">
       </div>
     </div>
 
@@ -67,17 +72,17 @@
         <svg class="h-[17px] w-[17px] shrink-0" viewBox="0 0 24 24" fill="none"><path d="M15 5v2m0 4v2m0 4v2M5 5a2 2 0 00-2 2v3a2 2 0 110 4v3a2 2 0 002 2h14a2 2 0 002-2v-3a2 2 0 110-4V7a2 2 0 00-2-2H5z" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
         Ticket Enquiry
       </a>
-      <a href="{{ route('products.index-g') }}" class="flex items-center gap-3 rounded-lg px-3.5 py-2.5 text-[13.5px] font-medium text-[#4A5565] transition hover:bg-slate-50 hover:text-[#101828]">
+      <a href="{{ route('products.index-g') }}" class="flex items-center gap-3 rounded-lg px-3.5 py-2.5 text-[13.5px] font-medium {{ $isLicenceSidebarActive ? $sidebarActiveClass : $sidebarInactiveClass }}">
         <svg class="h-[17px] w-[17px] shrink-0" viewBox="0 0 24 24" fill="none"><path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
         Licence
       </a>
       <a href="{{ route('products.create') }}" class="flex items-center gap-3 rounded-lg bg-brand px-3.5 py-2.5 text-[13.5px] font-medium text-white transition hover:bg-red-500">
         <svg class="h-[17px] w-[17px] shrink-0" viewBox="0 0 24 24" fill="none"><path d="M20 7l-8-4-8 4m16 0v10l-8 4m-8-4V7m16 3l-8 4M4 10l8 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        Create Product
+        Products
       </a>
       <a href="{{ route('products.rentals') }}" class="flex items-center gap-3 rounded-lg px-3.5 py-2.5 text-[13.5px] font-medium text-[#4A5565] transition hover:bg-slate-50 hover:text-[#101828]">
         <svg class="h-[17px] w-[17px] shrink-0" viewBox="0 0 24 24" fill="none"><path d="M3 7h18M3 12h18M3 17h18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="7" cy="7" r="2" fill="currentColor"/><circle cx="7" cy="17" r="2" fill="currentColor"/></svg>
-        Rental Product
+        Rental Products
       </a>
       <div class="mx-1 mt-2 h-px bg-slate-100"></div>
       <form method="POST" action="{{ route('logout') }}">
@@ -90,8 +95,8 @@
     </nav>
   </aside>
 
-  <div class="flex min-w-0 flex-1 flex-col overflow-hidden">
-    <header class="flex h-16 shrink-0 items-center justify-between border-b border-slate-200 bg-white px-4 sm:px-6">
+  <div class="flex min-h-0 min-w-0 flex-1 flex-col">
+    <header class="relative z-30 flex h-16 shrink-0 items-center justify-between border-b border-slate-200 bg-white px-4 sm:px-6">
       <div class="flex flex-1 items-center pr-4 max-w-[820px]">
         <div class="relative w-full">
           <svg class="absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400" fill="none" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8" stroke="currentColor" stroke-width="2"/><path d="M21 21l-4.35-4.35" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
@@ -99,23 +104,30 @@
         </div>
       </div>
       <div class="flex items-center gap-2">
-        <span class="text-sm font-medium text-gray-700">{{ auth()->user()->name }}</span>
+        <span class="hidden text-sm font-medium text-gray-700 sm:inline">{{ auth()->user()->name }}</span>
         <div class="flex h-9 w-9 items-center justify-center rounded-full bg-brand text-[12px] font-semibold text-white">
           {{ strtoupper(substr(auth()->user()->name, 0, 2)) }}
         </div>
       </div>
     </header>
+    @include('partials.admin-mobile-nav')
 
     <main class="flex-1 overflow-y-auto bg-[#F9FAFB] p-4 sm:p-6">
       <div class="mb-6 flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
         <div>
-          <h1 class="text-[21px] font-semibold tracking-[-0.02em] text-[#101828]">Create Product</h1>
+          <h1 class="text-[21px] font-medium tracking-[-0.02em] text-[#101828]">Create Product</h1>
           <p class="mt-1 text-[12.5px] text-[#4A5565]">Choose product type, upload image, save details, and manage everything from one place.</p>
         </div>
-        <button type="button" onclick="openTypeSelector()" class="inline-flex items-center justify-center gap-2 rounded-xl bg-brand px-4 py-2.5 text-[13.5px] font-semibold text-white shadow-sm transition hover:bg-red-500">
-          <svg width="15" height="15" fill="none" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg>
-          Create Product
-        </button>
+        <div class="flex flex-wrap items-center gap-3">
+          <button type="button" onclick="window.location.reload()" class="inline-flex items-center justify-center gap-2 rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-[13.5px] font-semibold text-[#4A5565] shadow-sm transition hover:bg-slate-50 hover:text-[#101828]">
+            <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M20 6v5h-5M4 18v-5h5M18.5 10A7 7 0 006.1 7.1L4 11m2 3a7 7 0 0011.9 2.9L20 13" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Refresh
+          </button>
+          <button type="button" onclick="openTypeSelector()" class="inline-flex items-center justify-center gap-2 rounded-xl bg-brand px-4 py-2.5 text-[13.5px] font-semibold text-white shadow-sm transition hover:bg-red-500">
+            <svg width="15" height="15" fill="none" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg>
+            Create Product
+          </button>
+        </div>
       </div>
 
       @if (session('success'))
@@ -157,19 +169,19 @@
         </div>
       </div>
 
-      <div class="mb-5 flex flex-wrap items-center gap-3">
-        <select id="typeFilter" onchange="filterProducts()" class="rounded-xl border border-slate-200 bg-white px-3 py-2.5 text-sm text-[#4A5565] outline-none focus:border-brand">
+      <div class="mb-5 grid grid-cols-1 gap-3 sm:grid-cols-3">
+        <select id="typeFilter" onchange="filterProducts()" class="w-full rounded-xl border border-slate-200 bg-white px-3 py-2.5 text-sm text-[#4A5565] outline-none focus:border-brand">
           <option value="">All Types</option>
           <option value="product">Product</option>
           <option value="rent">Rent Product</option>
         </select>
-        <select id="categoryFilter" onchange="filterProducts()" class="rounded-xl border border-slate-200 bg-white px-3 py-2.5 text-sm text-[#4A5565] outline-none focus:border-brand">
+        <select id="categoryFilter" onchange="filterProducts()" class="w-full rounded-xl border border-slate-200 bg-white px-3 py-2.5 text-sm text-[#4A5565] outline-none focus:border-brand">
           <option value="">All Categories</option>
           @foreach ($categories as $category)
             <option value="{{ $category }}">{{ $category }}</option>
           @endforeach
         </select>
-        <select id="statusFilter" onchange="filterProducts()" class="rounded-xl border border-slate-200 bg-white px-3 py-2.5 text-sm text-[#4A5565] outline-none focus:border-brand">
+        <select id="statusFilter" onchange="filterProducts()" class="w-full rounded-xl border border-slate-200 bg-white px-3 py-2.5 text-sm text-[#4A5565] outline-none focus:border-brand">
           <option value="">All Status</option>
           <option value="active">Active</option>
           <option value="inactive">Inactive</option>
@@ -190,7 +202,7 @@
               'short_description' => $product['short_description'] ?: 'No short description added.',
               'description' => $product['description'] ?: 'No description added.',
               'price' => $product['price'] ? '₹' . number_format($product['price'], 0) : 'N/A',
-              'rent_price' => $product['rent_price'] ? '₹' . number_format($product['rent_price'], 0) . '/' . ($product['billing_period'] ?? 'month') : 'N/A',
+              'rent_price' => $product['rent_price'] ? '₹' . number_format($product['rent_price'], 0) . ' per ' . ($product['billing_period'] ?? 'month') : 'N/A',
               'image' => $product['image_path'] ? asset($product['image_path']) : null,
               'features' => $product['features'] ?? [],
               'specifications' => $product['specifications'] ?? [],
@@ -233,14 +245,14 @@
                 </button>
                 <div class="ml-auto text-right">
                   @if ($product['type'] === 'rent')
-                    <div class="text-[12px] font-bold text-[#101828]">₹{{ number_format($product['rent_price'] ?? 0, 0) }}/{{ $product['billing_period'] ?? 'month' }}</div>
+                    <div class="text-[12px] font-bold text-[#101828]">₹{{ number_format($product['rent_price'] ?? 0, 0) }} per {{ $product['billing_period'] ?? 'month' }}</div>
                     @if ($product['price'])
                       <div class="text-[10px] text-slate-400">Buy: ₹{{ number_format($product['price'], 0) }}</div>
                     @endif
                   @else
                     <div class="text-[12px] font-bold text-[#101828]">₹{{ number_format($product['price'] ?? 0, 0) }}</div>
                     @if ($product['rent_price'])
-                      <div class="text-[10px] text-slate-400">Rent: ₹{{ number_format($product['rent_price'], 0) }}/{{ $product['billing_period'] ?? 'month' }}</div>
+                      <div class="text-[10px] text-slate-400">Rent: ₹{{ number_format($product['rent_price'], 0) }} per {{ $product['billing_period'] ?? 'month' }}</div>
                     @endif
                   @endif
                 </div>
@@ -330,7 +342,12 @@
 
         <div>
           <label class="mb-1.5 block text-[12px] font-medium text-[#364153]">Category</label>
-          <input type="text" name="category" list="productCategoryOptions" value="{{ old('category', $formProduct['category'] ?? '') }}" class="w-full rounded-xl border border-slate-200 bg-slate-50 px-3.5 py-2.5 text-sm text-[#101828] outline-none transition focus:border-brand focus:bg-white">
+          <select name="category" class="w-full rounded-xl border border-slate-200 bg-slate-50 px-3.5 py-2.5 text-sm text-[#4A5565] outline-none transition focus:border-brand focus:bg-white">
+            <option value="">Select category</option>
+            @foreach ($categories as $category)
+              <option value="{{ $category }}" @selected(strcasecmp((string) old('category', $formProduct['category'] ?? ''), (string) $category) === 0)>{{ $category }}</option>
+            @endforeach
+          </select>
         </div>
 
         <div>
@@ -347,12 +364,12 @@
         </div>
 
         <div id="salePriceGroup">
-          <label class="mb-1.5 block text-[12px] font-medium text-[#364153]">Product Price (Rs)</label>
+          <label class="mb-1.5 block text-[12px] font-medium text-[#364153]">Product Price (₹)</label>
           <input type="number" step="0.01" min="0" name="price" value="{{ old('price', $formProduct['price'] ?? '') }}" class="w-full rounded-xl border border-slate-200 bg-slate-50 px-3.5 py-2.5 text-sm text-[#101828] outline-none transition focus:border-brand focus:bg-white">
         </div>
 
         <div id="rentPriceGroup">
-          <label class="mb-1.5 block text-[12px] font-medium text-[#364153]">Rent Price (Rs)</label>
+          <label class="mb-1.5 block text-[12px] font-medium text-[#364153]">Rent Price (₹)</label>
           <input type="number" step="0.01" min="0" name="rent_price" value="{{ old('rent_price', $formProduct['rent_price'] ?? '') }}" class="w-full rounded-xl border border-slate-200 bg-slate-50 px-3.5 py-2.5 text-sm text-[#101828] outline-none transition focus:border-brand focus:bg-white">
         </div>
 
@@ -461,12 +478,6 @@
     </form>
   </div>
 </div>
-
-<datalist id="productCategoryOptions">
-  @foreach ($categories as $category)
-    <option value="{{ $category }}"></option>
-  @endforeach
-</datalist>
 
 <script>
   const typeSelectorModal = document.getElementById('typeSelectorModal');

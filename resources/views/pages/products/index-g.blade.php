@@ -3,6 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     @include('partials.seo-meta', [
         'title' => 'Software Licenses | The Locads',
         'description' => 'Browse cloud CMS and offline software licenses from The Locads for digital signage management and playback.',
@@ -27,7 +28,7 @@
 
                 <!-- ================= HEADING ================= -->
                 <div class="w-full max-w-[371px] mx-auto">
-                    <h1 class="text-[34px] leading-[1.15] md:text-[44px] lg:text-[60px] lg:leading-[72px] font-bold tracking-[-1.5px] text-[#111827]">
+                    <h1 class="text-[34px] leading-[1.15] md:text-[44px] lg:text-[60px] lg:leading-[72px] font-medium tracking-[-1.5px] text-[#111827]">
                         Our <span class="text-[#4F46E5] tracking-[-1.8px]">Products</span>
                     </h1>
                 </div>
@@ -69,6 +70,7 @@
         </section>
         @include('partials.product-filter', ['currentPage' => 13])
 
+        @if (($softwareProducts ?? collect())->isEmpty())
         <section class="w-full mx-auto px-4 sm:px-6 md:px-6 lg:px-[101.5px] pt-10 lg:pt-[64px] pb-10 lg:pb-[64px]">
 
             <!-- INNER WRAPPER -->
@@ -89,7 +91,7 @@
 
                         <!-- TITLE -->
                         <div class="w-full mt-[24px] min-h-[28px]">
-                            <h3 class="text-[20px] leading-[28px] font-bold text-[#101828]">
+                            <h3 class="text-[20px] leading-[28px] font-medium text-[#101828]">
                                 Cloud CMS License (Annual)
                             </h3>
                         </div>
@@ -101,21 +103,21 @@
                             <div class="flex items-center gap-[8px]">
                                 <div class="w-[6px] h-[6px] bg-[#155DFC] rounded-full"></div>
                                 <span class="text-[14px] text-[#4A5565] leading-[20px]">
-                                    43" 4K UHD
+                                    Unlimited content uploads
                                 </span>
                             </div>
 
                             <div class="flex items-center gap-[8px]">
                                 <div class="w-[6px] h-[6px] bg-[#155DFC] rounded-full"></div>
                                 <span class="text-[14px] text-[#4A5565]">
-                                    500 nits brightness
+                                    Real-time remote updates
                                 </span>
                             </div>
 
                             <div class="flex items-center gap-[8px]">
                                 <div class="w-[6px] h-[6px] bg-[#155DFC] rounded-full"></div>
                                 <span class="text-[14px] text-[#4A5565]">
-                                    Android OS
+                                    Advanced scheduling
                                 </span>
                             </div>
 
@@ -131,10 +133,10 @@
                                 <!-- LEFT (PURCHASE) -->
                                 <div class="flex flex-col justify-between h-[52px]">
                                     <span class="text-[14px] leading-[20px] text-[#4A5565]">
-                                        Purchase
+                                        Purchase Price
                                     </span>
                                     <span class="text-[24px] leading-[32px] font-bold text-[#101828]">
-                                        Rs 899
+                                        ₹299/year
                                     </span>
                                 </div>
 
@@ -189,7 +191,7 @@
 
                         <!-- TITLE -->
                         <div class="w-full mt-[24px] min-h-[28px]">
-                            <h3 class="text-[20px] leading-[28px] font-bold text-[#101828]">
+                            <h3 class="text-[20px] leading-[28px] font-medium text-[#101828]">
                                 Pen Drive Software Licence
                             </h3>
                         </div>
@@ -201,21 +203,21 @@
                             <div class="flex items-center gap-[8px]">
                                 <div class="w-[6px] h-[6px] bg-[#155DFC] rounded-full"></div>
                                 <span class="text-[14px] text-[#4A5565] leading-[20px]">
-                                    43" 4K UHD
+                                    Offline USB content playback
                                 </span>
                             </div>
 
                             <div class="flex items-center gap-[8px]">
                                 <div class="w-[6px] h-[6px] bg-[#155DFC] rounded-full"></div>
                                 <span class="text-[14px] text-[#4A5565]">
-                                    500 nits brightness
+                                    Secure local media deployment
                                 </span>
                             </div>
 
                             <div class="flex items-center gap-[8px]">
                                 <div class="w-[6px] h-[6px] bg-[#155DFC] rounded-full"></div>
                                 <span class="text-[14px] text-[#4A5565]">
-                                    Android OS
+                                    Simple playlist management
                                 </span>
                             </div>
 
@@ -231,10 +233,10 @@
                                 <!-- LEFT (PURCHASE) -->
                                 <div class="flex flex-col justify-between h-[52px]">
                                     <span class="text-[14px] leading-[20px] text-[#4A5565]">
-                                        Purchase
+                                        Purchase Price
                                     </span>
                                     <span class="text-[24px] leading-[32px] font-bold text-[#101828]">
-                                        Rs 899
+                                        ₹899
                                     </span>
                                 </div>
 
@@ -275,10 +277,9 @@
 
             </div>
         </section>
+        @endif
         @include('partials.public-product-grid', [
             'products' => $softwareProducts ?? collect(),
-            'title' => 'Created Software Products',
-            'description' => 'Software ya license category ke naye products yahan automatically show honge.',
         ])
         <!-- ================= CTA SECTION ================= -->
         <section class="w-screen relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] min-h-[296px] mt-12 lg:mt-[64px] px-4 sm:px-6 lg:px-[53.5px] py-12 lg:pt-[64px] bg-[#F9FAFB]">
@@ -288,7 +289,7 @@
 
                 <!-- HEADING -->
                 <div class="w-full max-w-[1184px] min-h-[36px] flex justify-center">
-                    <h2 class="text-[28px] leading-[1.2] lg:text-[30px] lg:leading-[36px] font-bold text-[#101828] text-center">
+                    <h2 class="text-[28px] leading-[1.2] lg:text-[30px] lg:leading-[36px] font-medium text-[#101828] text-center">
                         Need Help Choosing?
                     </h2>
                 </div>

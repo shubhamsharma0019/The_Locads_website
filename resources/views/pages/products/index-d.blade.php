@@ -3,6 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     @include('partials.seo-meta', [
         'title' => 'Indoor Displays | The Locads',
         'description' => 'Browse indoor digital signage displays from The Locads for retail, offices, hospitality, and commercial spaces.',
@@ -20,7 +21,7 @@
          bg-gradient-to-b from-[#F9FAFB] to-[#EFF6FF] before:absolute before:inset-y-0 before:-left-[100vmax] before:-right-[100vmax] before:-z-10 before:content-[''] before:bg-gradient-to-b before:from-[#F9FAFB] before:to-[#EFF6FF] max-[1387px]:px-[24px] max-lg:h-auto max-lg:pt-[64px] max-lg:pb-[64px] max-md:mt-[40px] max-md:px-[16px] max-md:pt-[48px] max-md:pb-[48px]">
             <div class="signage10-hero-inner w-[1280px] max-w-full mx-auto text-center">
                 <div class="signage10-hero-title w-[371px] h-[72px] mx-auto max-lg:w-full max-lg:max-w-[768px] max-lg:h-auto">
-                    <h1 class="text-[60px] leading-[72px] font-bold tracking-[-1.5px] text-[#111827] max-lg:text-[44px] max-lg:leading-[1.15] max-md:text-[34px]">
+                    <h1 class="text-[60px] leading-[72px] font-medium tracking-[-1.5px] text-[#111827] max-lg:text-[44px] max-lg:leading-[1.15] max-md:text-[34px]">
                         Our <span class="text-[#4F46E5] tracking-[-1.8px]">Products</span>
                     </h1>
                 </div>
@@ -52,6 +53,11 @@
         <section class="signage10-products w-full max-w-[1387px] mx-auto px-[101.5px] pt-[64px] pb-[64px] max-[1387px]:px-[24px] max-md:px-[16px]">
             <div class="signage10-products-grid w-[1184px] max-w-full mx-auto grid grid-cols-3 gap-[24px] max-[1387px]:grid-cols-2 max-md:grid-cols-1">
                 @foreach (($indoorProducts ?? collect()) as $product)
+                @php
+                    $isRentalProduct = ($product['type'] ?? 'product') === 'rent';
+                    $billingPeriod = $product['billing_period'] ?? 'month';
+                    $billingLabel = $billingPeriod === 'month' ? 'month' : $billingPeriod;
+                @endphp
                 <div class="signage10-card w-[373.33px] h-[569px] max-[1387px]:w-full max-md:h-auto bg-white rounded-[16px] border border-[#E5E7EB]">
                     <div class="signage10-card-image w-[371.33px] h-[224px] max-[1387px]:w-full max-md:h-auto bg-[#F3F4F6] rounded-t-[16px] overflow-hidden">
                         @if (!empty($product['image_path']))
@@ -65,7 +71,7 @@
 
                     <div class="signage10-card-content w-full h-[343px] max-md:h-auto px-[24px] pt-[24px]">
                         <div class="signage10-card-title w-[323.33px] max-[1387px]:w-full h-[28px]">
-                            <h3 class="text-[20px] leading-[28px] font-bold text-[#101828]">
+                            <h3 class="text-[20px] leading-[28px] font-medium text-[#101828]">
                                 {{ $product['name'] }}
                             </h3>
                         </div>
@@ -94,31 +100,57 @@
 
                         <div class="signage10-card-bottom w-[323.33px] max-[1387px]:w-full mt-[24px] pt-[17px] border-t border-[#E5E7EB] flex flex-col gap-[16px] max-md:h-auto max-md:pb-2">
                             <div class="signage10-card-price w-full h-[52px] flex justify-between items-center max-md:h-auto max-md:gap-[12px]">
-                                <div class="flex flex-col justify-between h-[52px]">
-                                    <span class="text-[14px] leading-[20px] text-[#4A5565]">
-                                        Purchase
-                                    </span>
-                                    <span class="text-[24px] leading-[32px] font-bold text-[#101828]">
-                                        @if (!empty($product['price']))
-                                        ₹{{ number_format($product['price'], 0) }}
-                                        @else
-                                        On request
-                                        @endif
-                                    </span>
-                                </div>
+                                @if ($isRentalProduct)
+                                    <div class="flex flex-col justify-between h-[52px]">
+                                        <span class="text-[14px] leading-[20px] text-[#4A5565]">
+                                            Rent Price
+                                        </span>
+                                        <span class="text-[24px] leading-[32px] font-bold text-[#E7000B]">
+                                            @if (!empty($product['rent_price']))
+                                            ₹{{ number_format($product['rent_price'], 0) }} per {{ $billingLabel }}
+                                            @else
+                                            On request
+                                            @endif
+                                        </span>
+                                    </div>
 
-                                <div class="flex flex-col justify-between items-end h-[52px]">
-                                    <span class="text-[14px] leading-[20px] text-[#4A5565]">
-                                        Rent
-                                    </span>
-                                    <span class="text-[20px] leading-[28px] font-bold text-[#E7000B]">
-                                        @if (!empty($product['rent_price']))
-                                        ₹{{ number_format($product['rent_price'], 0) }}/{{ $product['billing_period'] ?? 'month' }}
-                                        @else
-                                        ₹49/month
-                                        @endif
-                                    </span>
-                                </div>
+                                    <div class="flex flex-col justify-between items-end h-[52px]">
+                                        <span class="text-[14px] leading-[20px] text-[#4A5565]">
+                                            Purchase Price
+                                        </span>
+                                        <span class="text-[20px] leading-[28px] font-bold text-[#101828]">
+                                            @if (!empty($product['price']))
+                                            ₹{{ number_format($product['price'], 0) }}
+                                            @else
+                                            On request
+                                            @endif
+                                        </span>
+                                    </div>
+                                @else
+                                    <div class="flex flex-col justify-between h-[52px]">
+                                        <span class="text-[14px] leading-[20px] text-[#4A5565]">
+                                            Purchase Price
+                                        </span>
+                                        <span class="text-[24px] leading-[32px] font-bold text-[#101828]">
+                                            @if (!empty($product['price']))
+                                            ₹{{ number_format($product['price'], 0) }}
+                                            @else
+                                            On request
+                                            @endif
+                                        </span>
+                                    </div>
+
+                                    @if (!empty($product['rent_price']))
+                                        <div class="flex flex-col justify-between items-end h-[52px]">
+                                            <span class="text-[14px] leading-[20px] text-[#4A5565]">
+                                                Rent Price
+                                            </span>
+                                            <span class="text-[20px] leading-[28px] font-bold text-[#E7000B]">
+                                                ₹{{ number_format($product['rent_price'], 0) }} per {{ $billingLabel }}
+                                            </span>
+                                        </div>
+                                    @endif
+                                @endif
                             </div>
 
                             <div class="w-full h-[42px] flex items-center gap-[8px]">
@@ -142,7 +174,7 @@
         <section class="signage10-cta relative z-0 w-full max-w-[1387px] h-[296px] mx-auto mt-[64px] px-[53.5px] pt-[64px] bg-[#F9FAFB] max-[1387px]:px-[24px] max-md:h-auto max-md:mt-[48px] max-md:px-[16px] max-md:pt-[48px] max-md:pb-[48px] before:absolute before:inset-y-0 before:-left-[100vmax] before:-right-[100vmax] before:-z-10 before:content-[''] before:bg-[#F9FAFB]">
             <div class="signage10-cta-inner w-[1280px] h-[168px] max-w-full mx-auto flex flex-col items-center max-md:h-auto">
                 <div class="signage10-cta-heading w-[1184px] h-[36px] max-[1387px]:w-full flex justify-center">
-                    <h2 class="text-[30px] leading-[36px] font-bold text-[#101828] text-center max-md:text-[28px] max-md:leading-[1.2]">
+                    <h2 class="text-[30px] leading-[36px] font-medium text-[#101828] text-center max-md:text-[28px] max-md:leading-[1.2]">
                         Need Help Choosing?
                     </h2>
                 </div>

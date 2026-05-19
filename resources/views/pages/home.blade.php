@@ -14,6 +14,10 @@
             margin-top: 0;
         }
 
+        .page-sections > div.border-b {
+            border-bottom-width: 0 !important;
+        }
+
         @media (min-width: 1024px) {
             .page-sections > section {
                 padding-bottom: 4rem;
@@ -21,6 +25,144 @@
 
             .page-sections > section + section {
                 margin-top: 0;
+            }
+        }
+
+        @media (max-width: 767px) {
+            .page-sections {
+                max-width: 100vw;
+            }
+
+            .page-sections > section {
+                width: 100% !important;
+                left: auto !important;
+                right: auto !important;
+                margin-left: 0 !important;
+                margin-right: 0 !important;
+                min-height: auto !important;
+                padding-bottom: 2rem;
+                overflow-x: clip;
+            }
+
+            .home-hero-section,
+            .home-hero-copy,
+            .home-hero-heading,
+            .home-hero-description,
+            .home-hero-actions {
+                min-height: auto !important;
+            }
+
+            .home-hero-heading h1 {
+                font-size: 38px !important;
+                line-height: 46px !important;
+                letter-spacing: 0 !important;
+            }
+
+            .home-hero-description p {
+                font-size: 18px !important;
+                line-height: 29px !important;
+            }
+
+            .home-hero-actions a {
+                width: 100% !important;
+                max-width: 260px;
+            }
+
+            .home-case-study-card {
+                min-height: auto !important;
+            }
+
+            .home-case-study-card > img {
+                position: absolute;
+                inset: 0;
+            }
+
+            .home-case-study-content {
+                position: relative !important;
+                inset: auto !important;
+                height: auto !important;
+                max-width: none !important;
+                padding: 32px 24px;
+                display: flex;
+                flex-direction: column;
+                gap: 24px;
+            }
+
+            .home-case-study-content > div {
+                position: static !important;
+                inset: auto !important;
+                width: 100% !important;
+                min-height: auto !important;
+                margin: 0 !important;
+            }
+
+            .home-case-study-badge {
+                width: fit-content !important;
+            }
+
+            .home-case-study-stats {
+                gap: 18px 24px !important;
+            }
+
+            .home-case-study-stat {
+                width: calc(50% - 12px) !important;
+            }
+
+            .home-service-dashboard-card {
+                max-height: none !important;
+                overflow: visible;
+            }
+
+            .home-feature-card {
+                max-width: 100% !important;
+                height: auto !important;
+                min-height: 132px;
+                padding: 20px;
+                display: grid;
+                grid-template-columns: 56px minmax(0, 1fr);
+                column-gap: 16px;
+                row-gap: 6px;
+                align-items: start;
+            }
+
+            .home-feature-card > div {
+                position: static !important;
+                inset: auto !important;
+                width: auto !important;
+                height: auto !important;
+            }
+
+            .home-feature-card > div:first-child {
+                width: 56px !important;
+                height: 56px !important;
+                grid-row: 1 / 3;
+            }
+
+            .home-feature-card h3 {
+                font-size: 18px !important;
+                line-height: 24px !important;
+            }
+
+            .home-feature-card p {
+                line-height: 22px !important;
+            }
+
+            .page-sections [class*="w-[307.33px]"],
+            .page-sections [class*="w-[312.66px]"],
+            .page-sections [class*="w-[205px]"],
+            .page-sections [class*="w-[216px]"] {
+                width: auto !important;
+                max-width: 100%;
+            }
+
+            .page-sections [class*="ml-[33px]"] {
+                margin-left: 24px !important;
+                margin-right: 24px !important;
+            }
+
+            .page-sections [class*="px-[32px]"] {
+                padding-left: 24px !important;
+                padding-right: 24px !important;
             }
         }
     </style>
@@ -41,16 +183,16 @@
         @include('partials.signage-header', ['currentPage' => 1])
 
         <!-- ================= HERO SECTION ================= -->
-        <section class="w-full min-h-[821.7px] bg-white flex flex-col lg:flex-row relative">
+        <section class="home-hero-section w-full min-h-[auto] lg:min-h-[821.7px] bg-white flex flex-col lg:flex-row relative">
 
             <!-- OUTER WRAPPER (matches left: 53.5px) -->
-            <div class="w-full max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-[48px] mt-12 sm:mt-16 lg:mt-[86.09px] flex justify-between relative">
+            <div class="w-full max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-[48px] mt-8 sm:mt-12 lg:mt-[86.09px] flex justify-between relative">
 
                 <!-- INNER WRAPPER (1184px exact) -->
                 <div class="w-full max-w-[1184px] mx-auto flex flex-col lg:flex-row justify-between items-center lg:items-start gap-10 lg:gap-0">
 
                     <!-- LEFT CONTENT (First Div) -->
-                    <div class="w-full max-w-[464px] lg:mr-[39.5px] min-h-[649.5px] flex flex-col">
+                    <div class="home-hero-copy w-full max-w-[464px] lg:mr-[39.5px] min-h-[auto] lg:min-h-[649.5px] flex flex-col">
 
                         <!-- ✅ BADGE (exact size + border + color) -->
                         <div class="w-[249.61px] h-[38px] rounded-full bg-[#EFF6FF] border border-[#BEDBFF] 
@@ -67,15 +209,15 @@
                         </div>
 
                         <!-- ✅ HEADING BLOCK -->
-                        <div class="w-full max-w-[464px] min-h-[360px] mt-[32px] flex flex-col">
+                        <div class="home-hero-heading w-full max-w-[464px] min-h-[auto] lg:min-h-[360px] mt-6 lg:mt-[32px] flex flex-col">
 
                             <!-- Top Text -->
-                            <h1 class="text-[42px] leading-[52px] sm:text-[56px] sm:leading-[68px] lg:text-[72px] lg:leading-[90px] font-bold text-[#101828] tracking-[-1.8px]">
+                            <h1 class="text-[42px] leading-[52px] sm:text-[56px] sm:leading-[68px] lg:text-[72px] lg:leading-[90px] font-medium text-[#101828] tracking-[-1.8px]">
                                 Transform Spaces with
                             </h1>
 
                             <!-- Gradient Text -->
-                            <h1 class="text-[42px] leading-[52px] sm:text-[56px] sm:leading-[68px] lg:text-[72px] lg:leading-[90px] font-bold tracking-[-1.8px] 
+                            <h1 class="text-[42px] leading-[52px] sm:text-[56px] sm:leading-[68px] lg:text-[72px] lg:leading-[90px] font-medium tracking-[-1.8px] 
                bg-gradient-to-r from-[#E7000B] to-[#155DFC] bg-clip-text text-transparent">
                                 Smart Digital Signage
                             </h1>
@@ -83,7 +225,7 @@
                         </div>
 
                         <!-- ✅ PARAGRAPH BLOCK -->
-                        <div class="w-full max-w-[464px] min-h-[97.5px] mt-[24px]">
+                        <div class="home-hero-description w-full max-w-[464px] min-h-[auto] lg:min-h-[97.5px] mt-5 lg:mt-[24px]">
                             <p class="text-[20px] leading-[32.5px] text-[#364153] font-normal">
                                 Cloud-powered, scalable signage solutions for every industry.
                                 Manage screens globally, update instantly, and engage your audience.
@@ -91,7 +233,7 @@
                         </div>
 
                         <!-- ✅ BUTTON GROUP -->
-                        <div class="w-full max-w-[464px] min-h-[58px] flex flex-col sm:flex-row gap-[16px] mt-[40px]">
+                        <div class="home-hero-actions w-full max-w-[464px] min-h-[auto] lg:min-h-[58px] flex flex-col sm:flex-row gap-[16px] mt-7 lg:mt-[40px]">
 
                             <!-- Primary Button -->
                             <a href="{{ route('contact.alt') }}" class="w-[191.23px] h-[56px] rounded-full bg-[#E7000B] text-white text-sm font-medium
@@ -110,7 +252,7 @@
                     </div>
 
                     <!-- RIGHT IMAGE (matches 681px × 454px, radius 24px, left 503.5px) -->
-                    <div class="w-full max-w-[681px] h-[320px] sm:h-[400px] lg:h-[454px] rounded-[24px] overflow-hidden">
+                    <div class="w-full max-w-[681px] h-[320px] sm:h-[400px] lg:h-[454px] rounded-[24px] overflow-hidden shadow-[0_28px_55px_rgba(15,23,42,0.20),0_0_60px_rgba(147,197,253,0.26),0_0_90px_rgba(216,180,254,0.18)]">
                         <img src="{{ asset('icons/home1img.jpg') }}" class="w-full h-full object-cover" />
                     </div>
 
@@ -132,7 +274,7 @@
         </section>
 
         <!-- ================= SECOND SECTION ================= -->
-        <section class="w-screen relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] min-h-[686.25px] bg-[#F9FAFB] flex">
+        <section class="w-screen relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] min-h-[686.25px] bg-[linear-gradient(90deg,#F9FAFB_0%,#F9FAFB_36%,rgba(239,246,255,0.62)_58%,rgba(219,234,254,0.66)_82%,rgba(191,219,254,0.52)_100%)] flex">
 
             <!-- OUTER WRAPPER -->
             <div class="w-full max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-[48px] mt-16 lg:mt-[96px]">
@@ -145,7 +287,7 @@
 
                         <!-- HEADING -->
                         <div class="w-full min-h-[96px] flex items-center justify-center">
-                            <h2 class="text-[36px] leading-[40px] sm:text-[42px] sm:leading-[44px] lg:text-[48px] lg:leading-[48px] font-bold text-[#101828] text-center">
+                            <h2 class="text-[36px] leading-[40px] sm:text-[42px] sm:leading-[44px] lg:text-[48px] lg:leading-[48px] font-medium text-[#101828] text-center">
                                 Engineered for Scale & <div>Reliability</div>
                             </h2>
                         </div>
@@ -164,7 +306,7 @@
                     <div class="w-full max-w-[1184px] mt-[48px] lg:mt-[64px] grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-[24px]">
 
                         <!-- CARD 1 -->
-                        <div class="w-full max-w-[278px] mx-auto h-[254.25px] bg-white rounded-[16px] border border-[#E5E7EB] 
+                        <div class="home-feature-card w-full max-w-[278px] mx-auto h-[254.25px] bg-white rounded-[16px] border border-[#E5E7EB] 
             shadow-[0_2px_4px_-2px_rgba(0,0,0,0.1),0_4px_6px_-1px_rgba(0,0,0,0.1)] 
             relative">
 
@@ -180,7 +322,7 @@
 
                             <!-- HEADING -->
                             <div class="absolute top-[113px] left-[33px] w-[212px] h-[28px] flex items-center">
-                                <h3 class="text-[20px] leading-[28px] font-bold text-[#101828]">
+                                <h3 class="text-[20px] leading-[28px] font-medium text-[#101828]">
                                     24/7 NOC Support
                                 </h3>
                             </div>
@@ -195,7 +337,7 @@
                         </div>
 
                         <!-- CARD 2 -->
-                        <div class="w-full max-w-[278px] mx-auto h-[254.25px] bg-white rounded-[16px] border border-[#E5E7EB] 
+                        <div class="home-feature-card w-full max-w-[278px] mx-auto h-[254.25px] bg-white rounded-[16px] border border-[#E5E7EB] 
             shadow-[0_2px_4px_-2px_rgba(0,0,0,0.1),0_4px_6px_-1px_rgba(0,0,0,0.1)] 
             relative">
 
@@ -212,7 +354,7 @@
 
                             <!-- HEADING -->
                             <div class="absolute top-[113px] left-[33px] w-[212px] h-[28px] flex items-center">
-                                <h3 class="text-[20px] leading-[28px] font-bold text-[#101828]">
+                                <h3 class="text-[20px] leading-[28px] font-medium text-[#101828]">
                                     Cloud CMS
                                 </h3>
                             </div>
@@ -227,7 +369,7 @@
                         </div>
 
                         <!-- CARD 3 -->
-                        <div class="w-full max-w-[278px] mx-auto h-[254.25px] bg-white rounded-[16px] border border-[#E5E7EB] 
+                        <div class="home-feature-card w-full max-w-[278px] mx-auto h-[254.25px] bg-white rounded-[16px] border border-[#E5E7EB] 
             shadow-[0_2px_4px_-2px_rgba(0,0,0,0.1),0_4px_6px_-1px_rgba(0,0,0,0.1)] 
             relative">
 
@@ -244,7 +386,7 @@
 
                             <!-- HEADING -->
                             <div class="absolute top-[113px] left-[33px] w-[212px] h-[28px] flex items-center">
-                                <h3 class="text-[20px] leading-[28px] font-bold text-[#101828]">
+                                <h3 class="text-[20px] leading-[28px] font-medium text-[#101828]">
                                     Real-time Updates
                                 </h3>
                             </div>
@@ -259,7 +401,7 @@
                         </div>
 
                         <!-- CARD 4 -->
-                        <div class="w-full max-w-[278px] mx-auto h-[254.25px] bg-white rounded-[16px] border border-[#E5E7EB] 
+                        <div class="home-feature-card w-full max-w-[278px] mx-auto h-[254.25px] bg-white rounded-[16px] border border-[#E5E7EB] 
             shadow-[0_2px_4px_-2px_rgba(0,0,0,0.1),0_4px_6px_-1px_rgba(0,0,0,0.1)] 
             relative">
 
@@ -276,7 +418,7 @@
 
                             <!-- HEADING -->
                             <div class="absolute top-[113px] left-[33px] w-[212px] h-[28px] flex items-center">
-                                <h3 class="text-[20px] leading-[28px] font-bold text-[#101828]">
+                                <h3 class="text-[20px] leading-[28px] font-medium text-[#101828]">
                                     Analytics & ROI
                                 </h3>
                             </div>
@@ -311,7 +453,7 @@
                     <div class="w-full max-w-[672px] flex flex-col gap-[24px]">
 
                         <!-- HEADING -->
-                        <h2 class="text-[36px] leading-[40px] sm:text-[42px] sm:leading-[44px] lg:text-[48px] lg:leading-[48px] font-bold text-[#101828]">
+                        <h2 class="text-[36px] leading-[40px] sm:text-[42px] sm:leading-[44px] lg:text-[48px] lg:leading-[48px] font-medium text-[#101828]">
                             Commercial-Grade <br /> Hardware
                         </h2>
 
@@ -348,7 +490,7 @@
                                 INDOOR SERIES
                             </span>
 
-                            <h3 class="text-[22px] font-semibold mt-[10px]">
+                            <h3 class="text-[22px] font-medium mt-[10px]">
                                 Ultra-Slim 4K Displays
                             </h3>
 
@@ -372,7 +514,7 @@
                                 PROCESSING
                             </span>
 
-                            <h3 class="text-[22px] font-semibold mt-[10px]">
+                            <h3 class="text-[22px] font-medium mt-[10px]">
                                 Edge Media Players
                             </h3>
 
@@ -400,7 +542,7 @@
                 <!-- ================= HEADING ================= -->
                 <div class="w-full max-w-[768px] flex flex-col items-center gap-[24px]">
 
-                    <h2 class="text-[36px] leading-[40px] sm:text-[42px] sm:leading-[44px] lg:text-[48px] lg:leading-[48px] font-bold text-[#101828] text-center">
+                    <h2 class="text-[36px] leading-[40px] sm:text-[42px] sm:leading-[44px] lg:text-[48px] lg:leading-[48px] font-medium text-[#101828] text-center">
                         Built for Every Industry
                     </h2>
 
@@ -418,7 +560,7 @@
 
                         <!-- IMAGE -->
                         <div class="w-full h-[192px]">
-                            <img src="{{ asset('icons/retail.jpg') }}" class="w-full h-full object-cover" />
+                            <img src="{{ asset('icons/homeretailimg.svg') }}" class="w-full h-full object-cover" />
                         </div>
 
                         <!-- CONTENT -->
@@ -426,7 +568,7 @@
 
                             <!-- HEADING -->
                             <div class="w-[312.66px] h-[32px]">
-                                <h3 class="text-[24px] leading-[32px] font-bold text-[#101828]">
+                                <h3 class="text-[24px] leading-[32px] font-medium text-[#101828]">
                                     Retail & Malls
                                 </h3>
                             </div>
@@ -488,7 +630,7 @@
 
                         <div class="w-full h-[246px] pt-[32px] px-[32px] pb-[24px] flex flex-col">
 
-                            <h3 class="text-[24px] leading-[32px] font-bold text-[#101828]">
+                            <h3 class="text-[24px] leading-[32px] font-medium text-[#101828]">
                                 Healthcare
                             </h3>
 
@@ -537,7 +679,7 @@
 
                         <div class="w-full h-[246px] pt-[32px] px-[32px] pb-[24px] flex flex-col">
 
-                            <h3 class="text-[24px] leading-[32px] font-bold text-[#101828]">
+                            <h3 class="text-[24px] leading-[32px] font-medium text-[#101828]">
                                 Corporate Offices
                             </h3>
 
@@ -606,7 +748,7 @@
 
                         <!-- HEADING -->
                         <div class="mt-[24px]">
-                            <h2 class="text-[36px] leading-[40px] sm:text-[42px] sm:leading-[44px] lg:text-[48px] lg:leading-[48px] font-bold text-[#101828]">
+                            <h2 class="text-[36px] leading-[40px] sm:text-[42px] sm:leading-[44px] lg:text-[48px] lg:leading-[48px] font-medium text-[#101828]">
                                 More than just screens.<br />
                                 We provide full solutions.
                             </h2>
@@ -632,7 +774,7 @@
                                 </div>
 
                                 <div class="w-full max-w-[504px] flex flex-col gap-[4px]">
-                                    <h4 class="text-[18px] leading-[28px] font-bold text-[#101828]">
+                                    <h4 class="text-[18px] leading-[28px] font-medium text-[#101828]">
                                         Hardware as a Service (HaaS)
                                     </h4>
                                     <p class="text-[14px] leading-[20px] text-[#4A5565]">
@@ -650,7 +792,7 @@
                                 </div>
 
                                 <div class="w-full max-w-[504px] flex flex-col gap-[4px]">
-                                    <h4 class="text-[18px] leading-[28px] font-bold text-[#101828]">
+                                    <h4 class="text-[18px] leading-[28px] font-medium text-[#101828]">
                                         Fully Managed Content
                                     </h4>
                                     <p class="text-[14px] leading-[20px] text-[#4A5565]">
@@ -667,7 +809,7 @@
                                 </div>
 
                                 <div class="w-full max-w-[504px] flex flex-col gap-[4px]">
-                                    <h4 class="text-[18px] leading-[28px] font-bold text-[#101828]">
+                                    <h4 class="text-[18px] leading-[28px] font-medium text-[#101828]">
                                         White-Glove Installation
                                     </h4>
                                     <p class="text-[14px] leading-[20px] text-[#4A5565]">
@@ -692,8 +834,8 @@
                     </div>
 
                     <!-- ================= RIGHT ================= -->
-                    <div class="w-full max-w-[560px] max-h-[454px] lg:mt-[109.13px] rounded-[20px] bg-white 
-            shadow-[0_10px_30px_rgba(0,0,0,0.1)] p-[24px]">
+                    <div class="home-service-dashboard-card w-full max-w-[560px] max-h-[454px] lg:mt-[109.13px] rounded-[20px] bg-white 
+            shadow-[0_28px_55px_rgba(15,23,42,0.20),0_0_60px_rgba(147,197,253,0.26),0_0_90px_rgba(216,180,254,0.18)] p-[24px]">
 
                         <!-- ================= HEADER ================= -->
                         <div
@@ -701,7 +843,7 @@
 
                             <!-- HEADING -->
                             <div class="w-[216px] h-[27px] flex items-center">
-                                <h4 class="text-[18px] leading-[27px] font-bold text-[#101828]">
+                                <h4 class="text-[18px] leading-[27px] font-medium text-[#101828]">
                                     NOC Dashboard Preview
                                 </h4>
                             </div>
@@ -779,7 +921,7 @@
                 bg-[#155DFC1A] px-[17px] pt-[17px] pb-[1px] flex flex-col gap-[4px]">
 
                                 <div class="w-[205px] h-[32px]">
-                                    <h5 class="text-[24px] leading-[32px] font-black text-[#1447E6]">
+                                    <h5 class="text-[24px] leading-[32px] font-medium text-[#1447E6]">
                                         99.9%
                                     </h5>
                                 </div>
@@ -797,7 +939,7 @@
                 bg-[#155DFC1A] px-[17px] pt-[17px] pb-[1px] flex flex-col gap-[4px]">
 
                                 <div class="w-[205px] h-[32px]">
-                                    <h5 class="text-[24px] leading-[32px] font-black text-[#1447E6]">
+                                    <h5 class="text-[24px] leading-[32px] font-medium text-[#1447E6]">
                                         2.4k
                                     </h5>
                                 </div>
@@ -830,7 +972,7 @@
                 <!-- HEADING + PARA -->
                 <div class="w-full max-w-[768px] min-h-[100px] flex flex-col items-center gap-[24px]">
 
-                    <h2 class="w-full max-w-[515px] min-h-[48px] text-[36px] leading-[40px] sm:text-[42px] sm:leading-[44px] lg:text-[48px] lg:leading-[48px] font-bold text-[#101828] text-center">
+                    <h2 class="w-full max-w-[515px] min-h-[48px] text-[36px] leading-[40px] sm:text-[42px] sm:leading-[44px] lg:text-[48px] lg:leading-[48px] font-medium text-[#101828] text-center">
                         Trusted by Innovators
                     </h2>
 
@@ -862,7 +1004,7 @@
                         <div class="w-[307.33px] h-[44px] mt-[32px] ml-[33px] flex flex-col">
 
                             <span class="text-[16px] font-bold text-[#101828] leading-[24px]">
-                                Sarah Jenkins
+                                Priya Sharma
                             </span>
 
                             <span class="text-[14px] leading-[20px] text-[#6A7282]">
@@ -889,7 +1031,7 @@
                         <div class="w-[307.33px] h-[44px] mt-[32px] ml-[33px] flex flex-col">
 
                             <span class="text-[16px] font-bold text-[#101828] leading-[24px]">
-                                David Chen
+                                Arjun Mehta
                             </span>
 
                             <span class="text-[14px] leading-[20px] text-[#6A7282]">
@@ -916,7 +1058,7 @@
                         <div class="w-[307.33px] h-[44px] mt-[32px] ml-[33px] flex flex-col">
 
                             <span class="text-[16px] font-bold text-[#101828] leading-[24px]">
-                                Elena Rodriguez
+                                Neha Kapoor
                             </span>
 
                             <span class="text-[14px] leading-[20px] text-[#6A7282]">
@@ -934,7 +1076,7 @@
         <section class="w-full min-h-[765px] bg-white pt-16 lg:pt-[96px] px-4 sm:px-6 lg:px-[101.5px]">
 
             <!-- MAIN CONTAINER -->
-            <div class="w-full max-w-[1200px] min-h-[573.25px] mx-auto relative rounded-[24px] overflow-hidden">
+            <div class="home-case-study-card w-full max-w-[1200px] min-h-[573.25px] mx-auto relative rounded-[24px] overflow-hidden">
 
                 <!-- BACKGROUND IMAGE -->
                 <img src="https://images.unsplash.com/photo-1581091870622-1e7e2f7f6b9f"
@@ -944,11 +1086,11 @@
                 <div class="absolute inset-0 bg-gradient-to-r from-[#0B1B2B]/80 to-transparent"></div>
 
                 <!-- CONTENT -->
-                <div class="absolute top-0 left-0 w-full max-w-[672px] h-full">
+                <div class="home-case-study-content absolute top-0 left-0 w-full max-w-[672px] h-full">
 
                     <!-- FEATURED BADGE -->
                     <div
-                        class="absolute top-[40px] sm:top-[60px] lg:top-[81.5px] left-[24px] sm:left-[40px] lg:left-[80px] w-[177.9px] h-[24px] bg-white rounded-[4px] flex items-center px-[12px]">
+                        class="home-case-study-badge absolute top-[40px] sm:top-[60px] lg:top-[81.5px] left-[24px] sm:left-[40px] lg:left-[80px] min-h-[30px] w-fit bg-white rounded-[4px] inline-flex items-center justify-center px-[14px] whitespace-nowrap">
                         <span class="text-[12px] font-bold uppercase tracking-[0.6px] text-[#101828]">
                             Featured Case Study
                         </span>
@@ -956,7 +1098,7 @@
 
                     <!-- HEADING -->
                     <div class="absolute top-[84px] sm:top-[110px] lg:top-[129.5px] left-[24px] sm:left-[40px] lg:left-[80px] w-[calc(100%-48px)] max-w-[512px] min-h-[96px]">
-                        <h2 class="text-[32px] leading-[36px] sm:text-[40px] sm:leading-[42px] lg:text-[48px] lg:leading-[48px] font-bold text-white">
+                        <h2 class="text-[32px] leading-[36px] sm:text-[40px] sm:leading-[42px] lg:text-[48px] lg:leading-[48px] font-medium text-white">
                             Revamping Transit Wayfinding
                         </h2>
                     </div>
@@ -964,29 +1106,29 @@
                     <!-- PARAGRAPH -->
                     <div class="absolute top-[180px] sm:top-[220px] lg:top-[249.5px] left-[24px] sm:left-[40px] lg:left-[80px] w-[calc(100%-48px)] max-w-[512px] min-h-[88px]">
                         <p class="text-[18px] leading-[29.25px] text-white">
-                            How Metro Airport increased passenger flow by 40% and generated $2M in new ad revenue
+                            How Metro Airport increased passenger flow by 40% and generated ₹2M in new ad revenue
                             through a massive 500-screen PixelWave deployment.
                         </p>
                     </div>
 
                     <!-- STATS -->
-                    <div class="absolute top-[320px] sm:top-[350px] lg:top-[369.25px] left-[24px] sm:left-[40px] lg:left-[80px] w-[calc(100%-48px)] max-w-[512px] min-h-[60px] flex flex-wrap gap-[24px] sm:gap-[32px]">
+                    <div class="home-case-study-stats absolute top-[320px] sm:top-[350px] lg:top-[369.25px] left-[24px] sm:left-[40px] lg:left-[80px] w-[calc(100%-48px)] max-w-[512px] min-h-[60px] flex flex-wrap gap-[24px] sm:gap-[32px]">
 
                         <!-- STAT 1 -->
-                        <div class="flex flex-col gap-[4px] w-[105px]">
+                        <div class="home-case-study-stat flex flex-col gap-[4px] w-[105px]">
                             <span class="text-[24px] font-bold text-white">+40%</span>
                             <span class="text-[14px] text-white">Passenger Flow</span>
                         </div>
 
                         <!-- STAT 2 -->
-                        <div class="flex flex-col gap-[4px] w-[105px]">
+                        <div class="home-case-study-stat flex flex-col gap-[4px] w-[105px]">
                             <span class="text-[24px] font-bold text-white">500+</span>
                             <span class="text-[14px] text-white">Screens Deployed</span>
                         </div>
 
                         <!-- STAT 3 -->
-                        <div class="flex flex-col gap-[4px] w-[105px]">
-                            <span class="text-[24px] font-bold text-white">$2M</span>
+                        <div class="home-case-study-stat flex flex-col gap-[4px] w-[105px]">
+                            <span class="text-[24px] font-bold text-white">₹2M</span>
                             <span class="text-[14px] text-white">Ad Revenue</span>
                         </div>
 
@@ -1017,7 +1159,7 @@
 
       <!-- HEADING -->
       <div class="w-full max-w-[560px] min-h-[48px]">
-        <h2 class="text-[36px] leading-[40px] sm:text-[42px] sm:leading-[44px] lg:text-[48px] lg:leading-[48px] font-bold text-[#101828]">
+        <h2 class="text-[36px] leading-[40px] sm:text-[42px] sm:leading-[44px] lg:text-[48px] lg:leading-[48px] font-medium text-[#101828]">
           Why The Locads?
         </h2>
       </div>
@@ -1036,15 +1178,15 @@
         <div class="flex gap-[16px] items-start">
 
           <!-- ICON -->
-          <div class="w-[48px] h-[48px] rounded-full border border-[#2B7FFF]/30 bg-[#155DFC]/20 flex items-center justify-center">
-                <img  src="{{ asset('icons/dedicatedicon.svg') }}">
+          <div class="w-[48px] h-[48px] min-w-[48px] shrink-0 rounded-full border border-[#2B7FFF]/30 bg-[#155DFC]/20 flex items-center justify-center">
+                <img src="{{ asset('icons/dedicatedicon.svg') }}" class="w-[24px] h-[24px]">
           </div>
 
           <!-- TEXT -->
           <div class="flex flex-col">
 
             <div class="w-full max-w-[496px] min-h-[28px]">
-              <h3 class="text-[20px] leading-[28px] font-bold text-[#101828]">
+              <h3 class="text-[20px] leading-[28px] font-medium text-[#101828]">
                 Dedicated 24/7 NOC
               </h3>
             </div>
@@ -1061,14 +1203,14 @@
         <!-- ITEM 2 -->
         <div class="flex gap-[16px] items-start">
 
-          <div class="w-[48px] h-[48px] rounded-full border border-[#2B7FFF]/30 bg-[#155DFC]/20 flex items-center justify-center">
-                    <img  src="{{ asset('icons/infiniteicon.svg') }}">
+          <div class="w-[48px] h-[48px] min-w-[48px] shrink-0 rounded-full border border-[#2B7FFF]/30 bg-[#155DFC]/20 flex items-center justify-center">
+                    <img src="{{ asset('icons/infiniteicon.svg') }}" class="w-[24px] h-[24px]">
           </div>
 
           <div class="flex flex-col">
 
             <div class="w-full max-w-[496px] min-h-[28px]">
-              <h3 class="text-[20px] leading-[28px] font-bold text-[#101828]">
+              <h3 class="text-[20px] leading-[28px] font-medium text-[#101828]">
                 Infinite Scalability
               </h3>
             </div>
@@ -1085,14 +1227,14 @@
         <!-- ITEM 3 -->
         <div class="flex gap-[16px] items-start">
 
-          <div class="w-[48px] h-[48px] rounded-full border border-[#2B7FFF]/30 bg-[#155DFC]/20 flex items-center justify-center">
-                   <img src="{{ asset('icons/enterpriseicon.svg') }}">
+          <div class="w-[48px] h-[48px] min-w-[48px] shrink-0 rounded-full border border-[#2B7FFF]/30 bg-[#155DFC]/20 flex items-center justify-center">
+                   <img src="{{ asset('icons/enterpriseicon.svg') }}" class="w-[24px] h-[24px]">
           </div>
 
           <div class="flex flex-col">
 
             <div class="w-full max-w-[496px] min-h-[28px]">
-              <h3 class="text-[20px] leading-[28px] font-bold text-[#101828]">
+              <h3 class="text-[20px] leading-[28px] font-medium text-[#101828]">
                 Enterprise-Grade Security
               </h3>
             </div>
@@ -1132,7 +1274,7 @@
 
       <!-- HEADING -->
       <div class="w-full max-w-[910px] min-h-[60px] mx-auto text-center">
-        <h2 class="text-[38px] leading-[42px] sm:text-[50px] sm:leading-[52px] lg:text-[60px] lg:leading-[60px] font-black tracking-[-1.5px] text-[#101828]">
+        <h2 class="text-[38px] leading-[42px] sm:text-[50px] sm:leading-[52px] lg:text-[60px] lg:leading-[60px] font-medium tracking-[-1.5px] text-[#101828]">
           Ready to transform your space?
         </h2>
       </div>

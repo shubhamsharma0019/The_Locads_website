@@ -25,15 +25,14 @@
 
         <!-- ================= HERO ================= -->
         <section
-            class="w-screen relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] min-h-[547.8px] bg-[#A3A3A3] flex justify-center">
+            class="w-screen relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] min-h-[547.8px] bg-[#A3A3A3] flex justify-center overflow-hidden">
+            <img src="{{ asset('icons/industriesimg.svg') }}" class="absolute inset-0 w-full h-full object-cover" />
+            <div class="absolute inset-0 bg-black/40"></div>
 
-            <div class="w-full max-w-[1387px] h-full relative bg-[#A3A3A3]">
-
-                <!-- Overlay -->
-                <div class="absolute inset-0 bg-black/40"></div>
+            <div class="w-full max-w-[1387px] min-h-[547.8px] relative">
 
                 <!-- MAIN INNER CONTAINER -->
-                <div class="absolute inset-0 w-full max-w-[1280px] mx-auto pt-16 sm:pt-20 lg:pt-[96px] px-4 sm:px-6 lg:px-[48px] flex justify-center">
+                <div class="relative z-10 w-full max-w-[1280px] min-h-[547.8px] mx-auto pt-16 sm:pt-20 lg:pt-[96px] px-4 sm:px-6 lg:px-[48px] flex justify-center">
 
                     <!-- CONTENT WRAPPER -->
                     <div class="w-full max-w-[1184px] mx-auto flex flex-col items-center gap-[20px] sm:gap-[24px]">
@@ -74,7 +73,7 @@
                 <div class="w-auto mx-6 sm:mx-8 mt-[17px] mb-6 flex flex-col">
 
                     <!-- HEADING -->
-                    <h3 class="text-[24px] leading-[32px] font-semibold text-[#101828]">
+                    <h3 class="text-[24px] leading-[32px] font-medium text-[#101828]">
                         Retail & Malls
                     </h3>
 
@@ -109,7 +108,7 @@
                     class="w-[calc(100%-2px)] h-[224px] object-cover m-[1px] rounded-t-[24px]" />
                 <div class="w-auto mx-6 sm:mx-8 mt-[17px] mb-6 flex flex-col">
 
-                    <h3 class="text-[24px] leading-[32px] font-semibold text-[#101828]">
+                    <h3 class="text-[24px] leading-[32px] font-medium text-[#101828]">
                         Healthcare
                     </h3>
 
@@ -140,7 +139,7 @@
 
                 <div class="w-auto mx-6 sm:mx-8 mt-[17px] mb-6 flex flex-col">
 
-                    <h3 class="text-[24px] leading-[32px] font-semibold text-[#101828]">
+                    <h3 class="text-[24px] leading-[32px] font-medium text-[#101828]">
                         Restaurants & QSR
                     </h3>
 
@@ -172,7 +171,7 @@
 
                 <div class="w-auto mx-6 sm:mx-8 mt-[17px] mb-6 flex flex-col">
 
-                    <h3 class="text-[24px] leading-[32px] font-semibold text-[#101828]">
+                    <h3 class="text-[24px] leading-[32px] font-medium text-[#101828]">
                         Corporate Offices
                     </h3>
 
@@ -202,7 +201,7 @@
 
                 <div class="w-auto mx-6 sm:mx-8 mt-[17px] mb-6 flex flex-col">
 
-                    <h3 class="text-[24px] leading-[32px] font-semibold text-[#101828]">
+                    <h3 class="text-[24px] leading-[32px] font-medium text-[#101828]">
                         Transit & Airports
                     </h3>
 
@@ -232,7 +231,7 @@
 
                 <div class="w-auto mx-6 sm:mx-8 mt-[17px] mb-6 flex flex-col">
 
-                    <h3 class="text-[24px] leading-[32px] font-semibold text-[#101828]">
+                    <h3 class="text-[24px] leading-[32px] font-medium text-[#101828]">
                         Education
                     </h3>
 

@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Products UI</title>
+    @include('partials.responsive-guard')
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
@@ -25,7 +26,7 @@
 
                 <!-- ================= HEADING ================= -->
                 <div class="w-[371px] h-[72px] max-w-full mx-auto max-md:w-full max-md:h-auto">
-                    <h1 class="text-[60px] leading-[72px] font-bold tracking-[-1.5px] text-[#111827] max-md:text-[38px] max-md:leading-[46px]">
+                    <h1 class="text-[60px] leading-[72px] font-medium tracking-[-1.5px] text-[#111827] max-md:text-[38px] max-md:leading-[46px]">
                         Our <span class="text-[#4F46E5] tracking-[-1.8px]">Products</span>
                     </h1>
                 </div>
@@ -67,6 +68,7 @@
         </section>
         @include('partials.product-filter', ['currentPage' => 9])
         <!-- ================= PRODUCT GRID ================= -->
+        @if (($createdProducts ?? collect())->isEmpty())
         <section class="signage9-products w-full max-w-[1387px] mx-auto px-[101.5px] pt-[64px] pb-[64px] max-md:px-[16px] max-md:pt-[40px] max-md:pb-[40px]">
 
             <!-- INNER WRAPPER -->
@@ -84,7 +86,7 @@
 
                         <!-- TITLE -->
                         <div class="w-[323.33px] max-[1279px]:w-full max-[1279px]:max-w-full h-[28px]">
-                            <h3 class="text-[20px] leading-[28px] font-bold text-[#101828]">
+                            <h3 class="text-[20px] leading-[28px] font-medium text-[#101828]">
                                 Pro Series 4K Display - 43"
                             </h3>
                         </div>
@@ -133,7 +135,7 @@
                                 <!-- LEFT (PURCHASE) -->
                                 <div class="flex flex-col justify-between h-[52px]">
                                     <span class="text-[14px] leading-[20px] text-[#4A5565]">
-                                        Purchase
+                                        Purchase Price
                                     </span>
                                     <span class="text-[24px] leading-[32px] font-bold text-[#101828]">
                                         ₹899
@@ -143,10 +145,10 @@
                                 <!-- RIGHT (RENT) -->
                                 <div class="flex flex-col justify-between items-end h-[52px]">
                                     <span class="text-[14px] leading-[20px] text-[#4A5565]">
-                                        Rent
+                                        Rent Price
                                     </span>
                                     <span class="text-[20px] leading-[28px] font-bold text-[#E7000B]">
-                                        ₹49/month
+                                        On request
                                     </span>
                                 </div>
 
@@ -187,7 +189,7 @@
 
                         <!-- TITLE -->
                         <div class="w-[323.33px] max-[1279px]:w-full max-[1279px]:max-w-full h-[28px]">
-                            <h3 class="text-[20px] leading-[28px] font-bold text-[#101828]">
+                            <h3 class="text-[20px] leading-[28px] font-medium text-[#101828]">
                                 Pro Series 4K Display - 43"
                             </h3>
                         </div>
@@ -236,7 +238,7 @@
                                 <!-- LEFT (PURCHASE) -->
                                 <div class="flex flex-col justify-between h-[52px]">
                                     <span class="text-[14px] leading-[20px] text-[#4A5565]">
-                                        Purchase
+                                        Purchase Price
                                     </span>
                                     <span class="text-[24px] leading-[32px] font-bold text-[#101828]">
                                         ₹899
@@ -246,10 +248,10 @@
                                 <!-- RIGHT (RENT) -->
                                 <div class="flex flex-col justify-between items-end h-[52px]">
                                     <span class="text-[14px] leading-[20px] text-[#4A5565]">
-                                        Rent
+                                        Rent Price
                                     </span>
                                     <span class="text-[20px] leading-[28px] font-bold text-[#E7000B]">
-                                        ₹49/month
+                                        ₹49 per month
                                     </span>
                                 </div>
 
@@ -289,7 +291,7 @@
 
                         <!-- TITLE -->
                         <div class="w-[323.33px] max-[1279px]:w-full max-[1279px]:max-w-full h-[28px]">
-                            <h3 class="text-[20px] leading-[28px] font-bold text-[#101828]">
+                            <h3 class="text-[20px] leading-[28px] font-medium text-[#101828]">
                                 Pro Series 4K Display - 43"
                             </h3>
                         </div>
@@ -338,7 +340,7 @@
                                 <!-- LEFT (PURCHASE) -->
                                 <div class="flex flex-col justify-between h-[52px]">
                                     <span class="text-[14px] leading-[20px] text-[#4A5565]">
-                                        Purchase
+                                        Purchase Price
                                     </span>
                                     <span class="text-[24px] leading-[32px] font-bold text-[#101828]">
                                         ₹899
@@ -348,10 +350,10 @@
                                 <!-- RIGHT (RENT) -->
                                 <div class="flex flex-col justify-between items-end h-[52px]">
                                     <span class="text-[14px] leading-[20px] text-[#4A5565]">
-                                        Rent
+                                        Rent Price
                                     </span>
                                     <span class="text-[20px] leading-[28px] font-bold text-[#E7000B]">
-                                        ₹49/month
+                                        On request
                                     </span>
                                 </div>
 
@@ -390,7 +392,7 @@
 
                         <!-- TITLE -->
                         <div class="w-[323.33px] max-[1279px]:w-full max-[1279px]:max-w-full mt-[24px] h-[28px]">
-                            <h3 class="text-[20px] leading-[28px] font-bold text-[#101828]">
+                            <h3 class="text-[20px] leading-[28px] font-medium text-[#101828]">
                                 High-Bright Window Display - 55"
                             </h3>
                         </div>
@@ -402,28 +404,28 @@
                             <div class="flex items-center gap-[8px]">
                                 <div class="w-[6px] h-[6px] bg-[#155DFC] rounded-full"></div>
                                 <span class="text-[14px] text-[#4A5565] leading-[20px]">
-                                    43" 4K UHD
+                                    High-brightness window visibility
                                 </span>
                             </div>
 
                             <div class="flex items-center gap-[8px]">
                                 <div class="w-[6px] h-[6px] bg-[#155DFC] rounded-full"></div>
                                 <span class="text-[14px] text-[#4A5565]">
-                                    500 nits brightness
+                                    55 inch commercial display
                                 </span>
                             </div>
 
                             <div class="flex items-center gap-[8px]">
                                 <div class="w-[6px] h-[6px] bg-[#155DFC] rounded-full"></div>
                                 <span class="text-[14px] text-[#4A5565]">
-                                    500 nits brightness
+                                    Anti-glare presentation
                                 </span>
                             </div>
 
                             <div class="flex items-center gap-[8px]">
                                 <div class="w-[6px] h-[6px] bg-[#155DFC] rounded-full"></div>
                                 <span class="text-[14px] text-[#4A5565]">
-                                    Android OS
+                                    Built for storefront promotions
                                 </span>
                             </div>
 
@@ -439,20 +441,20 @@
                                 <!-- LEFT (PURCHASE) -->
                                 <div class="flex flex-col justify-between h-[52px]">
                                     <span class="text-[14px] leading-[20px] text-[#4A5565]">
-                                        Purchase
+                                        Purchase Price
                                     </span>
                                     <span class="text-[24px] leading-[32px] font-bold text-[#101828]">
-                                        ₹899
+                                        ₹1,499
                                     </span>
                                 </div>
 
                                 <!-- RIGHT (RENT) -->
                                 <div class="flex flex-col justify-between items-end h-[52px]">
                                     <span class="text-[14px] leading-[20px] text-[#4A5565]">
-                                        Rent
+                                        Rent Price
                                     </span>
                                     <span class="text-[20px] leading-[28px] font-bold text-[#E7000B]">
-                                        ₹49/month
+                                        On request
                                     </span>
                                 </div>
 
@@ -491,7 +493,7 @@
 
                         <!-- TITLE -->
                         <div class="w-[323.33px] max-[1279px]:w-full max-[1279px]:max-w-full mt-[24px] h-[28px]">
-                            <h3 class="text-[20px] leading-[28px] font-bold text-[#101828]">
+                            <h3 class="text-[20px] leading-[28px] font-medium text-[#101828]">
                                 High-Bright Window Display - 55"
                             </h3>
                         </div>
@@ -503,28 +505,28 @@
                             <div class="flex items-center gap-[8px]">
                                 <div class="w-[6px] h-[6px] bg-[#155DFC] rounded-full"></div>
                                 <span class="text-[14px] text-[#4A5565] leading-[20px]">
-                                    43" 4K UHD
+                                    55 inch high-bright rental display
                                 </span>
                             </div>
 
                             <div class="flex items-center gap-[8px]">
                                 <div class="w-[6px] h-[6px] bg-[#155DFC] rounded-full"></div>
                                 <span class="text-[14px] text-[#4A5565]">
-                                    500 nits brightness
+                                    Great for storefront campaigns
                                 </span>
                             </div>
 
                             <div class="flex items-center gap-[8px]">
                                 <div class="w-[6px] h-[6px] bg-[#155DFC] rounded-full"></div>
                                 <span class="text-[14px] text-[#4A5565]">
-                                    Android OS
+                                    Temporary promotion friendly
                                 </span>
                             </div>
 
                             <div class="flex items-center gap-[8px]">
                                 <div class="w-[6px] h-[6px] bg-[#155DFC] rounded-full"></div>
                                 <span class="text-[14px] text-[#4A5565]">
-                                    Android OS
+                                    Delivery and installation support
                                 </span>
                             </div>
 
@@ -540,20 +542,20 @@
                                 <!-- LEFT (PURCHASE) -->
                                 <div class="flex flex-col justify-between h-[52px]">
                                     <span class="text-[14px] leading-[20px] text-[#4A5565]">
-                                        Purchase
+                                        Purchase Price
                                     </span>
                                     <span class="text-[24px] leading-[32px] font-bold text-[#101828]">
-                                        ₹899
+                                        ₹1,299
                                     </span>
                                 </div>
 
                                 <!-- RIGHT (RENT) -->
                                 <div class="flex flex-col justify-between items-end h-[52px]">
                                     <span class="text-[14px] leading-[20px] text-[#4A5565]">
-                                        Rent
+                                        Rent Price
                                     </span>
                                     <span class="text-[20px] leading-[28px] font-bold text-[#E7000B]">
-                                        ₹49/month
+                                        ₹49 per month
                                     </span>
                                 </div>
 
@@ -592,7 +594,7 @@
 
                         <!-- TITLE -->
                         <div class="w-[323.33px] max-[1279px]:w-full max-[1279px]:max-w-full mt-[24px] h-[28px]">
-                            <h3 class="text-[20px] leading-[28px] font-bold text-[#101828]">
+                            <h3 class="text-[20px] leading-[28px] font-medium text-[#101828]">
                                 Edge Media Player - i5
                             </h3>
                         </div>
@@ -604,28 +606,28 @@
                             <div class="flex items-center gap-[8px]">
                                 <div class="w-[6px] h-[6px] bg-[#155DFC] rounded-full"></div>
                                 <span class="text-[14px] text-[#4A5565] leading-[20px]">
-                                    43" 4K UHD
+                                    Intel i5 performance
                                 </span>
                             </div>
 
                             <div class="flex items-center gap-[8px]">
                                 <div class="w-[6px] h-[6px] bg-[#155DFC] rounded-full"></div>
                                 <span class="text-[14px] text-[#4A5565]">
-                                    500 nits brightness
+                                    Reliable signage playback
                                 </span>
                             </div>
 
                             <div class="flex items-center gap-[8px]">
                                 <div class="w-[6px] h-[6px] bg-[#155DFC] rounded-full"></div>
                                 <span class="text-[14px] text-[#4A5565]">
-                                    500 nits brightness
+                                    Compact edge device
                                 </span>
                             </div>
 
                             <div class="flex items-center gap-[8px]">
                                 <div class="w-[6px] h-[6px] bg-[#155DFC] rounded-full"></div>
                                 <span class="text-[14px] text-[#4A5565]">
-                                    Android OS
+                                    Cloud CMS compatible
                                 </span>
                             </div>
 
@@ -641,20 +643,20 @@
                                 <!-- LEFT (PURCHASE) -->
                                 <div class="flex flex-col justify-between h-[52px]">
                                     <span class="text-[14px] leading-[20px] text-[#4A5565]">
-                                        Purchase
+                                        Purchase Price
                                     </span>
                                     <span class="text-[24px] leading-[32px] font-bold text-[#101828]">
-                                        ₹899
+                                        ₹699
                                     </span>
                                 </div>
 
                                 <!-- RIGHT (RENT) -->
                                 <div class="flex flex-col justify-between items-end h-[52px]">
                                     <span class="text-[14px] leading-[20px] text-[#4A5565]">
-                                        Rent
+                                        Rent Price
                                     </span>
                                     <span class="text-[20px] leading-[28px] font-bold text-[#E7000B]">
-                                        ₹49/month
+                                        On request
                                     </span>
                                 </div>
 
@@ -693,7 +695,7 @@
 
                         <!-- TITLE -->
                         <div class="w-[323.33px] max-[1279px]:w-full max-[1279px]:max-w-full mt-[24px] h-[28px]">
-                            <h3 class="text-[20px] leading-[28px] font-bold text-[#101828]">
+                            <h3 class="text-[20px] leading-[28px] font-medium text-[#101828]">
                                 Edge Media Player - i5
                             </h3>
                         </div>
@@ -705,21 +707,21 @@
                             <div class="flex items-center gap-[8px]">
                                 <div class="w-[6px] h-[6px] bg-[#155DFC] rounded-full"></div>
                                 <span class="text-[14px] text-[#4A5565] leading-[20px]">
-                                    43" 4K UHD
+                                    i5 media player rental
                                 </span>
                             </div>
 
                             <div class="flex items-center gap-[8px]">
                                 <div class="w-[6px] h-[6px] bg-[#155DFC] rounded-full"></div>
                                 <span class="text-[14px] text-[#4A5565]">
-                                    500 nits brightness
+                                    Temporary signage deployment
                                 </span>
                             </div>
 
                             <div class="flex items-center gap-[8px]">
                                 <div class="w-[6px] h-[6px] bg-[#155DFC] rounded-full"></div>
                                 <span class="text-[14px] text-[#4A5565]">
-                                    Android OS
+                                    Configured for playback needs
                                 </span>
                             </div>
 
@@ -735,20 +737,20 @@
                                 <!-- LEFT (PURCHASE) -->
                                 <div class="flex flex-col justify-between h-[52px]">
                                     <span class="text-[14px] leading-[20px] text-[#4A5565]">
-                                        Purchase
+                                        Purchase Price
                                     </span>
                                     <span class="text-[24px] leading-[32px] font-bold text-[#101828]">
-                                        ₹899
+                                        ₹799
                                     </span>
                                 </div>
 
                                 <!-- RIGHT (RENT) -->
                                 <div class="flex flex-col justify-between items-end h-[52px]">
                                     <span class="text-[14px] leading-[20px] text-[#4A5565]">
-                                        Rent
+                                        Rent Price
                                     </span>
                                     <span class="text-[20px] leading-[28px] font-bold text-[#E7000B]">
-                                        ₹49/month
+                                        ₹49 per month
                                     </span>
                                 </div>
 
@@ -787,7 +789,7 @@
 
                         <!-- TITLE -->
                         <div class="w-[323.33px] max-[1279px]:w-full max-[1279px]:max-w-full mt-[24px] h-[28px]">
-                            <h3 class="text-[20px] leading-[28px] font-bold text-[#101828]">
+                            <h3 class="text-[20px] leading-[28px] font-medium text-[#101828]">
                                 Cloud CMS License (Annual)
                             </h3>
                         </div>
@@ -799,21 +801,21 @@
                             <div class="flex items-center gap-[8px]">
                                 <div class="w-[6px] h-[6px] bg-[#155DFC] rounded-full"></div>
                                 <span class="text-[14px] text-[#4A5565] leading-[20px]">
-                                    43" 4K UHD
+                                    Unlimited content uploads
                                 </span>
                             </div>
 
                             <div class="flex items-center gap-[8px]">
                                 <div class="w-[6px] h-[6px] bg-[#155DFC] rounded-full"></div>
                                 <span class="text-[14px] text-[#4A5565]">
-                                    500 nits brightness
+                                    Real-time remote updates
                                 </span>
                             </div>
 
                             <div class="flex items-center gap-[8px]">
                                 <div class="w-[6px] h-[6px] bg-[#155DFC] rounded-full"></div>
                                 <span class="text-[14px] text-[#4A5565]">
-                                    Android OS
+                                    Advanced scheduling
                                 </span>
                             </div>
 
@@ -829,10 +831,10 @@
                                 <!-- LEFT (PURCHASE) -->
                                 <div class="flex flex-col justify-between h-[52px]">
                                     <span class="text-[14px] leading-[20px] text-[#4A5565]">
-                                        Purchase
+                                        Purchase Price
                                     </span>
                                     <span class="text-[24px] leading-[32px] font-bold text-[#101828]">
-                                        ₹899
+                                        ₹299/year
                                     </span>
                                 </div>
 
@@ -876,7 +878,7 @@
 
                         <!-- TITLE -->
                         <div class="w-[323.33px] max-[1279px]:w-full max-[1279px]:max-w-full mt-[24px] h-[28px]">
-                            <h3 class="text-[20px] leading-[28px] font-bold text-[#101828]">
+                            <h3 class="text-[20px] leading-[28px] font-medium text-[#101828]">
                                 Cloud CMS License (Annual)
                             </h3>
                         </div>
@@ -888,21 +890,21 @@
                             <div class="flex items-center gap-[8px]">
                                 <div class="w-[6px] h-[6px] bg-[#155DFC] rounded-full"></div>
                                 <span class="text-[14px] text-[#4A5565] leading-[20px]">
-                                    43" 4K UHD
+                                    Unlimited content uploads
                                 </span>
                             </div>
 
                             <div class="flex items-center gap-[8px]">
                                 <div class="w-[6px] h-[6px] bg-[#155DFC] rounded-full"></div>
                                 <span class="text-[14px] text-[#4A5565]">
-                                    500 nits brightness
+                                    Real-time remote updates
                                 </span>
                             </div>
 
                             <div class="flex items-center gap-[8px]">
                                 <div class="w-[6px] h-[6px] bg-[#155DFC] rounded-full"></div>
                                 <span class="text-[14px] text-[#4A5565]">
-                                    Android OS
+                                    Advanced scheduling
                                 </span>
                             </div>
 
@@ -918,10 +920,10 @@
                                 <!-- LEFT (PURCHASE) -->
                                 <div class="flex flex-col justify-between h-[52px]">
                                     <span class="text-[14px] leading-[20px] text-[#4A5565]">
-                                        Purchase
+                                        Purchase Price
                                     </span>
                                     <span class="text-[24px] leading-[32px] font-bold text-[#101828]">
-                                        ₹899
+                                        ₹299/year
                                     </span>
                                 </div>
 
@@ -957,6 +959,7 @@
 
             </div>
         </section>
+        @endif
         @include('partials.public-product-grid', [
             'products' => $createdProducts ?? collect(),
         ])
@@ -968,7 +971,7 @@
 
                 <!-- HEADING -->
                 <div class="w-[1184px] h-[36px] max-w-full flex justify-center max-md:w-full max-md:h-auto">
-                    <h2 class="text-[30px] leading-[36px] font-bold text-[#101828] text-center max-md:text-[28px] max-md:leading-[34px]">
+                    <h2 class="text-[30px] leading-[36px] font-medium text-[#101828] text-center max-md:text-[28px] max-md:leading-[34px]">
                         Need Help Choosing?
                     </h2>
                 </div>

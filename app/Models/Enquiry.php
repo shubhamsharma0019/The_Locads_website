@@ -12,6 +12,7 @@ class Enquiry extends Model
         'email',
         'company_name',
         'message',
+        'feedback_remark',
         'enquiry_type',
         'source_page',
     ];

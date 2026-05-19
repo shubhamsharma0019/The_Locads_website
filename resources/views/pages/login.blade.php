@@ -58,10 +58,10 @@
     </style>
 </head>
 
-<body class="min-h-screen flex">
+<body class="min-h-screen flex flex-col lg:flex-row">
 
     <!-- LEFT PANEL -->
-    <div class="hero-gradient w-1/2 min-h-screen flex flex-col justify-center px-14 py-16 relative overflow-hidden">
+    <div class="hero-gradient w-full lg:w-1/2 min-h-[260px] lg:min-h-screen flex flex-col justify-center px-6 py-10 sm:px-8 lg:px-14 lg:py-16 relative overflow-hidden">
 
         <!-- Subtle decorative blobs -->
         <div class="absolute top-0 right-0 w-72 h-72 rounded-full opacity-20"
@@ -70,15 +70,15 @@
             style="background:radial-gradient(circle, #fff 0%, transparent 70%); transform:translate(-40%,40%);"></div>
 
         <!-- Heading -->
-        <h1 class="text-white text-4xl font-extrabold leading-tight mb-4">
+        <h1 class="text-white text-3xl sm:text-4xl font-medium leading-tight mb-4">
             Smart Digital <span class="text-blue-300">Signage</span><br />Management
         </h1>
-        <p class="text-white/75 text-base mb-12 max-w-sm leading-relaxed">
+        <p class="text-white/75 text-sm sm:text-base mb-6 lg:mb-12 max-w-sm leading-relaxed">
             Control, schedule and monitor all your screens from one intelligent platform built for modern businesses.
         </p>
 
         <!-- Feature Cards -->
-        <div class="space-y-4">
+        <div class="space-y-3 sm:space-y-4">
             <!-- Real-time Sync -->
             <div class="feature-card rounded-2xl px-5 py-4 flex items-center gap-4">
                 <div class="w-10 h-10 rounded-full flex items-center justify-center"
@@ -129,19 +129,16 @@
     </div>
 
     <!-- RIGHT PANEL -->
-    <div class="w-1/2 min-h-screen bg-gray-50 flex flex-col items-center justify-center px-12 py-16">
+    <div class="w-full lg:w-1/2 min-h-[calc(100vh-260px)] lg:min-h-screen bg-gray-50 flex flex-col items-center justify-center px-4 py-8 sm:px-8 sm:py-12 lg:px-12 lg:py-16">
 
         <!-- Logo -->
-        <div class="mb-10 text-center">
-            <div class="text-3xl font-extrabold tracking-tight">
-                <span class="logo-the">The</span><span class="logo-loc">Loc</span><span class="logo-ads">ads</span>
-            </div>
-            <p class="logo-tagline mt-1">Outdoor Advertising Simplified</p>
+        <div class="mb-8 flex h-[84px] w-full justify-center sm:mb-10">
+            <img src="{{ asset('icons/locadsicon.jpeg') }}" alt="The Locads Logo" class="h-full w-full max-w-[220px] object-contain">
         </div>
 
         <!-- Login Card -->
-        <div class="bg-white rounded-2xl shadow-lg px-10 py-10 w-full max-w-md">
-            <h2 class="text-2xl font-bold text-gray-900 text-center mb-1">Welcome Back</h2>
+        <div class="bg-white rounded-2xl shadow-lg px-5 py-8 sm:px-10 sm:py-10 w-full max-w-md">
+            <h2 class="text-2xl font-medium text-gray-900 text-center mb-1">Welcome Back</h2>
             <p class="text-gray-500 text-sm text-center mb-8">Login to your dashboard</p>
 
             <!-- ERROR MESSAGE -->
@@ -150,7 +147,7 @@
             @endif
 
             <!-- FORM START -->
-            <form method="POST" action="{{ url('/login') }}" autocomplete="off">
+            <form method="POST" action="{{ route('login') }}" autocomplete="off">
                 @csrf
 
                 <input type="text" name="fake_email" class="hidden" autocomplete="off" tabindex="-1" aria-hidden="true">
@@ -175,15 +172,6 @@
                             class="flex-1 text-sm text-gray-700 outline-none bg-transparent placeholder-gray-400"
                             required />
                     </div>
-                </div>
-
-                <!-- Remember me -->
-                <div class="flex items-center justify-between mb-7">
-                    <label class="flex items-center gap-2 cursor-pointer">
-                        <input type="checkbox" name="remember"
-                            class="w-4 h-4 rounded border-gray-300 accent-purple-600" />
-                        <span class="text-sm text-gray-600">Remember me</span>
-                    </label>
                 </div>
 
                 <!-- Submit Button -->

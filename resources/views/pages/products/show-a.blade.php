@@ -10,7 +10,8 @@
         $detailTitle = $detail['title'] ?? 'Cloud CMS License (Annual)';
         $detailDescription = $detail['description'] ?? 'Full-featured cloud-based content management system for digital signage.';
         $detailImage = $detail['image'] ?? asset('icons/14pageimg.jpg');
-        $detailPrice = $detail['price'] ?? 'Rs 299/year';
+        $detailPrice = $detail['price'] ?? '₹299/year';
+        $detailPriceLabel = $detail['price_label'] ?? 'Purchase Price';
         $licenseEnabled = (bool) ($detail['license_enabled'] ?? false);
         $detailFeatures = collect($detail['features'] ?? [])->filter()->values();
         $detailSpecs = collect($detail['specifications'] ?? [])->filter()->values();
@@ -97,7 +98,7 @@
 
                         <!-- ---- HEADING DIV ---- -->
                         <div class="signage14-title-wrap w-[568px] h-[96px] max-[1387px]:w-full max-[1387px]:max-w-full max-lg:h-auto">
-                            <h1 class="text-[40px] leading-[48px] font-bold text-[#101828] max-lg:text-[34px] max-lg:leading-[1.15] max-md:text-[30px]">
+                            <h1 class="text-[40px] leading-[48px] font-medium text-[#101828] max-lg:text-[34px] max-lg:leading-[1.15] max-md:text-[30px]">
                                 {{ $detailTitle }}
                             </h1>
                         </div>
@@ -142,10 +143,10 @@
                                 <div class="flex min-w-[150px] flex-col gap-[4px]">
 
                                     <!-- LABEL -->
-                                    <p class="text-sm text-gray-500">Price</p>
+                                    <p class="text-sm text-gray-500">{{ $detailPriceLabel }}</p>
 
                                     <!-- PRICE TEXT -->
-                                    <h2 class="text-[30px] leading-[36px] font-black text-[#101828]">
+                                    <h2 class="text-[30px] leading-[36px] font-medium text-[#101828]">
                                         {{ $detailPrice }}
                                     </h2>
                                 </div>
@@ -292,7 +293,7 @@
 
                 <!-- ===== HEADING DIV ===== -->
                 <div class="w-full h-[36px]">
-                    <h2 class="text-[30px] leading-[36px] font-bold text-[#101828]">
+                    <h2 class="text-[30px] leading-[36px] font-medium text-[#101828]">
                         Key Features
                     </h2>
                 </div>
@@ -322,7 +323,7 @@
 
                 <!-- ===== HEADING DIV ===== -->
                 <div class="w-full h-[36px]">
-                    <h2 class="text-[30px] leading-[36px] font-bold text-[#101828]">
+                    <h2 class="text-[30px] leading-[36px] font-medium text-[#101828]">
                         Technical Specifications
                     </h2>
                 </div>
@@ -360,7 +361,7 @@
 
                 <!-- ===== HEADING DIV ===== -->
                 <div class="signage14-cta-heading w-full h-[36px]">
-                    <h2 class="text-[30px] leading-[36px] font-bold text-[#101828] max-md:text-[28px] max-md:leading-[1.2]">
+                    <h2 class="text-[30px] leading-[36px] font-medium text-[#101828] max-md:text-[28px] max-md:leading-[1.2]">
                         Ready to Get Started?
                     </h2>
                 </div>

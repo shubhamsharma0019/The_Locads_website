@@ -25,10 +25,10 @@
 
     <!-- ================= HERO ================= -->
     <!-- FULL WIDTH HERO -->
-<section class="w-screen min-h-[593.45px] relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw]">
+<section class="w-screen min-h-[430px] sm:min-h-[520px] lg:min-h-[593.45px] relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw]">
 
   <!-- BACKGROUND -->
-  <img src="{{ asset('icons/backgroundimage.jpg') }}" class="w-full h-full object-cover absolute inset-0" />
+  <img src="{{ asset('icons/productimage.svg') }}" class="w-full h-full object-cover absolute inset-0" />
 
   <!-- OVERLAY -->
   <div class="absolute inset-0 bg-black/50"></div>
@@ -36,10 +36,10 @@
   <!-- CENTER CONTENT -->
   <div class="absolute inset-0 flex justify-center">
 
-    <div class="w-full max-w-[1280px] min-h-[440px] mt-12 sm:mt-16 lg:mt-[76.72px] pt-16 sm:pt-20 lg:pt-[80px] px-4 sm:px-6 lg:px-[48px] flex flex-col items-center">
+    <div class="w-full max-w-[1280px] min-h-[auto] lg:min-h-[440px] mt-8 sm:mt-12 lg:mt-[76.72px] pt-12 sm:pt-16 lg:pt-[80px] px-4 sm:px-6 lg:px-[48px] flex flex-col items-center">
 
       <!-- HEADING -->
-      <h1 class="text-[36px] leading-[44px] sm:text-[48px] sm:leading-[56px] lg:text-[60px] lg:leading-[72px] tracking-[-1.5px] font-bold text-white text-center">
+      <h1 class="text-[36px] leading-[44px] sm:text-[48px] sm:leading-[56px] lg:text-[60px] lg:leading-[72px] tracking-[-1.5px] font-medium text-white text-center">
         Our <span class="text-red-500">Products</span>
       </h1>
 
@@ -49,16 +49,16 @@
       </p>
 
       <!-- TOGGLE -->
-      <div class="w-full max-w-[432.18px] min-h-[58px] mt-[36px] sm:mt-[48px] bg-white border border-[#E5E7EB] rounded-full flex flex-col sm:flex-row items-stretch sm:items-center p-[4px]">
+      <div class="w-full max-w-[432.18px] min-h-[58px] mt-[28px] sm:mt-[40px] lg:mt-[48px] bg-white border border-[#E5E7EB] rounded-full flex flex-row items-center p-[4px]">
 
-        <a href="{{ route('products.index') }}" class="w-full sm:w-[204.91px] h-[48px] flex items-center justify-center">
-          <span class="text-[#6B7280] text-[16px] font-semibold">
+        <a href="{{ route('products.index') }}" class="flex-1 h-[48px] flex items-center justify-center px-3 text-center">
+          <span class="text-[#6B7280] text-[13px] sm:text-[16px] font-semibold">
             Hardware Solutions
           </span>
         </a>
 
-        <a href="{{ route('products.index-b') }}" class="w-full sm:w-[215.91px] h-[48px] bg-[#155DFC] rounded-full flex items-center justify-center shadow-[0_0_15px_0_rgba(37,99,235,0.5)]">
-          <span class="text-white text-[16px] font-semibold">
+        <a href="{{ route('products.index-b') }}" class="flex-1 h-[48px] bg-[#155DFC] rounded-full flex items-center justify-center px-3 text-center shadow-[0_0_15px_0_rgba(37,99,235,0.5)]">
+          <span class="text-white text-[13px] sm:text-[16px] font-semibold">
             Software Platform
           </span>
         </a>
@@ -85,7 +85,7 @@
         <!-- CONTENT -->
         <div class="mt-[24px] flex flex-col gap-[16px]">
 
-          <h3 class="w-full max-w-[414px] text-[30px] leading-[36px] font-bold text-[#101828]">
+          <h3 class="w-full max-w-[414px] text-[30px] leading-[36px] font-medium text-[#101828]">
             PixelWave Cloud CMS
           </h3>
 
@@ -138,7 +138,7 @@
         <!-- CONTENT -->
         <div class="mt-[24px] flex flex-col gap-[16px]">
 
-          <h3 class="w-full max-w-[414px] text-[30px] leading-[36px] font-bold text-[#101828]">
+          <h3 class="w-full max-w-[414px] text-[30px] leading-[36px] font-medium text-[#101828]">
             Device Manager
           </h3>
 

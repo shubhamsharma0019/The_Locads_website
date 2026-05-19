@@ -44,10 +44,10 @@
 
         <!-- ================= HERO ================= -->
         <!-- FULL WIDTH HERO -->
-        <section class="w-screen min-h-[593.45px] relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw]">
+        <section class="w-screen min-h-[430px] sm:min-h-[520px] lg:min-h-[593.45px] relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw]">
 
             <!-- BACKGROUND -->
-            <img src="{{ asset('icons/backgroundimage.jpg') }}" class="w-full h-full object-cover absolute inset-0" />
+            <img src="{{ asset('icons/productimage.svg') }}" class="w-full h-full object-cover absolute inset-0" />
 
             <!-- OVERLAY -->
             <div class="absolute inset-0 bg-black/50"></div>
@@ -55,10 +55,10 @@
             <!-- CENTER CONTENT -->
             <div class="absolute inset-0 flex justify-center">
 
-                <div class="w-full max-w-[1280px] min-h-[440px] mt-12 sm:mt-16 lg:mt-[76.72px] pt-16 sm:pt-20 lg:pt-[80px] px-4 sm:px-6 lg:px-[48px] flex flex-col items-center">
+                <div class="w-full max-w-[1280px] min-h-[auto] lg:min-h-[440px] mt-8 sm:mt-12 lg:mt-[76.72px] pt-12 sm:pt-16 lg:pt-[80px] px-4 sm:px-6 lg:px-[48px] flex flex-col items-center">
 
                     <!-- HEADING -->
-                    <h1 class="text-[36px] leading-[44px] sm:text-[48px] sm:leading-[56px] lg:text-[60px] lg:leading-[72px] tracking-[-1.5px] font-bold text-white text-center">
+                    <h1 class="text-[36px] leading-[44px] sm:text-[48px] sm:leading-[56px] lg:text-[60px] lg:leading-[72px] tracking-[-1.5px] font-medium text-white text-center">
                         Our <span class="text-red-500">Products</span>
                     </h1>
 
@@ -68,20 +68,20 @@
                     </p>
 
                     <!-- TOGGLE -->
-                    <div class="w-full max-w-[432px] min-h-[58px] mt-[36px] sm:mt-[48px] bg-[#E5E7EB] rounded-full flex flex-col sm:flex-row items-stretch sm:items-center p-[4px]">
+                    <div class="w-full max-w-[432px] min-h-[58px] mt-[28px] sm:mt-[40px] lg:mt-[48px] bg-[#E5E7EB] rounded-full flex flex-row items-center p-[4px]">
 
                         <!-- ACTIVE TAB -->
                         <a
                             href="{{ route('products.index') }}"
-                            class="w-full sm:w-[208px] h-[50px] bg-[#2563EB] rounded-full flex items-center justify-center shadow-[0px_4px_12px_rgba(37,99,235,0.35)]">
-                            <span class="text-white text-[16px] font-semibold">
+                            class="flex-1 h-[50px] bg-[#2563EB] rounded-full flex items-center justify-center px-3 text-center shadow-[0px_4px_12px_rgba(37,99,235,0.35)]">
+                            <span class="text-white text-[13px] sm:text-[16px] font-semibold">
                                 Hardware Solutions
                             </span>
                         </a>
 
                         <!-- INACTIVE TAB -->
-                        <a href="{{ route('products.index-b') }}" class="w-full sm:w-[208px] h-[50px] flex items-center justify-center">
-                            <span class="text-[#6B7280] text-[16px] font-semibold">
+                        <a href="{{ route('products.index-b') }}" class="flex-1 h-[50px] flex items-center justify-center px-3 text-center">
+                            <span class="text-[#6B7280] text-[13px] sm:text-[16px] font-semibold">
                                 Software Platform
                             </span>
                         </a>
@@ -93,7 +93,8 @@
 
         </section>
 
-        <section class="w-full max-w-[1184px] px-4 sm:px-6 lg:px-0 mx-auto mt-[64px] mb-[94px] grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-[24px] lg:gap-[32px]">
+        @if (($dynamicProducts ?? collect())->isNotEmpty())
+        <section class="w-full max-w-[1184px] px-4 sm:px-6 lg:px-0 mx-auto mt-10 lg:mt-[64px] mb-6 lg:mb-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-[24px] lg:gap-[32px]">
             @foreach (($dynamicProducts ?? collect()) as $product)
             <div class="w-full max-w-[373.33px] min-h-[624px] mx-auto bg-white rounded-[24px] border border-[#E5E7EB] overflow-hidden flex flex-col">
                 <div class="w-full h-[256px] bg-[#F3F4F6]">
@@ -107,13 +108,9 @@
                 </div>
 
                 <div class="flex flex-col px-6 sm:px-8 pt-[32px]">
-                    <h3 class="text-[24px] leading-[32px] font-bold text-[#101828]">
+                    <h3 class="text-[24px] leading-[32px] font-medium text-[#101828]">
                         {{ $product['name'] }}
                     </h3>
-
-                    <p class="text-[14px] leading-[20px] font-semibold text-[#1447E6] mt-[8px]">
-                        Best for: {{ $product['best_for'] ?: $product['category'] }}
-                    </p>
 
                     <div class="flex flex-col gap-[12px] mt-[16px]">
                         @foreach (array_slice($product['features'] ?? [], 0, 4) as $feature)
@@ -145,6 +142,7 @@
             @endforeach
 
         </section>
+        @endif
         <!-- 🔷 THIRD DIV (FOOTER) -->
         @include('partials.site-footer')
 

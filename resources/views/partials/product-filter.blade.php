@@ -6,10 +6,19 @@
         ['page' => 11, 'route' => 'products.index-e', 'label' => 'Outdoor/Window Displays'],
         ['page' => 12, 'route' => 'products.index-f', 'label' => 'Media Players'],
         ['page' => 13, 'route' => 'products.index-g', 'label' => 'Software & Licenses'],
+        ['page' => 20, 'route' => 'products.rental-products', 'label' => 'Rental Products'],
     ];
 @endphp
 
-<section class="w-full border-b border-[#E5E7EB] bg-white px-4 sm:px-6 lg:px-[53.5px] pt-6 lg:pt-[32px] flex justify-start lg:justify-center overflow-x-auto overflow-y-hidden">
+<style>
+    .locads-product-filter-scroll::-webkit-scrollbar-button {
+        display: none;
+        width: 0;
+        height: 0;
+    }
+</style>
+
+<section class="locads-product-filter-scroll w-full border-b border-[#E5E7EB] bg-white px-4 sm:px-6 lg:px-[53.5px] pt-6 lg:pt-[32px] flex justify-start lg:justify-center overflow-x-auto overflow-y-hidden">
     <div class="flex w-max min-w-max items-center flex-nowrap gap-[12px] pb-[10px] lg:mb-[33px]">
         @foreach ($productTabs as $tab)
             <a

@@ -49,7 +49,7 @@
 
         <!-- 🔷 HEADING -->
         <div class="w-full flex justify-center">
-          <h1 class="w-full max-w-[454px] text-center text-[40px] sm:text-[52px] lg:text-[60px] font-bold leading-[48px] sm:leading-[60px] lg:leading-[72px] tracking-[-1px] lg:tracking-[-1.5px] text-[#111827]">
+          <h1 class="w-full max-w-[454px] text-center text-[40px] sm:text-[52px] lg:text-[60px] font-medium leading-[48px] sm:leading-[60px] lg:leading-[72px] tracking-[-1px] lg:tracking-[-1.5px] text-[#111827]">
 
             Build Your Own
 
@@ -95,7 +95,7 @@
 
           <!-- HEADING -->
           <div class="w-full flex justify-center">
-            <h2 class="text-[34px] sm:text-[40px] lg:text-[48px] font-bold leading-[40px] sm:leading-[44px] lg:leading-[48px] text-[#101828]">
+            <h2 class="text-[34px] sm:text-[40px] lg:text-[48px] font-medium leading-[40px] sm:leading-[44px] lg:leading-[48px] text-[#101828]">
               Business Models
             </h2>
           </div>
@@ -123,7 +123,7 @@
 
                 <!-- 🔷 HEADING -->
                 <div class="w-full min-h-[36px] flex items-center">
-                  <h3 class="text-[30px] font-bold leading-[36px] text-[#101828]">
+                  <h3 class="text-[30px] font-medium leading-[36px] text-[#101828]">
                     FIFO Partner
                   </h3>
                 </div>
@@ -171,7 +171,7 @@
                 </p>
 
                 <p class="text-[32px] font-bold text-[#101828] mt-[4px]">
-                  $15,000
+                  ₹15,000
                 </p>
 
                 <!-- 🔷 BUTTON -->
@@ -199,7 +199,7 @@
 
                 <!-- 🔷 TITLE -->
                 <div class="w-full min-h-[36px] flex items-center">
-                  <h3 class="text-[30px] font-bold leading-[36px] text-[#101828]">
+                  <h3 class="text-[30px] font-medium leading-[36px] text-[#101828]">
                     Master Franchise
                   </h3>
                 </div>
@@ -254,7 +254,7 @@
                 </p>
 
                 <p class="text-[32px] font-bold text-[#101828] mt-[4px]">
-                  $75,000+
+                  ₹75,000+
                 </p>
 
                 <!-- 🔷 BUTTON -->
@@ -271,14 +271,14 @@
       </div>
     </div>
     <!-- 🔷 WHY SECTION -->
-    <div class="w-full flex justify-center px-4 sm:px-6 lg:px-[53.5px] py-16 lg:py-[96px]">
+    <div class="w-full flex justify-center px-4 sm:px-6 lg:px-[53.5px] pt-16 pb-2 lg:pt-[96px] lg:pb-[10px]">
 
       <!-- 🔷 INNER -->
-      <div class="w-full max-w-[1280px] flex flex-col items-center gap-10 lg:gap-[64px] px-0 lg:px-[48px]">
+      <div class="w-full max-w-[1280px] flex flex-col items-center gap-8 lg:gap-[40px] px-0 lg:px-[48px]">
 
         <!-- 🔷 HEADING -->
         <div class="w-full max-w-[1184px] flex justify-center">
-          <h2 class="text-[30px] font-bold leading-[36px] text-[#101828] text-center">
+          <h2 class="text-[30px] font-medium leading-[36px] text-[#101828] text-center">
             Why Partner With Us?
           </h2>
         </div>

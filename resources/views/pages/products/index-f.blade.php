@@ -3,6 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     @include('partials.seo-meta', [
         'title' => 'Media Players | The Locads',
         'description' => 'Discover media players from The Locads built for reliable digital signage playback, control, and performance.',
@@ -28,7 +29,7 @@
 
                 <!-- ================= HEADING ================= -->
                 <div class="signage12-hero-title w-[371px] h-[72px] mx-auto max-lg:w-full max-lg:max-w-[768px] max-lg:h-auto">
-                    <h1 class="text-[60px] leading-[72px] font-bold tracking-[-1.5px] text-[#111827] max-lg:text-[44px] max-lg:leading-[1.15] max-md:text-[34px]">
+                    <h1 class="text-[60px] leading-[72px] font-medium tracking-[-1.5px] text-[#111827] max-lg:text-[44px] max-lg:leading-[1.15] max-md:text-[34px]">
                         Our <span class="text-[#4F46E5] tracking-[-1.8px]">Products</span>
                     </h1>
                 </div>
@@ -70,6 +71,7 @@
         </section>
         @include('partials.product-filter', ['currentPage' => 12])
 
+        @if (($mediaProducts ?? collect())->isEmpty())
         <section class="signage12-products w-full max-w-[1387px] mx-auto px-[101.5px] pt-[64px] pb-[64px] max-[1387px]:px-[24px] max-md:px-[16px] max-md:pt-[40px] max-md:pb-[40px]">
 
             <!-- INNER WRAPPER -->
@@ -85,7 +87,7 @@
 
                         <!-- TITLE -->
                         <div class="signage12-card-title w-[323.33px] max-[1387px]:w-full mt-[24px] h-[28px]">
-                            <h3 class="text-[20px] leading-[28px] font-bold text-[#101828]">
+                            <h3 class="text-[20px] leading-[28px] font-medium text-[#101828]">
                                 Edge Media Player - i5
                             </h3>
                         </div>
@@ -97,28 +99,28 @@
                             <div class="flex items-center gap-[8px]">
                                 <div class="w-[6px] h-[6px] bg-[#155DFC] rounded-full"></div>
                                 <span class="text-[14px] text-[#4A5565] leading-[20px]">
-                                    43" 4K UHD
+                                    Intel i5 performance
                                 </span>
                             </div>
 
                             <div class="flex items-center gap-[8px]">
                                 <div class="w-[6px] h-[6px] bg-[#155DFC] rounded-full"></div>
                                 <span class="text-[14px] text-[#4A5565]">
-                                    500 nits brightness
+                                    Reliable signage playback
                                 </span>
                             </div>
 
                             <div class="flex items-center gap-[8px]">
                                 <div class="w-[6px] h-[6px] bg-[#155DFC] rounded-full"></div>
                                 <span class="text-[14px] text-[#4A5565]">
-                                    500 nits brightness
+                                    Compact edge device
                                 </span>
                             </div>
 
                             <div class="flex items-center gap-[8px]">
                                 <div class="w-[6px] h-[6px] bg-[#155DFC] rounded-full"></div>
                                 <span class="text-[14px] text-[#4A5565]">
-                                    Android OS
+                                    Cloud CMS compatible
                                 </span>
                             </div>
 
@@ -134,20 +136,20 @@
                                 <!-- LEFT (PURCHASE) -->
                                 <div class="flex flex-col justify-between h-[52px]">
                                     <span class="text-[14px] leading-[20px] text-[#4A5565]">
-                                        Purchase
+                                        Purchase Price
                                     </span>
                                     <span class="text-[24px] leading-[32px] font-bold text-[#101828]">
-                                        Rs 899
+                                        ₹699
                                     </span>
                                 </div>
 
                                 <!-- RIGHT (RENT) -->
                                 <div class="flex flex-col justify-between items-end h-[52px]">
                                     <span class="text-[14px] leading-[20px] text-[#4A5565]">
-                                        Rent
+                                        Rent Price
                                     </span>
                                     <span class="text-[20px] leading-[28px] font-bold text-[#E7000B]">
-                                        Rs 49/month
+                                        On request
                                     </span>
                                 </div>
 
@@ -191,7 +193,7 @@
 
                         <!-- TITLE -->
                         <div class="signage12-card-title w-[323.33px] max-[1387px]:w-full mt-[24px] h-[28px]">
-                            <h3 class="text-[20px] leading-[28px] font-bold text-[#101828]">
+                            <h3 class="text-[20px] leading-[28px] font-medium text-[#101828]">
                                 Edge Media Player - i5
                             </h3>
                         </div>
@@ -203,28 +205,28 @@
                             <div class="flex items-center gap-[8px]">
                                 <div class="w-[6px] h-[6px] bg-[#155DFC] rounded-full"></div>
                                 <span class="text-[14px] text-[#4A5565] leading-[20px]">
-                                    43" 4K UHD
+                                    i5 media player rental
                                 </span>
                             </div>
 
                             <div class="flex items-center gap-[8px]">
                                 <div class="w-[6px] h-[6px] bg-[#155DFC] rounded-full"></div>
                                 <span class="text-[14px] text-[#4A5565]">
-                                    500 nits brightness
+                                    Temporary signage deployment
                                 </span>
                             </div>
 
                             <div class="flex items-center gap-[8px]">
                                 <div class="w-[6px] h-[6px] bg-[#155DFC] rounded-full"></div>
                                 <span class="text-[14px] text-[#4A5565]">
-                                    500 nits brightness
+                                    Configured for playback needs
                                 </span>
                             </div>
 
                             <div class="flex items-center gap-[8px]">
                                 <div class="w-[6px] h-[6px] bg-[#155DFC] rounded-full"></div>
                                 <span class="text-[14px] text-[#4A5565]">
-                                    Android OS
+                                    Works with CMS-led campaigns
                                 </span>
                             </div>
 
@@ -240,20 +242,20 @@
                                 <!-- LEFT (PURCHASE) -->
                                 <div class="flex flex-col justify-between h-[52px]">
                                     <span class="text-[14px] leading-[20px] text-[#4A5565]">
-                                        Purchase
+                                        Purchase Price
                                     </span>
                                     <span class="text-[24px] leading-[32px] font-bold text-[#101828]">
-                                        Rs 899
+                                        ₹799
                                     </span>
                                 </div>
 
                                 <!-- RIGHT (RENT) -->
                                 <div class="flex flex-col justify-between items-end h-[52px]">
                                     <span class="text-[14px] leading-[20px] text-[#4A5565]">
-                                        Rent
+                                        Rent Price
                                     </span>
                                     <span class="text-[20px] leading-[28px] font-bold text-[#E7000B]">
-                                        Rs 49/month
+                                        ₹49 per month
                                     </span>
                                 </div>
 
@@ -289,10 +291,9 @@
 
             </div>
         </section>
+        @endif
         @include('partials.public-product-grid', [
             'products' => $mediaProducts ?? collect(),
-            'title' => 'Created Media Products',
-            'description' => 'Media Player category me create kiye gaye products is section me show honge.',
         ])
         <!-- ================= CTA SECTION ================= -->
         <section class="signage12-cta relative z-0 w-full max-w-[1387px] h-[296px] mx-auto mt-[64px] px-[53.5px] pt-[64px] bg-[#F9FAFB] max-[1387px]:px-[24px] max-lg:h-auto max-lg:pt-[56px] max-lg:pb-[56px] max-md:mt-[48px] max-md:px-[16px] max-md:pt-[48px] max-md:pb-[48px] before:absolute before:inset-y-0 before:-left-[100vmax] before:-right-[100vmax] before:-z-10 before:content-[''] before:bg-[#F9FAFB]">
@@ -302,7 +303,7 @@
 
                 <!-- HEADING -->
                 <div class="signage12-cta-heading w-[1184px] h-[36px] max-[1387px]:w-full flex justify-center">
-                    <h2 class="text-[30px] leading-[36px] font-bold text-[#101828] text-center max-md:text-[28px] max-md:leading-[1.2]">
+                    <h2 class="text-[30px] leading-[36px] font-medium text-[#101828] text-center max-md:text-[28px] max-md:leading-[1.2]">
                         Need Help Choosing?
                     </h2>
                 </div>

@@ -13,6 +13,8 @@ class ProductController extends Controller
 {
     public function indexA(ProductCatalog $catalog): View
     {
+        $catalog->ensureDefaultProducts();
+
         return view('pages.products.index-a', [
             'dynamicProducts' => $catalog->normalProducts(),
         ]);
@@ -25,13 +27,17 @@ class ProductController extends Controller
 
     public function indexC(ProductCatalog $catalog): View
     {
+        $catalog->ensureDefaultProducts();
+
         return view('pages.products.index-c', [
-            'createdProducts' => $catalog->allForPublicPages(),
+            'createdProducts' => $catalog->all(),
         ]);
     }
 
     public function indexD(ProductCatalog $catalog): View
     {
+        $catalog->ensureDefaultProducts();
+
         return view('pages.products.index-d', [
             'indoorProducts' => $catalog->byCategories([
                 'Indoor Display',
@@ -43,8 +49,10 @@ class ProductController extends Controller
 
     public function indexE(ProductCatalog $catalog): View
     {
+        $catalog->ensureDefaultProducts();
+
         return view('pages.products.index-e', [
-            'outdoorProducts' => $catalog->byCategoriesForPublicPages([
+            'outdoorProducts' => $catalog->byCategories([
                 'Outdoor Display',
                 'Outdoor Displays',
                 'Outdoor/Window Displays',
@@ -57,8 +65,10 @@ class ProductController extends Controller
 
     public function indexF(ProductCatalog $catalog): View
     {
+        $catalog->ensureDefaultProducts();
+
         return view('pages.products.index-f', [
-            'mediaProducts' => $catalog->byCategoriesForPublicPages([
+            'mediaProducts' => $catalog->byCategories([
                 'Media Player',
                 'Media Players',
             ]),
@@ -67,8 +77,10 @@ class ProductController extends Controller
 
     public function indexG(ProductCatalog $catalog): View
     {
+        $catalog->ensureDefaultProducts();
+
         return view('pages.products.index-g', [
-            'softwareProducts' => $catalog->byCategoriesForPublicPages([
+            'softwareProducts' => $catalog->byCategories([
                 'Software',
                 'Software & Licenses',
                 'Software & Licences',
@@ -77,6 +89,17 @@ class ProductController extends Controller
                 'License',
                 'Licence',
             ]),
+        ]);
+    }
+
+    public function publicRentals(ProductCatalog $catalog): View
+    {
+        $catalog->ensureDefaultProducts();
+
+        $rentalProducts = $catalog->rentProducts();
+
+        return view('pages.products.rental-products', [
+            'rentalProducts' => $rentalProducts,
         ]);
     }
 
@@ -96,6 +119,8 @@ class ProductController extends Controller
 
     public function showProduct(Request $request, string $productSlug, ProductCatalog $catalog): View
     {
+        $catalog->ensureDefaultProducts();
+
         $product = $catalog->findBySlug($productSlug)
             ?? $this->seededProductDetail($productSlug);
 
@@ -115,6 +140,8 @@ class ProductController extends Controller
 
     public function create(Request $request, ProductCatalog $catalog): View
     {
+        $catalog->ensureDefaultProducts();
+
         $editId = (string) $request->query('edit', '');
 
         return view('pages.products.create', [
@@ -127,6 +154,8 @@ class ProductController extends Controller
 
     public function rentals(Request $request, ProductCatalog $catalog): View
     {
+        $catalog->ensureDefaultProducts();
+
         $editId = (string) $request->query('edit', '');
         $products = $catalog->rentProducts();
         $editingProduct = $editId ? $catalog->find($editId) : null;
@@ -143,7 +172,7 @@ class ProductController extends Controller
                 'inactive' => $products->where('status', 'inactive')->count(),
                 'categories' => $products->pluck('category')->filter()->unique()->count(),
             ],
-            'categories' => $products->pluck('category')->filter()->unique()->values(),
+            'categories' => $catalog->categories(),
             'editingProduct' => $editingProduct,
         ]);
     }
@@ -229,7 +258,7 @@ class ProductController extends Controller
         if ($features === []) {
             $features = [
                 $product['short_description'] ?: 'Commercial-grade product configuration',
-                $product['best_for'] ? 'Best for: ' . $product['best_for'] : 'Ready for digital signage deployments',
+                'Ready for digital signage deployments',
                 $product['status'] === 'active' ? 'Available for enquiries' : 'Availability on request',
             ];
         }
@@ -238,7 +267,6 @@ class ProductController extends Controller
             $specifications = array_values(array_filter([
                 'Category: ' . ($product['category'] ?: 'General'),
                 $product['sku'] ? 'SKU: ' . $product['sku'] : null,
-                $product['best_for'] ? 'Best For: ' . $product['best_for'] : null,
                 'Status: ' . ucfirst($product['status'] ?? 'active'),
             ]));
         }
@@ -252,6 +280,7 @@ class ProductController extends Controller
             'description' => $product['description'] ?: ($product['short_description'] ?: 'Detailed product information is available from The Locads team.'),
             'image' => $product['image_path'] ? asset($product['image_path']) : asset('icons/14pageimg.jpg'),
             'price' => $this->formatPrice($product),
+            'price_label' => ($product['type'] ?? 'product') === 'rent' ? 'Rent Price' : 'Purchase Price',
             'purchase_label' => ($product['type'] ?? 'product') === 'rent' ? 'Request Rental' : 'Purchase Now',
             'back_route' => $this->backRouteForProduct($product),
             'license_enabled' => $this->canGenerateLicenseForProduct($product),
@@ -268,15 +297,15 @@ class ProductController extends Controller
     private function formatPrice(array $product): string
     {
         if (($product['type'] ?? 'product') === 'rent' && !empty($product['rent_price'])) {
-            return 'Rs ' . number_format((float) $product['rent_price'], 0) . '/' . ($product['billing_period'] ?? 'month');
+            return '₹' . number_format((float) $product['rent_price'], 0) . ' per ' . ($product['billing_period'] ?? 'month');
         }
 
         if (!empty($product['price'])) {
-            return 'Rs ' . number_format((float) $product['price'], 0);
+            return '₹' . number_format((float) $product['price'], 0);
         }
 
         if (!empty($product['rent_price'])) {
-            return 'Rs ' . number_format((float) $product['rent_price'], 0) . '/' . ($product['billing_period'] ?? 'month');
+            return '₹' . number_format((float) $product['rent_price'], 0) . ' per ' . ($product['billing_period'] ?? 'month');
         }
 
         return 'On request';
@@ -325,7 +354,7 @@ class ProductController extends Controller
                 'seo_keywords' => 'Pro Series 4K Display, indoor digital signage, The Locads',
                 'description' => 'Commercial-grade indoor 4K display for retail, corporate, and customer-facing signage environments.',
                 'image' => asset('icons/commercial1.jpg'),
-                'price' => 'Rs 899',
+                'price' => '₹899',
                 'purchase_label' => 'Purchase Now',
                 'back_route' => route('products.index-d'),
                 'features' => [
@@ -341,7 +370,6 @@ class ProductController extends Controller
                     'Resolution: 4K UHD',
                     'Brightness: 500 nits',
                     'Orientation: Portrait and landscape',
-                    'Best For: Retail, offices, reception areas',
                     'Support: Setup support available',
                 ],
                 'badges' => ['3 Year Warranty', 'Installation Support', 'In Stock'],
@@ -381,7 +409,7 @@ class ProductController extends Controller
                 'seo_keywords' => 'high bright window display, outdoor signage, The Locads',
                 'description' => 'High-brightness display designed for storefront windows and daylight-facing signage with strong visibility.',
                 'image' => asset('icons/outdoorimage.jpg'),
-                'price' => 'Rs 1,499',
+                'price' => '₹1,499',
                 'purchase_label' => 'Purchase Now',
                 'back_route' => route('products.index-e'),
                 'features' => [
@@ -395,7 +423,6 @@ class ProductController extends Controller
                     'Display Type: High-bright window display',
                     'Size: 55 inch',
                     'Brightness: Daylight visible',
-                    'Best For: Retail windows and outdoor-facing locations',
                     'Orientation: Portrait and landscape',
                 ],
                 'badges' => ['3 Year Warranty', 'Storefront Ready', 'In Stock'],
@@ -435,7 +462,7 @@ class ProductController extends Controller
                 'seo_keywords' => 'edge media player, signage player i5, The Locads',
                 'description' => 'Compact i5-powered media player for reliable digital signage playback across single-screen and multi-screen deployments.',
                 'image' => asset('icons/mediaimage.jpg'),
-                'price' => 'Rs 699',
+                'price' => '₹699',
                 'purchase_label' => 'Purchase Now',
                 'back_route' => route('products.index-f'),
                 'features' => [
@@ -450,7 +477,6 @@ class ProductController extends Controller
                     'Device Type: Edge media player',
                     'Use Case: Digital signage playback',
                     'Connectivity: Network-ready deployment',
-                    'Best For: Retail, office, and hospitality screens',
                 ],
                 'badges' => ['Compact Device', 'CMS Ready', 'In Stock'],
             ],
@@ -490,7 +516,7 @@ class ProductController extends Controller
                 'seo_keywords' => 'cloud CMS license, signage software license, The Locads CMS',
                 'description' => 'Full-featured cloud-based content management system for digital signage. Manage unlimited content, schedule playlists, monitor screen health, and access real-time analytics from anywhere.',
                 'image' => asset('icons/14pageimg.jpg'),
-                'price' => 'Rs 299/year',
+                'price' => '₹299/year',
                 'purchase_label' => 'Purchase Now',
                 'back_route' => route('products.index-g'),
                 'features' => [
@@ -528,7 +554,7 @@ class ProductController extends Controller
                 'seo_keywords' => 'pen drive software license, offline signage software, The Locads',
                 'description' => 'Offline signage playback software for secure locations where cloud access is limited. Load content with USB, run scheduled media, and keep screens operational without internet dependency.',
                 'image' => asset('icons/softwareimage.jpg'),
-                'price' => 'Rs 899',
+                'price' => '₹899',
                 'purchase_label' => 'Purchase Now',
                 'back_route' => route('products.index-g'),
                 'features' => [
@@ -545,7 +571,6 @@ class ProductController extends Controller
                     'Connectivity: Offline playback supported',
                     'Content Updates: Manual USB update',
                     'Support: Setup support included',
-                    'Best For: Secure and remote locations',
                 ],
                 'badges' => ['Offline Ready', 'USB Setup', 'In Stock'],
             ],
